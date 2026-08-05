@@ -145,7 +145,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
   },
   {
     id: 't3',
-    client: 'Familia Larraín',
+    client: 'Matías L.',
     role: 'Celebración Familiar',
     quote: 'Contratamos el servicio de chef privado para una velada en casa. Ingredientes de primera calidad y una disposición maravillosa. Repetiremos sin duda.',
     rating: 5,
