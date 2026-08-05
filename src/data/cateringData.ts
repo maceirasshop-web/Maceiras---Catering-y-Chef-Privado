@@ -141,15 +141,15 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     role: 'Aniversario Familiar',
     quote: 'La atención personalizada para cada uno de nuestros invitados hizo la diferencia. La Crème Brûlée fue el broche de oro de la noche. Totalmente recomendados.',
     rating: 5,
-    location: 'Viña del Mar'
+    location: 'Santiago (Las Condes)'
   },
   {
     id: 't3',
     client: 'Familia Larraín',
-    role: 'Celebración de Fin de Semana',
-    quote: 'Contratamos el servicio de chef privado para nuestro fin de semana en la costa. Ingredientes de primera calidad y una disposición maravillosa. Repetiremos sin duda.',
+    role: 'Celebración Familiar',
+    quote: 'Contratamos el servicio de chef privado para una velada en casa. Ingredientes de primera calidad y una disposición maravillosa. Repetiremos sin duda.',
     rating: 5,
-    location: 'Zapallar'
+    location: 'Santiago (Vitacura)'
   }
 ];
 

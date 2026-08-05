@@ -268,7 +268,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
                 <div className="space-y-2">
                   <label htmlFor="location" className="block text-xs uppercase tracking-widest text-[#5A5A40] font-medium font-sans">
-                    Ubicación / Ciudad
+                    Ubicación / Comuna
                   </label>
                   <input
                     type="text"
@@ -276,7 +276,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     name="location"
                     value={formData.location}
                     onChange={handleChange}
-                    placeholder="Ej. Santiago, Viña del Mar, Zapallar..."
+                    placeholder="Ej. Las Condes, Vitacura, Lo Barnechea, Santiago..."
                     className="w-full px-4 py-3 rounded-xs bg-[#F5F2ED] border border-[#2A2A2A]/15 text-[#2A2A2A] text-sm focus:outline-none focus:border-[#D27D56] transition-all"
                   />
                 </div>
@@ -351,7 +351,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           <div className="p-6 rounded-xs bg-white border border-[#2A2A2A]/10 card-shadow space-y-2">
             <MapPin className="w-5 h-5 mx-auto text-[#D27D56]" />
             <div className="font-medium text-[#2A2A2A]">Cobertura de Servicio</div>
-            <div>Santiago · Viña del Mar · Zapallar · Todo Chile</div>
+            <div className="font-medium text-[#2A2A2A]">Santiago</div>
           </div>
         </div>
 
