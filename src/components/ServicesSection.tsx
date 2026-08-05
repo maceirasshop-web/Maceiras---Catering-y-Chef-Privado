@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, Check, X, Users, Sparkles, ChefHat } from 'lucide-react';
+import { ArrowUpRight, Check, X, Users, ChefHat } from 'lucide-react';
 import { SERVICES_DATA } from '../data/cateringData';
 import { ServiceItem } from '../types';
 
@@ -66,7 +66,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     {service.title}
                   </h3>
 
-                  {/* Descripción breve de una línea exacta */}
+                  {/* Descripción breve */}
                   <p className="text-xs font-sans text-[#2A2A2A]/70 font-light leading-relaxed line-clamp-2">
                     {service.description}
                   </p>
@@ -89,72 +89,79 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
       {/* Modal de detalles de Servicio */}
       <AnimatePresence>
         {selectedService && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#2A2A2A]/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#2A2A2A]/70 backdrop-blur-xs">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ duration: 0.3 }}
-              className="bg-[#F5F2ED] rounded-xs max-w-2xl w-full overflow-hidden shadow-2xl border border-[#2A2A2A]/20 relative max-h-[90vh] flex flex-col"
+              transition={{ duration: 0.25 }}
+              className="bg-[#F5F2ED] rounded-xs max-w-2xl w-full shadow-2xl border border-[#2A2A2A]/20 relative max-h-[88vh] flex flex-col overflow-hidden"
             >
-              {/* Header Image inside Modal */}
-              <div className="relative h-56 sm:h-64 w-full bg-[#EADDCA]">
-                <img
-                  src={selectedService.image}
-                  alt={selectedService.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-                <button
-                  onClick={() => setSelectedService(null)}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#F5F2ED]/90 text-[#2A2A2A] flex items-center justify-center hover:bg-[#D27D56] hover:text-white transition-colors cursor-pointer"
-                  aria-label="Cerrar modal"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-                <div className="absolute bottom-4 left-6 px-3 py-1 rounded-xs bg-[#5A5A40]/90 backdrop-blur-md text-[#F5F2ED] text-xs uppercase tracking-widest font-sans">
-                  {selectedService.subtitle}
+              {/* Floating Close Button (High contrast, always easy to click) */}
+              <button
+                onClick={() => setSelectedService(null)}
+                className="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-[#2A2A2A]/80 text-[#F5F2ED] hover:bg-[#D27D56] flex items-center justify-center transition-colors cursor-pointer shadow-lg border border-white/20"
+                aria-label="Cerrar modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Scrollable Container wrapping IMAGE + BODY TEXT together */}
+              <div className="flex-1 overflow-y-auto">
+                
+                {/* Header Image inside scroll container */}
+                <div className="relative h-48 sm:h-64 w-full bg-[#EADDCA] shrink-0">
+                  <img
+                    src={selectedService.image}
+                    alt={selectedService.title}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 sm:left-6 px-3 py-1 rounded-xs bg-[#5A5A40]/90 backdrop-blur-md text-[#F5F2ED] text-[10px] sm:text-xs uppercase tracking-widest font-sans border border-white/10">
+                    {selectedService.subtitle}
+                  </div>
+                </div>
+
+                {/* Body Text Content */}
+                <div className="p-5 sm:p-8 space-y-6">
+                  <div>
+                    <h3 className="font-serif text-2xl sm:text-3xl text-[#2A2A2A] mb-2 font-light">
+                      {selectedService.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#2A2A2A]/80 font-light leading-relaxed">
+                      {selectedService.detailedDescription}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 pt-2">
+                    <h4 className="text-[11px] sm:text-xs uppercase tracking-widest text-[#5A5A40] font-medium font-sans">
+                      Qué incluye esta experiencia:
+                    </h4>
+                    <ul className="grid grid-cols-1 gap-2.5">
+                      {selectedService.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#2A2A2A]">
+                          <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#EADDCA] flex items-center justify-center text-[#D27D56] shrink-0 mt-0.5">
+                            <Check className="w-3 h-3" />
+                          </div>
+                          <span className="font-light">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="p-3.5 sm:p-4 rounded-xs bg-white border border-[#2A2A2A]/10 flex items-center gap-3 text-xs text-[#2A2A2A]/80">
+                    <Users className="w-4 h-4 text-[#D27D56] shrink-0" />
+                    <span><strong>Ideal para:</strong> {selectedService.idealFor}</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Body */}
-              <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
-                <div>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#2A2A2A] mb-2 font-light">
-                    {selectedService.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#2A2A2A]/80 font-light leading-relaxed">
-                    {selectedService.detailedDescription}
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-2">
-                  <h4 className="text-xs uppercase tracking-widest text-[#5A5A40] font-medium font-sans">
-                    Qué incluye esta experiencia:
-                  </h4>
-                  <ul className="grid grid-cols-1 gap-2.5">
-                    {selectedService.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-sm text-[#2A2A2A]">
-                        <div className="w-5 h-5 rounded-full bg-[#EADDCA] flex items-center justify-center text-[#D27D56] shrink-0 mt-0.5">
-                          <Check className="w-3 h-3" />
-                        </div>
-                        <span className="font-light">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="p-4 rounded-xs bg-white border border-[#2A2A2A]/10 flex items-center gap-3 text-xs text-[#2A2A2A]/80">
-                  <Users className="w-4 h-4 text-[#D27D56] shrink-0" />
-                  <span><strong>Ideal para:</strong> {selectedService.idealFor}</span>
-                </div>
-              </div>
-
-              {/* Footer Modal Action */}
-              <div className="p-6 bg-[#EADDCA]/30 border-t border-[#2A2A2A]/10 flex items-center justify-between gap-4">
+              {/* Sticky Footer Modal Action Bar */}
+              <div className="p-4 sm:p-5 bg-[#F5F2ED] border-t border-[#2A2A2A]/10 flex items-center justify-between gap-3 shrink-0">
                 <button
                   onClick={() => setSelectedService(null)}
-                  className="px-5 py-2.5 text-xs uppercase tracking-wider text-[#2A2A2A]/70 hover:text-[#2A2A2A] font-medium"
+                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#2A2A2A]/70 hover:text-[#2A2A2A] font-medium"
                 >
                   Cerrar
                 </button>
@@ -164,10 +171,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     setSelectedService(null);
                     onSelectServiceForQuote(title);
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xs bg-[#5A5A40] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium hover:bg-[#D27D56] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xs bg-[#5A5A40] text-[#F5F2ED] text-[11px] sm:text-xs uppercase tracking-widest font-medium hover:bg-[#D27D56] transition-colors cursor-pointer"
                 >
                   <ChefHat className="w-4 h-4" />
-                  <span>Solicitar este servicio</span>
+                  <span>Solicitar servicio</span>
                 </button>
               </div>
             </motion.div>

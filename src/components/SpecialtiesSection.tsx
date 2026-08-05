@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Sparkles, Utensils, GlassWater, Tag } from 'lucide-react';
+import { X, Utensils, GlassWater } from 'lucide-react';
 import { DISHES_DATA } from '../data/cateringData';
 import { DishItem } from '../types';
 
@@ -53,7 +53,7 @@ export const SpecialtiesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Grid limpio de 4 platos destacados con espaciado generoso */}
+        {/* Grid limpio de 4 platos destacados */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {filteredDishes.map((dish, index) => (
             <motion.div
@@ -88,7 +88,7 @@ export const SpecialtiesSection: React.FC = () => {
                     {dish.name}
                   </h3>
 
-                  {/* Descripción corta exactas */}
+                  {/* Descripción corta */}
                   <p className="text-xs font-sans text-[#2A2A2A]/70 font-light leading-relaxed line-clamp-2">
                     {dish.description}
                   </p>
@@ -117,83 +117,92 @@ export const SpecialtiesSection: React.FC = () => {
 
       </div>
 
-      {/* Modal de Detalle de Platillo */}
+      {/* Modal de Detalle de Platillo (Mobile Optimized) */}
       <AnimatePresence>
         {selectedDish && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#2A2A2A]/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#2A2A2A]/70 backdrop-blur-xs">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ duration: 0.3 }}
-              className="bg-[#F5F2ED] rounded-xs max-w-xl w-full overflow-hidden shadow-2xl border border-[#2A2A2A]/20 relative flex flex-col"
+              transition={{ duration: 0.25 }}
+              className="bg-[#F5F2ED] rounded-xs max-w-lg sm:max-w-xl w-full shadow-2xl border border-[#2A2A2A]/20 relative max-h-[88vh] flex flex-col overflow-hidden"
             >
-              <div className="relative h-64 w-full bg-[#EADDCA]">
-                <img
-                  src={selectedDish.image}
-                  alt={selectedDish.name}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-                <button
-                  onClick={() => setSelectedDish(null)}
-                  className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#F5F2ED]/90 text-[#2A2A2A] flex items-center justify-center hover:bg-[#D27D56] hover:text-white transition-colors cursor-pointer"
-                  aria-label="Cerrar modal"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
+              {/* Floating Close Button (High contrast, always easy to click on mobile) */}
+              <button
+                onClick={() => setSelectedDish(null)}
+                className="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-[#2A2A2A]/80 text-[#F5F2ED] hover:bg-[#D27D56] flex items-center justify-center transition-colors cursor-pointer shadow-lg border border-white/20"
+                aria-label="Cerrar modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
-              <div className="p-6 sm:p-8 space-y-5">
-                <div>
-                  <span className="text-[10px] uppercase tracking-widest text-[#D27D56] font-medium font-sans">
+              {/* Scrollable Container wrapping IMAGE + CONTENT together */}
+              <div className="flex-1 overflow-y-auto">
+                {/* Header Image inside scroll container */}
+                <div className="relative h-48 sm:h-60 w-full bg-[#EADDCA] shrink-0">
+                  <img
+                    src={selectedDish.image}
+                    alt={selectedDish.name}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-4 px-2.5 py-0.5 rounded-xs bg-[#5A5A40]/90 backdrop-blur-md text-[#F5F2ED] text-[9px] uppercase tracking-widest font-sans border border-white/10">
                     {selectedDish.category}
-                  </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#2A2A2A] mt-1 font-light">
-                    {selectedDish.name}
-                  </h3>
-                  <p className="text-sm text-[#2A2A2A]/80 font-light mt-2 leading-relaxed">
-                    {selectedDish.detailedDescription}
-                  </p>
-                </div>
-
-                {/* Ingredientes clave */}
-                <div className="space-y-2 pt-2 border-t border-[#2A2A2A]/10">
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#5A5A40] font-medium">
-                    <Utensils className="w-3.5 h-3.5 text-[#D27D56]" />
-                    <span>Ingredientes principales</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedDish.ingredients.map((ing, iIdx) => (
-                      <span key={iIdx} className="text-xs bg-[#EADDCA]/50 border border-[#2A2A2A]/10 text-[#2A2A2A] px-2.5 py-1 rounded-xs">
-                        {ing}
-                      </span>
-                    ))}
                   </div>
                 </div>
 
-                {/* Maridaje recomendado */}
-                <div className="p-4 rounded-xs bg-white border border-[#2A2A2A]/10 space-y-1">
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#5A5A40] font-medium">
-                    <GlassWater className="w-3.5 h-3.5 text-[#D27D56]" />
-                    <span>Maridaje del Sommelier</span>
+                {/* Body Content */}
+                <div className="p-5 sm:p-7 space-y-4">
+                  <div>
+                    <h3 className="font-serif text-2xl sm:text-3xl text-[#2A2A2A] font-light leading-snug">
+                      {selectedDish.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#2A2A2A]/80 font-light mt-2 leading-relaxed">
+                      {selectedDish.detailedDescription}
+                    </p>
                   </div>
-                  <p className="text-xs text-[#2A2A2A]/80 italic font-serif">
-                    "{selectedDish.pairing}"
-                  </p>
-                </div>
 
-                {selectedDish.chefNote && (
-                  <p className="text-xs text-[#5A5A40] font-sans italic">
-                    Nota del chef: {selectedDish.chefNote}
-                  </p>
-                )}
+                  {/* Ingredientes clave */}
+                  <div className="space-y-2 pt-2 border-t border-[#2A2A2A]/10">
+                    <div className="flex items-center gap-2 text-[11px] sm:text-xs uppercase tracking-widest text-[#5A5A40] font-medium font-sans">
+                      <Utensils className="w-3.5 h-3.5 text-[#D27D56]" />
+                      <span>Ingredientes principales</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {selectedDish.ingredients.map((ing, iIdx) => (
+                        <span key={iIdx} className="text-[11px] sm:text-xs bg-white border border-[#2A2A2A]/10 text-[#2A2A2A] px-2.5 py-1 rounded-xs">
+                          {ing}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Maridaje recomendado */}
+                  <div className="p-3.5 sm:p-4 rounded-xs bg-white border border-[#2A2A2A]/10 space-y-1">
+                    <div className="flex items-center gap-2 text-[11px] sm:text-xs uppercase tracking-widest text-[#5A5A40] font-medium font-sans">
+                      <GlassWater className="w-3.5 h-3.5 text-[#D27D56]" />
+                      <span>Maridaje del Sommelier</span>
+                    </div>
+                    <p className="text-xs text-[#2A2A2A]/80 italic font-serif">
+                      "{selectedDish.pairing}"
+                    </p>
+                  </div>
+
+                  {selectedDish.chefNote && (
+                    <p className="text-[11px] text-[#5A5A40] font-sans italic pt-1">
+                      <strong>Nota del chef:</strong> {selectedDish.chefNote}
+                    </p>
+                  )}
+                </div>
               </div>
 
-              <div className="p-6 bg-[#EADDCA]/30 border-t border-[#2A2A2A]/10 flex justify-end">
+              {/* Sticky Footer Modal Action */}
+              <div className="p-4 sm:p-5 bg-[#F5F2ED] border-t border-[#2A2A2A]/10 flex justify-end shrink-0">
                 <button
                   onClick={() => setSelectedDish(null)}
-                  className="px-6 py-2.5 rounded-xs bg-[#5A5A40] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium hover:bg-[#D27D56] transition-colors cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-xs bg-[#5A5A40] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium hover:bg-[#D27D56] transition-colors cursor-pointer"
                 >
                   Entendido
                 </button>
