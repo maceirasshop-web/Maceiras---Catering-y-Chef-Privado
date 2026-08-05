@@ -55,15 +55,18 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
           <div className="flex items-center gap-6 text-[10px] uppercase tracking-wider">
             <a href="#" className="hover:underline">Aviso Legal</a>
             <a href="#" className="hover:underline">Política de Privacidad</a>
-            {onOpenAdmin && (
-              <button 
-                onClick={onOpenAdmin} 
-                className="hover:text-[#D27D56] transition-colors flex items-center gap-1 cursor-pointer"
-              >
-                <Lock className="w-3 h-3 text-[#D27D56]" />
-                <span>Acceso Admin</span>
-              </button>
-            )}
+            <a 
+              href="#admin"
+              onClick={(e) => {
+                if (onOpenAdmin) {
+                  onOpenAdmin();
+                }
+              }}
+              className="hover:text-[#D27D56] transition-colors flex items-center gap-1 cursor-pointer"
+            >
+              <Lock className="w-3 h-3 text-[#D27D56]" />
+              <span>Acceso Admin</span>
+            </a>
           </div>
         </div>
 

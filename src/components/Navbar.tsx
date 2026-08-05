@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ChefHat, Menu, X, ArrowUpRight, Phone, Lock } from 'lucide-react';
+import { ChefHat, Menu, X, ArrowUpRight, Phone } from 'lucide-react';
 
 interface NavbarProps {
   onOpenQuote: () => void;
-  onOpenAdmin: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, onOpenAdmin }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -93,16 +92,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, onOpenAdmin }) => {
             <span>Solicitar cotización</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
-
-          {/* Discreet Admin Portal Button */}
-          <button
-            onClick={onOpenAdmin}
-            className="p-2 rounded-xs bg-[#2A2A2A]/5 hover:bg-[#2A2A2A]/10 text-[#2A2A2A]/70 hover:text-[#D27D56] transition-colors cursor-pointer"
-            title="Panel de Administración"
-            aria-label="Panel Admin"
-          >
-            <Lock className="w-3.5 h-3.5" />
-          </button>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -141,17 +130,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, onOpenAdmin }) => {
               className="w-full text-center py-3 rounded-xs bg-[#5A5A40] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium"
             >
               Solicitar cotización
-            </button>
-
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAdmin();
-              }}
-              className="w-full text-center py-2.5 rounded-xs bg-[#2A2A2A]/10 text-[#2A2A2A] text-xs uppercase tracking-wider font-medium flex items-center justify-center gap-2"
-            >
-              <Lock className="w-3.5 h-3.5 text-[#D27D56]" />
-              <span>Panel de Administración</span>
             </button>
 
             <a

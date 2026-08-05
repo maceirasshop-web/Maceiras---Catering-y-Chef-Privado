@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
@@ -14,6 +14,19 @@ export default function App() {
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('');
   const [isAdminModalOpen, setIsAdminModalOpen] = useState<boolean>(false);
 
+  // Dedicated URL Hash listener for #admin route
+  useEffect(() => {
+    const checkAdminRoute = () => {
+      if (window.location.hash === '#admin' || window.location.pathname.endsWith('/admin')) {
+        setIsAdminModalOpen(true);
+      }
+    };
+
+    checkAdminRoute();
+    window.addEventListener('hashchange', checkAdminRoute);
+    return () => window.removeEventListener('hashchange', checkAdminRoute);
+  }, []);
+
   const handleOpenQuote = (serviceName?: string) => {
     if (serviceName) {
       setSelectedServiceForQuote(serviceName);
@@ -24,13 +37,17 @@ export default function App() {
     }
   };
 
+  const handleCloseAdmin = () => {
+    setIsAdminModalOpen(false);
+    if (window.location.hash === '#admin') {
+      window.history.pushState('', document.title, window.location.pathname + window.location.search);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#F5F2ED] text-[#2A2A2A] font-sans antialiased selection:bg-[#D27D56]/20 selection:text-[#2A2A2A]">
-      {/* Fixed Navbar */}
-      <Navbar 
-        onOpenQuote={() => handleOpenQuote()} 
-        onOpenAdmin={() => setIsAdminModalOpen(true)}
-      />
+      {/* Clean Header Navbar */}
+      <Navbar onOpenQuote={() => handleOpenQuote()} />
 
       {/* Main Content Sections */}
       <main>
@@ -53,16 +70,16 @@ export default function App() {
         <ContactSection initialServiceSelected={selectedServiceForQuote} />
       </main>
 
-      {/* Footer */}
+      {/* Footer con enlace discreto a #admin */}
       <Footer onOpenAdmin={() => setIsAdminModalOpen(true)} />
 
-      {/* Floating WhatsApp Widget */}
+      {/* Floating WhatsApp Widget con animación suave y texto amigable */}
       <WhatsAppWidget />
 
-      {/* Admin Panel Modal */}
+      {/* Admin Panel Modal con URL dedicada #admin */}
       <AdminPanelModal
         isOpen={isAdminModalOpen}
-        onClose={() => setIsAdminModalOpen(false)}
+        onClose={handleCloseAdmin}
       />
     </div>
   );
