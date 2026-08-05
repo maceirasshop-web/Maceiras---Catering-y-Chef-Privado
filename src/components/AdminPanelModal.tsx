@@ -218,10 +218,6 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({ isOpen, onClos
                 >
                   Ingresar al Dashboard
                 </button>
-
-                <p className="text-[11px] text-[#2A2A2A]/50 italic font-mono pt-2">
-                  PIN predeterminado de prueba: <code className="text-[#2A2A2A] font-bold">maceiras2026</code>
-                </p>
               </form>
             </div>
           </div>

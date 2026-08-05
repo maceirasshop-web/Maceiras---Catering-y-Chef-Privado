@@ -1,11 +1,12 @@
 import React from 'react';
-import { ChefHat, ArrowUp, Lock } from 'lucide-react';
+import { ChefHat, ArrowUp } from 'lucide-react';
 
 interface FooterProps {
-  onOpenAdmin?: () => void;
+  onOpenPrivacy?: () => void;
+  onOpenLegal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenLegal }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -53,20 +54,18 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#EADDCA]/60 font-sans">
           <p>© {new Date().getFullYear()} Maceiras. Experiencias gastronómicas privadas en Chile. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6 text-[10px] uppercase tracking-wider">
-            <a href="#" className="hover:underline">Aviso Legal</a>
-            <a href="#" className="hover:underline">Política de Privacidad</a>
-            <a 
-              href="#admin"
-              onClick={(e) => {
-                if (onOpenAdmin) {
-                  onOpenAdmin();
-                }
-              }}
-              className="hover:text-[#D27D56] transition-colors flex items-center gap-1 cursor-pointer"
+            <button 
+              onClick={onOpenLegal} 
+              className="hover:text-[#D27D56] transition-colors cursor-pointer"
             >
-              <Lock className="w-3 h-3 text-[#D27D56]" />
-              <span>Acceso Admin</span>
-            </a>
+              Aviso Legal
+            </button>
+            <button 
+              onClick={onOpenPrivacy} 
+              className="hover:text-[#D27D56] transition-colors cursor-pointer"
+            >
+              Política de Privacidad
+            </button>
           </div>
         </div>
 

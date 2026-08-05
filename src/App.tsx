@@ -9,10 +9,14 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { WhatsAppWidget } from './components/WhatsAppWidget';
 import { AdminPanelModal } from './components/AdminPanelModal';
+import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
+import { LegalNoticeModal } from './components/LegalNoticeModal';
 
 export default function App() {
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('');
   const [isAdminModalOpen, setIsAdminModalOpen] = useState<boolean>(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
+  const [isLegalModalOpen, setIsLegalModalOpen] = useState<boolean>(false);
 
   // Dedicated URL Hash listener for #admin route
   useEffect(() => {
@@ -70,11 +74,25 @@ export default function App() {
         <ContactSection initialServiceSelected={selectedServiceForQuote} />
       </main>
 
-      {/* Footer con enlace discreto a #admin */}
-      <Footer onOpenAdmin={() => setIsAdminModalOpen(true)} />
+      {/* Footer con enlaces a legales */}
+      <Footer 
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
+        onOpenLegal={() => setIsLegalModalOpen(true)}
+      />
 
-      {/* Floating WhatsApp Widget con animación suave y texto amigable */}
+      {/* Floating WhatsApp Widget */}
       <WhatsAppWidget />
+
+      {/* Modales Legales */}
+      <PrivacyPolicyModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+
+      <LegalNoticeModal
+        isOpen={isLegalModalOpen}
+        onClose={() => setIsLegalModalOpen(false)}
+      />
 
       {/* Admin Panel Modal con URL dedicada #admin */}
       <AdminPanelModal
