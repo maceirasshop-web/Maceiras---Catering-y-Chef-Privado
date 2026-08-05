@@ -7,19 +7,34 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      const currentScrollY = window.scrollY;
+
+      // Toggle background styling
+      if (currentScrollY > 20) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+
+      // Hide navbar on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const navLinks = [
     { name: 'Servicios', href: '#servicios' },
@@ -32,7 +47,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
   return (
     <header 
       id="main-nav"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform ${
+        visible || mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+      } ${
         scrolled 
           ? 'bg-[#F5F2ED]/90 backdrop-blur-md border-b border-[#2A2A2A]/10 py-4 shadow-xs' 
           : 'bg-transparent py-6'

@@ -28,6 +28,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     message: ''
   });
 
+  const [honeypot, setHoneypot] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -46,6 +47,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     e.preventDefault();
     setLoading(true);
     
+    // Anti-Bot Filter: If honeypot hidden field is filled, silently block without saving
+    if (honeypot.trim() !== '') {
+      console.warn('Bot submission blocked via honeypot filter.');
+      setTimeout(() => {
+        setLoading(false);
+        setSubmitted(true);
+      }, 500);
+      return;
+    }
+
     await saveQuote({
       name: formData.name,
       email: formData.email,
@@ -140,7 +151,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           ) : (
             <form onSubmit={handleSubmit} className="space-y-8">
               
-              {/* Bloque 1: Datos Personales */}
+              {/* Anti-Bot Honeypot Field (Oculto para humanos, detecta bots automatizados) */}
+              <div className="hidden" aria-hidden="true" style={{ display: 'none', opacity: 0, position: 'absolute', left: '-9999px' }}>
+                <label htmlFor="website_url_hp">No completar este campo</label>
+                <input
+                  type="text"
+                  id="website_url_hp"
+                  name="website_url_hp"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="block text-xs uppercase tracking-widest text-[#5A5A40] font-medium font-sans">
