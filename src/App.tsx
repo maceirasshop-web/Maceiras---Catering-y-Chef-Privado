@@ -45,7 +45,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F2ED] text-[#2A2A2A] font-sans antialiased selection:bg-[#D27D56]/20 selection:text-[#2A2A2A]">
+    <div className="min-h-screen bg-[#F5F2ED] text-[#2A2A2A] font-sans antialiased selection:bg-[#D27D56]/20 selection:text-[#2A2A2A] overflow-x-hidden w-full relative">
       {/* Clean Header Navbar */}
       <Navbar onOpenQuote={() => handleOpenQuote()} />
 

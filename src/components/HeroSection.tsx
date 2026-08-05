@@ -11,7 +11,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
   return (
     <section 
       id="hero" 
-      className="relative min-h-[92vh] flex items-center pt-28 pb-20 bg-[#F5F2ED] overflow-visible"
+      className="relative min-h-[92vh] flex items-center pt-28 pb-20 bg-[#F5F2ED] overflow-hidden"
     >
       {/* Subtle organic light gradient background */}
       <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#EADDCA]/40 rounded-full blur-3xl pointer-events-none" />
