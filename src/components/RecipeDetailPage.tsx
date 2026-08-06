@@ -176,11 +176,11 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
                 </div>
               </div>
 
-              {/* CONTENEDOR DE LÍNEA VERDE PISTACHO QUE CONECTA Y BORDEA CADA CÍRCULO */}
-              <div className="relative pl-12 sm:pl-16 space-y-10">
+              {/* CONTENEDOR DE LÍNEA VERDE PISTACHO PERFECTAMENTE CENTRADA CON CADA CÍRCULO */}
+              <div className="relative pl-14 sm:pl-16 space-y-10">
                 
-                {/* Línea vertical continua color Pistacho (#708238) */}
-                <div className="absolute left-[19px] sm:left-[23px] top-6 bottom-6 w-1.5 bg-[#708238] rounded-full -z-0 shadow-xs" />
+                {/* Línea vertical continua color Pistacho (#708238) perfectamente centrada con los círculos */}
+                <div className="absolute left-[18px] sm:left-[20px] top-5 bottom-5 w-1 bg-[#708238] rounded-full z-0" />
 
                 {recipe.steps.map((step, idx) => (
                   <motion.div
@@ -194,13 +194,13 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
                       activeStepIndex === idx ? 'scale-[1.01]' : ''
                     }`}
                   >
-                    {/* Círculo numerado bordeado por la línea Pistacho */}
+                    {/* Círculo numerado verde pistacho integrado de forma orgánica sin bordes oscuros */}
                     <button
                       onClick={() => scrollToStep(idx)}
-                      className={`absolute -left-12 sm:-left-16 top-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full font-serif text-xs sm:text-sm font-bold flex items-center justify-center shadow-lg z-10 transition-all duration-300 border-2 cursor-pointer ${
+                      className={`absolute -left-14 sm:-left-16 top-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full font-serif text-xs sm:text-sm font-bold flex items-center justify-center z-10 transition-all duration-300 cursor-pointer ${
                         activeStepIndex === idx
-                          ? 'bg-[#708238] text-white border-white ring-4 ring-[#708238]/30 scale-110'
-                          : 'bg-white text-[#708238] border-[#708238] hover:bg-[#708238] hover:text-white'
+                          ? 'bg-[#708238] text-white ring-4 ring-[#708238]/25 scale-110 shadow-md border-2 border-[#FAF8F5]'
+                          : 'bg-[#708238] text-white/90 hover:scale-105 shadow-xs border-2 border-[#FAF8F5]'
                       }`}
                       title={`Ir a Paso ${step.number}`}
                     >
