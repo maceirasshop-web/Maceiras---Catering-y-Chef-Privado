@@ -4,51 +4,121 @@ import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
 import { RecipesSection } from './components/RecipesSection';
+import { RecipesPage } from './components/RecipesPage';
+import { RecipeDetailPage } from './components/RecipeDetailPage';
+import { AdminDashboardPage } from './components/AdminDashboardPage';
 import { ProcessSection } from './components/ProcessSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { WhatsAppWidget } from './components/WhatsAppWidget';
-import { AdminPanelModal } from './components/AdminPanelModal';
 import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { LegalNoticeModal } from './components/LegalNoticeModal';
 
 export default function App() {
+  const [currentRoute, setCurrentRoute] = useState<'home' | 'recetas' | 'receta_detail' | 'admin'>('home');
+  const [currentRecipeId, setCurrentRecipeId] = useState<string>('');
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('');
-  const [isAdminModalOpen, setIsAdminModalOpen] = useState<boolean>(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
   const [isLegalModalOpen, setIsLegalModalOpen] = useState<boolean>(false);
 
-  // Dedicated URL Hash listener for #admin route
+  // Router listener for URL hashes (#/recetas, #/receta/x, #/admin) and paths (/recetas, /admin)
   useEffect(() => {
-    const checkAdminRoute = () => {
-      if (window.location.hash === '#admin' || window.location.pathname.endsWith('/admin')) {
-        setIsAdminModalOpen(true);
+    const handleLocationChange = () => {
+      const hash = window.location.hash;
+      const path = window.location.pathname;
+
+      if (hash === '#admin' || hash === '#/admin' || path.endsWith('/admin')) {
+        setCurrentRoute('admin');
+      } else if (hash.startsWith('#/receta/') || hash.startsWith('#receta/')) {
+        const id = hash.replace('#/receta/', '').replace('#receta/', '');
+        setCurrentRecipeId(id);
+        setCurrentRoute('receta_detail');
+      } else if (hash === '#recetas' || hash === '#/recetas' || path.endsWith('/recetas')) {
+        setCurrentRoute('recetas');
+      } else {
+        setCurrentRoute('home');
       }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    checkAdminRoute();
-    window.addEventListener('hashchange', checkAdminRoute);
-    return () => window.removeEventListener('hashchange', checkAdminRoute);
+    handleLocationChange();
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
   }, []);
+
+  const navigateTo = (route: 'home' | 'recetas' | 'admin', hashString?: string) => {
+    if (hashString) {
+      window.location.hash = hashString;
+    } else if (route === 'recetas') {
+      window.location.hash = '#/recetas';
+    } else if (route === 'admin') {
+      window.location.hash = '#/admin';
+    } else {
+      window.location.hash = '#/';
+    }
+  };
 
   const handleOpenQuote = (serviceName?: string) => {
     if (serviceName) {
       setSelectedServiceForQuote(serviceName);
     }
-    const contactElement = document.getElementById('contacto');
-    if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth' });
+    if (currentRoute !== 'home') {
+      window.location.hash = '#contacto';
+      setCurrentRoute('home');
+      setTimeout(() => {
+        const contactElement = document.getElementById('contacto');
+        if (contactElement) {
+          contactElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const contactElement = document.getElementById('contacto');
+      if (contactElement) {
+        contactElement.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
-  const handleCloseAdmin = () => {
-    setIsAdminModalOpen(false);
-    if (window.location.hash === '#admin') {
-      window.history.pushState('', document.title, window.location.pathname + window.location.search);
-    }
-  };
+  // ROUTE 1: FULL PAGE ADMIN SUITE (/admin)
+  if (currentRoute === 'admin') {
+    return (
+      <AdminDashboardPage onNavigateHome={() => navigateTo('home', '#/')} />
+    );
+  }
 
+  // ROUTE 2: DEDICATED RECIPES CATALOG PAGE (/recetas)
+  if (currentRoute === 'recetas') {
+    return (
+      <RecipesPage
+        onNavigateHome={() => navigateTo('home', '#/')}
+        onNavigateToRecipeDetail={(id) => navigateTo('home', `#/receta/${id}`)}
+        onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
+        onOpenLegal={() => setIsLegalModalOpen(true)}
+      />
+    );
+  }
+
+  // ROUTE 3: DEDICATED RECIPE DETAIL PAGE (/receta/:id)
+  if (currentRoute === 'receta_detail') {
+    return (
+      <RecipeDetailPage
+        recipeId={currentRecipeId}
+        onNavigateBack={() => navigateTo('recetas', '#/recetas')}
+        onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
+        onOpenLegal={() => setIsLegalModalOpen(true)}
+      />
+    );
+  }
+
+  // ROUTE 4: MAIN LANDING PAGE (PORTADA PRINCIPAL)
   return (
     <div className="min-h-screen bg-[#F5F2ED] text-[#2A2A2A] font-sans antialiased selection:bg-[#D27D56]/20 selection:text-[#2A2A2A] overflow-x-hidden w-full relative">
       {/* Clean Header Navbar */}
@@ -65,7 +135,7 @@ export default function App() {
         {/* Especialidades */}
         <SpecialtiesSection />
 
-        {/* Nueva Sección de Recetas Gourmet con paso a paso y línea vertical */}
+        {/* Sección de Recetas Gourmet con paso a paso */}
         <RecipesSection onSelectForQuote={(recipeTitle) => handleOpenQuote(`Menú especial: ${recipeTitle}`)} />
 
         {/* Cómo trabajamos */}
@@ -96,12 +166,6 @@ export default function App() {
       <LegalNoticeModal
         isOpen={isLegalModalOpen}
         onClose={() => setIsLegalModalOpen(false)}
-      />
-
-      {/* Admin Panel Modal con URL dedicada #admin */}
-      <AdminPanelModal
-        isOpen={isAdminModalOpen}
-        onClose={handleCloseAdmin}
       />
     </div>
   );
