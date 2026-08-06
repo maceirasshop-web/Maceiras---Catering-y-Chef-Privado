@@ -99,47 +99,49 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                 </div>
               </div>
 
-              {/* CONTENEDOR LÍNEA VERDE PISTACHO PERFECTAMENTE CENTRADA CON LOS CÍRCULOS */}
-              <div className="relative pl-14 sm:pl-16 space-y-8">
+              {/* CONTENEDOR CON LÍNEA VERTICAL PISTACHO 100% MATEMÁTICAMENTE CENTRADA */}
+              <div className="relative space-y-6">
                 
-                {/* Línea vertical continua color Pistacho (#708238) perfectamente centrada */}
-                <div className="absolute left-[18px] sm:left-[20px] top-5 bottom-5 w-1 bg-[#708238] rounded-full z-0" />
+                {/* Línea vertical continua que atraviesa exactamente el centro geométrico de la columna de círculos */}
+                <div className="absolute left-[19px] sm:left-[21px] top-4 bottom-4 w-[3px] bg-[#708238] rounded-full z-0" />
 
                 {recipe.steps.map((step, idx) => (
                   <div
                     key={idx}
                     id={`modal-step-card-${idx}`}
                     onClick={() => setActiveStepIndex(idx)}
-                    className="relative space-y-2 group cursor-pointer"
+                    className="grid grid-cols-[auto_1fr] gap-4 sm:gap-6 items-start relative group cursor-pointer"
                   >
-                    {/* Círculo numerado verde pistacho integrado de forma orgánica sin bordes oscuros */}
-                    <button
-                      onClick={() => scrollToModalStep(idx)}
-                      className={`absolute -left-14 sm:-left-16 top-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full font-serif text-xs sm:text-sm font-bold flex items-center justify-center z-10 transition-all duration-300 border-2 border-[#FAF8F5] ${
-                        activeStepIndex === idx
-                          ? 'bg-[#708238] text-white ring-4 ring-[#708238]/25 scale-110 shadow-md'
-                          : 'bg-[#708238] text-white/90 hover:scale-105 shadow-xs'
-                      }`}
-                    >
-                      {step.number}
-                    </button>
+                    {/* Columna 1: Círculo ahuecado con borde verde pistacho de 3px y número interno en verde pistacho */}
+                    <div className="relative z-10 flex items-center justify-center shrink-0 w-10 sm:w-11">
+                      <button
+                        onClick={() => scrollToModalStep(idx)}
+                        className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full font-serif text-sm sm:text-base font-bold flex items-center justify-center bg-[#FAF8F5] border-[3px] border-[#708238] text-[#708238] transition-all duration-300 cursor-pointer ${
+                          activeStepIndex === idx
+                            ? 'scale-110 ring-4 ring-[#708238]/20 bg-white font-extrabold shadow-md'
+                            : 'hover:scale-105 shadow-xs'
+                        }`}
+                      >
+                        {step.number}
+                      </button>
+                    </div>
 
-                    {/* Ficha del paso */}
-                    <div className={`p-5 rounded-xs border transition-all duration-300 ${
+                    {/* Columna 2: Ficha del paso */}
+                    <div className={`p-5 rounded-2xl border transition-all duration-300 ${
                       activeStepIndex === idx
                         ? 'bg-white border-[#708238] ring-2 ring-[#708238]/20 shadow-md'
-                        : 'bg-white/90 border-[#2A2A2A]/10 hover:border-[#708238]/40'
+                        : 'bg-white/90 border-[#1F2937]/10 hover:border-[#708238]/40'
                     }`}>
-                      <h4 className="font-serif text-base sm:text-lg text-[#2A2A2A] font-normal mb-1">
+                      <h4 className="font-serif text-base sm:text-lg text-[#1F2937] font-normal mb-1">
                         Paso {step.number}: {step.title}
                       </h4>
 
-                      <p className="text-xs sm:text-sm text-[#2A2A2A]/80 font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#1F2937]/85 font-light leading-relaxed">
                         {step.instruction}
                       </p>
 
                       {step.tip && (
-                        <div className="mt-3 p-3 rounded-xs bg-[#708238]/10 border-l-4 border-[#708238] flex items-start gap-2 text-xs text-[#2A2A2A]/90">
+                        <div className="mt-3 p-3 rounded-xl bg-[#708238]/10 border-l-4 border-[#708238] flex items-start gap-2 text-xs text-[#1F2937]/90">
                           <Lightbulb className="w-4 h-4 text-[#708238] shrink-0 mt-0.5" />
                           <span className="font-light"><strong>Consejo Maceiras:</strong> {step.tip}</span>
                         </div>
