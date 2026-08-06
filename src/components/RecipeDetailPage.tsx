@@ -289,20 +289,9 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
                 </ul>
               </div>
 
-              {/* Maridaje Recomendado */}
-              <div className="p-5 rounded-xs bg-white border border-[#2A2A2A]/10 space-y-1.5 card-shadow">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#708238] font-bold font-sans">
-                  <GlassWater className="w-4 h-4 text-[#708238]" />
-                  <span>Maridaje del Sommelier</span>
-                </div>
-                <p className="text-xs text-[#2A2A2A]/80 italic font-serif leading-relaxed">
-                  "{recipe.pairing}"
-                </p>
-              </div>
-
               {/* Secreto del Chef */}
               {recipe.chefNote && (
-                <div className="p-5 rounded-xs bg-[#708238]/10 border border-[#708238]/20 space-y-1.5 text-xs text-[#2A2A2A]/90 font-sans">
+                <div className="p-5 rounded-xl bg-[#708238]/10 border border-[#708238]/20 space-y-1.5 text-xs text-[#2A2A2A]/90 font-sans">
                   <div className="font-bold text-[#708238] flex items-center gap-1.5 uppercase tracking-wider text-[11px]">
                     <ChefHat className="w-4 h-4 text-[#708238]" />
                     <span>Secreto del Chef Maceiras:</span>
@@ -311,24 +300,31 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
                 </div>
               )}
 
-              {/* CTA para Contratar este Menú a Domicilio */}
-              <div className="p-6 rounded-xs bg-[#5A5A40] text-[#F5F2ED] space-y-4 text-center shadow-lg border border-[#708238]/30">
-                <div className="w-10 h-10 rounded-full bg-white/10 text-[#D27D56] flex items-center justify-center mx-auto">
-                  <ChefHat className="w-5 h-5 text-[#F5F2ED]" />
+              {/* CTA Destacada Principal para Contratar este Menú a Domicilio */}
+              <div className="p-7 sm:p-8 rounded-2xl bg-gradient-to-br from-[#708238] via-[#5A5A40] to-[#4A4A35] text-[#FAF8F5] space-y-5 text-center shadow-xl border border-[#708238]/40 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none" />
+
+                <div className="w-12 h-12 rounded-full bg-white/15 text-[#E07A5F] flex items-center justify-center mx-auto shadow-inner border border-white/20">
+                  <ChefHat className="w-6 h-6 text-[#FAF8F5]" />
                 </div>
-                <div className="space-y-1">
-                  <h4 className="font-serif text-xl font-light">
+
+                <div className="space-y-2">
+                  <span className="text-[10px] uppercase tracking-widest text-[#EADDCA] font-bold font-sans">
+                    Experiencia Exclusiva a Domicilio
+                  </span>
+                  <h4 className="font-serif text-2xl font-light leading-snug">
                     ¿Prefieres que el chef lo prepare por ti?
                   </h4>
-                  <p className="text-xs text-[#F5F2ED]/80 font-light leading-relaxed">
-                    Disfruta de este menú preparado en tu residencia con vajilla, servicio de mesa y limpieza total incluida.
+                  <p className="text-xs text-[#FAF8F5]/85 font-light leading-relaxed max-w-sm mx-auto">
+                    Disfruta de esta propuesta gastronómica preparada en tu residencia con selección de ingredientes, montaje elegante de mesa y limpieza impecable incluida.
                   </p>
                 </div>
+
                 <button
                   onClick={() => onOpenQuote(`Menú especial: ${recipe.title}`)}
-                  className="w-full py-3.5 rounded-xs bg-[#D27D56] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium hover:bg-[#b86440] transition-all cursor-pointer shadow-md active:scale-98"
+                  className="w-full py-4 rounded-xl bg-[#E07A5F] text-white text-xs uppercase tracking-widest font-semibold hover:bg-[#d4664a] transition-all cursor-pointer shadow-lg hover:shadow-orange-900/30 active:scale-98"
                 >
-                  Solicitar este menú a domicilio
+                  Solicitar este menú a domicilio →
                 </button>
               </div>
 

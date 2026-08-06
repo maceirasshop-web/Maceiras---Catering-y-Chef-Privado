@@ -200,41 +200,40 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                 </ul>
               </div>
 
-              {/* Maridaje Recomendado */}
-              <div className="p-4 rounded-xs bg-white border border-[#2A2A2A]/10 space-y-1">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#708238] font-bold font-sans">
-                  <GlassWater className="w-4 h-4 text-[#708238]" />
-                  <span>Maridaje del Sommelier</span>
-                </div>
-                <p className="text-xs text-[#2A2A2A]/80 italic font-serif">
-                  "{recipe.pairing}"
-                </p>
-              </div>
-
-              {/* Nota secreta del chef */}
+              {/* Secreto del Chef */}
               {recipe.chefNote && (
-                <div className="p-4 rounded-xs bg-[#708238]/10 border border-[#708238]/20 space-y-1 text-xs text-[#2A2A2A]/90 font-sans">
+                <div className="p-4 rounded-xl bg-[#708238]/10 border border-[#708238]/20 space-y-1 text-xs text-[#2A2A2A]/90 font-sans">
                   <div className="font-bold text-[#708238]">Secreto del Chef:</div>
                   <p className="italic font-light">{recipe.chefNote}</p>
                 </div>
               )}
 
-              {/* CTA para contratar al Chef */}
-              <div className="p-6 rounded-xs bg-[#5A5A40] text-[#F5F2ED] space-y-3 text-center border border-[#708238]/30">
-                <h4 className="font-serif text-xl font-light">
-                  ¿Prefieres disfrutar sin cocinar?
-                </h4>
-                <p className="text-xs text-[#F5F2ED]/80 font-light">
-                  Nuestro chef privado prepara este plato en tu residencia con servicio completo.
-                </p>
+              {/* CTA Destacada Principal para Contratar este Menú a Domicilio */}
+              <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#708238] via-[#5A5A40] to-[#4A4A35] text-[#FAF8F5] space-y-4 text-center shadow-xl border border-[#708238]/40 relative overflow-hidden group">
+                <div className="w-10 h-10 rounded-full bg-white/15 text-[#E07A5F] flex items-center justify-center mx-auto shadow-inner border border-white/20">
+                  <ChefHat className="w-5 h-5 text-[#FAF8F5]" />
+                </div>
+
+                <div className="space-y-1.5">
+                  <span className="text-[10px] uppercase tracking-widest text-[#EADDCA] font-bold font-sans block">
+                    Experiencia Exclusiva a Domicilio
+                  </span>
+                  <h4 className="font-serif text-xl sm:text-2xl font-light leading-snug">
+                    ¿Prefieres que el chef lo prepare por ti?
+                  </h4>
+                  <p className="text-xs text-[#FAF8F5]/85 font-light leading-relaxed">
+                    Disfruta de este menú preparado en tu residencia con selección de ingredientes y servicio completo.
+                  </p>
+                </div>
+
                 <button
                   onClick={() => {
                     onClose();
-                    onSelectForQuote(recipe.title);
+                    onSelectForQuote(`Menú especial: ${recipe.title}`);
                   }}
-                  className="w-full py-3 rounded-xs bg-[#D27D56] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium hover:bg-[#b86440] transition-colors cursor-pointer shadow-md"
+                  className="w-full py-3.5 rounded-xl bg-[#E07A5F] text-white text-xs uppercase tracking-widest font-semibold hover:bg-[#d4664a] transition-all cursor-pointer shadow-md active:scale-98"
                 >
-                  Solicitar este menú a domicilio
+                  Solicitar este menú a domicilio →
                 </button>
               </div>
 
