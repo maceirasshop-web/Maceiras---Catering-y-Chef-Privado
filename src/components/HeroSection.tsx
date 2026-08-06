@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChefHat } from 'lucide-react';
 import { Hero3D } from './Hero3D';
 
 interface HeroSectionProps {
-  onOpenQuote: () => void;
+  onOpenQuote: (serviceType?: string) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
@@ -46,24 +46,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
             </p>
           </motion.div>
 
-          {/* Un solo botón principal elegante */}
+          {/* Botones de acción principales (Cotizar Evento & Chef Privado) */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-1 sm:pt-2"
+            className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
           >
             <button
-              onClick={onOpenQuote}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-xs bg-[#5A5A40] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium transition-all duration-300 hover:bg-[#D27D56] hover:shadow-md active:scale-98 cursor-pointer"
-              id="hero-quote-btn"
+              onClick={() => onOpenQuote('Catering Premium para Eventos')}
+              className="group inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xs bg-[#5A5A40] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium transition-all duration-300 hover:bg-[#D27D56] hover:shadow-md active:scale-98 cursor-pointer"
+              id="hero-quote-event-btn"
             >
-              <span>Solicitar cotización</span>
+              <span>Cotizar Evento</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+
+            <button
+              onClick={() => onOpenQuote('Chef Privado a Domicilio')}
+              className="group inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xs bg-[#EADDCA]/60 text-[#2A2A2A] border border-[#2A2A2A]/20 text-xs uppercase tracking-widest font-medium transition-all duration-300 hover:bg-[#5A5A40] hover:text-[#F5F2ED] hover:border-[#5A5A40] active:scale-98 cursor-pointer"
+              id="hero-chef-private-btn"
+            >
+              <ChefHat className="w-4 h-4 text-[#D27D56] group-hover:text-[#F5F2ED] transition-colors" />
+              <span>Chef Privado</span>
             </button>
           </motion.div>
 
-          {/* Indicadores sutiles de distinción (Grid 3 columnas perfectamente ajustado a celular) */}
+          {/* Indicadores sutiles de distinción */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -86,7 +95,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
 
         </div>
 
-        {/* LADO DERECHO: Escena 3D visible únicamente en pantallas grandes (oculta en móviles) */}
+        {/* LADO DERECHO: Escena 3D visible únicamente en pantallas grandes */}
         <div className="hidden lg:col-span-6 lg:flex relative items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}

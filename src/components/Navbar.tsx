@@ -39,6 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
   const navLinks = [
     { name: 'Servicios', href: '#servicios' },
     { name: 'Especialidades', href: '#especialidades' },
+    { name: 'Recetas', href: '#recetas' },
     { name: 'Cómo trabajamos', href: '#proceso' },
     { name: 'Opiniones', href: '#opiniones' },
     { name: 'Contacto', href: '#contacto' },
@@ -76,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8" id="desktop-nav-links">
+        <nav className="hidden md:flex items-center gap-7 lg:gap-8" id="desktop-nav-links">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -94,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
             href="https://wa.me/56931939017?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20catering%20y%20chef%20privado."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-[#5A5A40] hover:text-[#D27D56] transition-colors px-3 py-2"
+            className="flex items-center gap-1.5 text-xs text-[#5A5A40] hover:text-[#D27D56] transition-colors px-2 py-2"
             title="Contacto por WhatsApp"
           >
             <Phone className="w-3.5 h-3.5" />

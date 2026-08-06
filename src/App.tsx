@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
+import { RecipesSection } from './components/RecipesSection';
 import { ProcessSection } from './components/ProcessSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactSection } from './components/ContactSection';
@@ -55,14 +56,17 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main>
-        {/* Hero Section with 3D Three.js Scene */}
-        <HeroSection onOpenQuote={() => handleOpenQuote()} />
+        {/* Hero Section con 2 botones de acción: Cotizar Evento y Chef Privado */}
+        <HeroSection onOpenQuote={(serviceType) => handleOpenQuote(serviceType)} />
 
         {/* Servicios */}
         <ServicesSection onSelectServiceForQuote={(serviceTitle) => handleOpenQuote(serviceTitle)} />
 
         {/* Especialidades */}
         <SpecialtiesSection />
+
+        {/* Nueva Sección de Recetas Gourmet con paso a paso y línea vertical */}
+        <RecipesSection onSelectForQuote={(recipeTitle) => handleOpenQuote(`Menú especial: ${recipeTitle}`)} />
 
         {/* Cómo trabajamos */}
         <ProcessSection />
