@@ -9,10 +9,12 @@
     <meta name="description" content="Maceiras ofrece servicios de catering premium para eventos exclusivos, matrimonios boutique y chef privado a domicilio en Santiago de Chile (Vitacura, Las Condes, Lo Barnechea, La Dehesa). Menús 100% personalizados." />
     <meta name="keywords" content="Maceiras, Catering Santiago, Chef Privado a Domicilio, Chef a Domicilio Santiago, Catering Matrimonios Santiago, Banquetería Vitacura, Banquetería Las Condes, Chef Privado Lo Barnechea, Cenas Privadas Santiago" />
     <meta name="robots" content="index, follow" />
+    
+    <!-- Precision Geo-targeting Metadata -->
     <meta name="geo.region" content="CL-RM" />
-    <meta name="geo.placename" content="Santiago" />
-    <meta name="geo.position" content="-33.4372;-70.6506" />
-    <meta name="ICBM" content="-33.4372, -70.6506" />
+    <meta name="geo.placename" content="Santiago, Vitacura, Las Condes, Lo Barnechea, Región Metropolitana, Chile" />
+    <meta name="geo.position" content="-33.4000;-70.5500" />
+    <meta name="ICBM" content="-33.4000, -70.5500" />
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
@@ -30,7 +32,7 @@
     <!-- Favicon SVG -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D27D56' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 13.87A8 8 0 0 1 12 4a8 8 0 0 1 6 9.87 stroke-dasharray='1 1'/><path d='M4 17h16'/><path d='M5 21h14'/></svg>" />
 
-    <!-- JSON-LD Structured Data Schema.org -->
+    <!-- JSON-LD Structured Data Schema.org with GeoCoordinates -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -45,13 +47,20 @@
         "addressRegion": "Región Metropolitana",
         "addressCountry": "CL"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.4000,
+        "longitude": -70.5500
+      },
       "areaServed": [
-        "Santiago",
-        "Vitacura",
-        "Las Condes",
-        "Lo Barnechea",
-        "La Dehesa",
-        "Providencia"
+        { "@type": "City", "name": "Santiago" },
+        { "@type": "AdministrativeArea", "name": "Vitacura" },
+        { "@type": "AdministrativeArea", "name": "Las Condes" },
+        { "@type": "AdministrativeArea", "name": "Lo Barnechea" },
+        { "@type": "AdministrativeArea", "name": "La Dehesa" },
+        { "@type": "AdministrativeArea", "name": "Providencia" },
+        { "@type": "AdministrativeArea", "name": "Chicureo" },
+        { "@type": "AdministrativeArea", "name": "La Reina" }
       ],
       "servesCuisine": [
         "Alta Cocina Internacional",

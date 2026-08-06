@@ -38,7 +38,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
 
   const navLinks = [
     { name: 'Servicios', href: '#servicios' },
-    { name: 'Especialidades', href: '#especialidades' },
     { name: 'Recetas', href: '#recetas' },
     { name: 'Cómo trabajamos', href: '#proceso' },
     { name: 'Opiniones', href: '#opiniones' },
