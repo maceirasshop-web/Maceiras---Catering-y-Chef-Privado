@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
+import { MenuBuilderSection, SelectedItemState } from './components/MenuBuilderSection';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
 import { RecipesSection } from './components/RecipesSection';
 import { RecipesPage } from './components/RecipesPage';
@@ -19,6 +20,7 @@ export default function App() {
   const [currentRoute, setCurrentRoute] = useState<'home' | 'recetas' | 'receta_detail' | 'admin'>('home');
   const [currentRecipeId, setCurrentRecipeId] = useState<string>('');
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('');
+  const [selectedCatalogItems, setSelectedCatalogItems] = useState<SelectedItemState[]>([]);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
   const [isLegalModalOpen, setIsLegalModalOpen] = useState<boolean>(false);
 
@@ -85,6 +87,11 @@ export default function App() {
     }
   };
 
+  const handleProceedFromMenuBuilder = (items: SelectedItemState[]) => {
+    setSelectedCatalogItems(items);
+    handleOpenQuote('Menú Personalizado de Canapés / Banquete');
+  };
+
   // ROUTE 1: FULL PAGE ADMIN SUITE (/admin)
   if (currentRoute === 'admin') {
     return (
@@ -120,7 +127,7 @@ export default function App() {
 
   // ROUTE 4: MAIN LANDING PAGE (PORTADA PRINCIPAL)
   return (
-    <div className="min-h-screen bg-[#F5F2ED] text-[#2A2A2A] font-sans antialiased selection:bg-[#D27D56]/20 selection:text-[#2A2A2A] overflow-x-hidden w-full relative">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#1F2937] font-sans antialiased selection:bg-[#E07A5F]/20 selection:text-[#1F2937] overflow-x-hidden w-full relative">
       {/* Clean Header Navbar */}
       <Navbar onOpenQuote={() => handleOpenQuote()} />
 
@@ -131,6 +138,9 @@ export default function App() {
 
         {/* Servicios */}
         <ServicesSection onSelectServiceForQuote={(serviceTitle) => handleOpenQuote(serviceTitle)} />
+
+        {/* Cotizador Interactivo: Arma tu Menú (Canapés, Almuerzos, Estaciones) */}
+        <MenuBuilderSection onProceedToQuote={handleProceedFromMenuBuilder} />
 
         {/* Especialidades */}
         <SpecialtiesSection />
@@ -145,7 +155,11 @@ export default function App() {
         <TestimonialsSection />
 
         {/* Formulario de Contacto */}
-        <ContactSection initialServiceSelected={selectedServiceForQuote} />
+        <ContactSection
+          initialServiceSelected={selectedServiceForQuote}
+          selectedCatalogItems={selectedCatalogItems}
+          onClearSelectedCatalogItems={() => setSelectedCatalogItems([])}
+        />
       </main>
 
       {/* Footer con enlaces a legales */}
