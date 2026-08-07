@@ -7,7 +7,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     subtitle: 'Alta cocina en la intimidad de tu hogar',
     description: 'Menús diseñados a la medida para cenas exclusivas, celebraciones íntimas y eventos privados en tu residencia.',
     detailedDescription: 'En Maceiras nos desplazamos a tu residencia, casa de playa o centro de eventos. Nos encargamos absolutamente de todo: selección de ingredientes frescos de mercado, preparación en el lugar, servicio de mesa impecable y limpieza total de la cocina.',
-    image: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1000&q=80',
+    image: '/images/brocheta capresse.jpeg',
     features: [
       'Menú 100% personalizado para cada cliente',
       'Ingredientes frescos y locales de primera calidad',
@@ -22,7 +22,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     subtitle: 'Elegancia y sabor adaptado a tu ocasión',
     description: 'Servicio integral de catering para matrimonios boutique, eventos sociales y celebraciones familiares.',
     detailedDescription: 'Transformamos tu evento en una experiencia gastronómica memorable. Diseñamos banquetes a la medida, cocktails elegantes y estaciones gastronómicas en vivo con presentaciones cuidadas al detalle.',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1000&q=80',
+    image: '/images/tabla de charcuteria.jpeg',
     features: [
       'Formatos a elección: cena servida, cocktail o buffet exclusivo',
       'Propuestas gastronómicas adaptadas a tus preferencias',
@@ -37,7 +37,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     subtitle: 'Distinción gastronómica para empresas',
     description: 'Cocktails ejecutivos, reuniones de directorio, lanzamientos de marca y cenas corporativas VIP.',
     detailedDescription: 'Acompañamos tus hitos empresariales con una propuesta sobria, puntual y elegante. Nos adaptamos a los tiempos de tu evento con finger food refinado, lunches ejecutivos o cenas privadas para directorios.',
-    image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1000&q=80',
+    image: '/images/canape de roast beff.jpeg',
     features: [
       'Menús ágiles para ritmo corporativo',
       'Opciones especiales para restricción alimentaria',
@@ -57,44 +57,44 @@ export const DISHES_DATA: DishItem[] = [
     detailedDescription: 'Nuestro plato insignia. Filete de res tierno sellado al punto, cubierto con una fina paté de champiñones y envuelto en hojaldre artesanal dorado al horno. Acompañado de un risotto de champiñones suavemente mantecado con queso artesanal.',
     ingredients: ['Filete de res premium', 'Hojaldre artesanal', 'Duxelles de hongos', 'Arroz Carnaroli', 'Champiñones silvestres', 'Reducción de vino'],
     pairing: 'Cabernet Sauvignon o Carmenère de reserva del Valle del Maipo.',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    image: '/images/canape de roast beff.jpeg',
     tags: ['Especialidad Maceiras', 'Plato Estrella', 'Corte Noble'],
     chefNote: 'El horneado del hojaldre se sincroniza exactamente para mantener el centro del filete tierno y jugoso.'
   },
   {
     id: 'dish-2',
-    name: 'Carpaccio de Res',
+    name: 'Carpaccio de Res & Canapés Gourmet',
     category: 'entrantes',
-    description: 'Finas láminas de filete de res, alcaparras baby, escamas de queso madurado, rúcula fresca y emulsión de oliva virgen.',
+    description: 'Finas láminas de filete de res marinadas al momento con escamas de queso madurado, rúcula fresca y emulsión de oliva virgen.',
     detailedDescription: 'Una entrada distinguida y refrescante. Láminas cortadas con máxima precisión, marinadas al instante con aceite de oliva virgen extra, jugo de limón de pica fresco, alcaparras y un toque de pimienta recién molida.',
     ingredients: ['Filete de res fresco', 'Queso madurado artesanal', 'Alcaparras', 'Rúcula fresca', 'Aceite de oliva virgen extra', 'Limón de pica'],
     pairing: 'Sauvignon Blanc del Valle de Casablanca o Pinot Noir chileno.',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80',
+    image: '/images/brocheta capresse.jpeg',
     tags: ['Entrante Destacado', 'Ligero & Elegante', 'Sin Gluten'],
     chefNote: 'Seleccionamos cortes magros de primera calidad para garantizar una textura suave que se deshace en la boca.'
   },
   {
     id: 'dish-3',
-    name: 'Crème Brûlée Tradicional',
+    name: 'Tabla Premium de Charcutería & Quesos Madurados',
     category: 'postres',
-    description: 'Crema cocida a fuego lento infusionada con vainilla natural en vaina y una fina costra de azúcar fogueada al instante.',
-    detailedDescription: 'El clásico postre francés preparado según la técnica tradicional. Una base sedosa de yemas, crema y vainilla natural con el contraste crujiente de la capa caramelizada al momento de servir.',
-    ingredients: ['Crema de leche fresca', 'Yemas camperas', 'Vaina de vainilla natural', 'Azúcar caramelizada'],
+    description: 'Selección exclusiva de quesos artesanales chilenos e importados, jamón serrano y charcutería fina de autor.',
+    detailedDescription: 'El acompañamiento perfecto para la bienvenida. Selección de fiambres nobles cortados en el lugar, acompañados de frutos secos y panecillos artesanales.',
+    ingredients: ['Jamón serrano', 'Quesos madurados', 'Frutos secos', 'Miel de ulmo', 'Pan de masa madre'],
     pairing: 'Vino Late Harvest o espumante Brut de valles chilenos.',
-    image: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?auto=format&fit=crop&w=800&q=80',
-    tags: ['Postre Clásico', 'Caramelizado al Instante'],
-    chefNote: 'El toque de soplete se aplica segundos antes de llegar a la mesa para asegurar la máxima textura crujiente.'
+    image: '/images/tabla de charcuteria.jpeg',
+    tags: ['Tabla Gourmet', 'Montaje VIP'],
+    chefNote: 'Montada segundos antes del servicio para preservar la temperatura perfecta de cada variedad.'
   },
   {
     id: 'dish-4',
-    name: 'Corvina del Pacífico a la Brasa con Vegetales',
+    name: 'Ceviche Mixto del Pacífico en Cuchara Gourmet',
     category: 'principales',
-    description: 'Lomo de corvina fresca sellada a la brasa con mantequilla de hierbas nativas y vegetales orgánicos glaseados.',
-    detailedDescription: 'Pesca fresca seleccionada diariamente, cocinada a la plancha con un toque de brasa para conservar la jugosidad natural de la carne blanca. Acompañada de vegetales de estación glaseados en mantequilla de romero.',
-    ingredients: ['Corvina del Pacífico', 'Mantequilla de hierbas', 'Vegetales de estación', 'Aceite de oliva', 'Flor de sal'],
+    description: 'Pesca fresca seleccionada en leche de tigre de maracuyá, mariscos, canchita crujiente y cebolla morada fina.',
+    detailedDescription: 'Pesca fresca seleccionada diariamente con toque marino. Acompañada de mariscos y leche de tigre cítrica de autor.',
+    ingredients: ['Corvina del Pacífico', 'Mariscos frescos', 'Leche de tigre maracuyá', 'Cilantro', 'Canchita'],
     pairing: 'Chardonnay de clima frío o Sauvignon Blanc de la costa.',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
-    tags: ['Pesca del Pacífico', 'Vegetales Frescos'],
+    image: '/images/cevice mixto.jpeg',
+    tags: ['Pesca del Pacífico', 'Entrante del Mar'],
     chefNote: 'Respetamos los tiempos de pesca fresca para brindar el máximo sabor natural del mar.'
   }
 ];
@@ -131,7 +131,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     id: 't1',
     client: 'Gonzalo & Camila',
     role: 'Cena Privada a Domicilio',
-    quote: 'Maceiras convirtió nuestra casa en una verdadera experiencia de alta cocina. El Filete Wellington y el Carpaccio estuvieron impecables. Servicio muy profesional y cocina reluciente.',
+    quote: 'Maceiras convirtió nuestra casa en una verdadera experiencia de alta cocina. Los canapés y la tabla de charcutería estuvieron impecables. Servicio muy profesional y cocina reluciente.',
     rating: 5,
     location: 'Santiago (Lo Barnechea)'
   },
@@ -139,7 +139,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     id: 't2',
     client: 'Valentina R.',
     role: 'Aniversario Familiar',
-    quote: 'La atención personalizada para cada uno de nuestros invitados hizo la diferencia. La Crème Brûlée fue el broche de oro de la noche. Totalmente recomendados.',
+    quote: 'La atención personalizada para cada uno de nuestros invitados hizo la diferencia. Las brochetas caprese y el ceviche fueron el éxito de la noche. Totalmente recomendados.',
     rating: 5,
     location: 'Santiago (Las Condes)'
   },
@@ -152,4 +152,3 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     location: 'Santiago (Vitacura)'
   }
 ];
-

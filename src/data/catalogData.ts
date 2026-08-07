@@ -11,53 +11,82 @@ export interface CatalogProduct {
 }
 
 export const CATALOG_PRODUCTS: CatalogProduct[] = [
-  // CANAPÉS & FINGER FOOD
-  {
-    id: 'canape-tartaro-filete',
-    title: 'Canapé de Tártaro de Filete',
-    category: 'canapes',
-    subtitle: 'Finger Food de Autor',
-    description: 'Filete picado a cuchillo con alcaparras baby, ciboulette, aceite de oliva virgen extra y toques de mostaza Dijón sobre crujiente crostini.',
-    unitText: 'Porción (10 unidades)',
-    image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80',
-    badge: 'Más Solicitado'
-  },
+  // CANAPÉS & FINGER FOOD CON FOTOS REALES MACEIRAS
   {
     id: 'brocheta-caprese-pesto',
     title: 'Brocheta Caprese al Pesto de Nuez',
     category: 'canapes',
     subtitle: 'Fresco & Elegante',
-    description: 'Bocconcini de queso mozzarella fresco, tomates cherry confitados y hojas de albahaca perfumadas con pesto artesanal de nueces.',
+    description: 'Bocconcini de queso mozzarella fresco, tomates cherry confitados y hojas de albahaca perfumadas con pesto artesanal.',
     unitText: 'Porción (12 unidades)',
-    image: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb231fc?auto=format&fit=crop&w=800&q=80',
+    image: '/images/brocheta capresse.jpeg',
+    badge: 'Más Popular'
   },
   {
-    id: 'crostini-salmon-ahumado',
-    title: 'Crostini de Salmón Ahumado & Eneldo',
+    id: 'canape-roast-beef',
+    title: 'Canapé de Roast Beef & Mostaza Dijón',
     category: 'canapes',
-    subtitle: 'Maridaje del Océano',
-    description: 'Láminas de salmón ahumado artesanal sobre crema suave de queso con eneldo fresco y ralladura de limón de pica.',
+    subtitle: 'Corte de Selección',
+    description: 'Finas láminas de roast beef marinadas al punto con toques de mostaza Dijón en grano y ciboulette fresco sobre tostada artesanal.',
     unitText: 'Porción (10 unidades)',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80',
-    badge: 'Favorito Gourmet'
+    image: '/images/canape de roast beff.jpeg',
+    badge: 'Selección del Chef'
   },
   {
     id: 'ceviche-corvina-cuchara',
-    title: 'Ceviche de Corvina en Cuchara de Cerámica',
+    title: 'Ceviche Mixto Gourmet en Cuchara de Cerámica',
     category: 'canapes',
-    subtitle: 'Bocado de Alta Cocina',
-    description: 'Corvina fresca en leche de tigre de maracuyá, canchita crujiente, cebolla morada fina y cilantro hidropónico.',
+    subtitle: 'Bocado del Mar',
+    description: 'Pesca del día y mariscos frescos en leche de tigre de maracuyá, canchita crujiente, cebolla morada fina y cilantro hidropónico.',
     unitText: 'Porción (12 unidades)',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cevice mixto.jpeg',
+    badge: 'Especialidad Mar'
   },
   {
-    id: 'mini-empanadas-camaron',
-    title: 'Mini Empanadas de Queso Mantecoso & Camarón',
+    id: 'canape-mermelada-cebolla',
+    title: 'Canapé de Cebolla Caramelizada & Queso',
+    category: 'canapes',
+    subtitle: 'Sabor Dulce & Salado',
+    description: 'Mermelada de cebolla tintada al vino tinto artesanal con suave capa de queso crema y nueces picadas.',
+    unitText: 'Porción (12 unidades)',
+    image: '/images/canape de mermelada de cebolla.jpeg',
+  },
+  {
+    id: 'canape-huevo-codorniz',
+    title: 'Canapé de Huevo Gourmet & Sabor Tradicional',
+    category: 'canapes',
+    subtitle: 'Clásico Culinario',
+    description: 'Pasta cremosa de huevo artesanal condimentada con toques de mayo casera, pimentón dulce y finas hierbas de la huerta.',
+    unitText: 'Porción (12 unidades)',
+    image: '/images/canape de huevo.jpeg',
+  },
+  {
+    id: 'canape-ave-pimenton',
+    title: 'Canapé de Ave Pimentón de la Casa',
+    category: 'canapes',
+    subtitle: 'Receta Tradicional',
+    description: 'Pechuga de pollo desmenuzada con crema de pimentones asados al horno y suave toque de pimienta blanca.',
+    unitText: 'Porción (12 unidades)',
+    image: '/images/canape de avepimenton.jpeg',
+  },
+  {
+    id: 'canape-palmito-gourmet',
+    title: 'Canapé de Palmito & Crema de Hierbas',
+    category: 'canapes',
+    subtitle: 'Fresco & Ligero',
+    description: 'Medallones de palmito de primera calidad con suave mousse de ciboulette sobre crujiente panecillo horneado.',
+    unitText: 'Porción (12 unidades)',
+    image: '/images/camnape de palmito.jpeg',
+  },
+  {
+    id: 'mini-empanadas-coctel',
+    title: 'Mini Empanaditas Gourmet de Cóctel',
     category: 'canapes',
     subtitle: 'Horneado Artesanal',
-    description: 'Masa fina dorada al horno rellena de suave queso fundido y camarones salteados al ajillo con vino blanco.',
+    description: 'Masa fina dorada al horno rellena de queso fundido, camarones salteados o pino gourmet tradicional.',
     unitText: 'Porción (15 unidades)',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    image: '/images/empanada de coctel.jpeg',
+    badge: 'Recién Horneado'
   },
 
   // ALMUERZOS & BANQUETES
@@ -66,9 +95,9 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     title: 'Almuerzo Ejecutivo 3 Tiempos',
     category: 'almuerzos',
     subtitle: 'Menú Completo Servido',
-    description: 'Entrante de Carpaccio de Res o Salmón, Plato Principal a elección (Filete Wellington o Corvina a la Brasa) y Dessert Crème Brûlée.',
+    description: 'Entrante de Carpaccio o Ceviche Mixto, Plato Principal a elección (Filete Wellington o Corvina a la Brasa) y Postre de autor.',
     unitText: 'Menú por persona',
-    image: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80',
+    image: '/images/cevice mixto.jpeg',
     badge: 'Opción Estrella'
   },
   {
@@ -76,9 +105,9 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     title: 'Buffet Premium de Cortes Nobles & Ensaladas',
     category: 'almuerzos',
     subtitle: 'Formato Buffet Exclusivo',
-    description: 'Lomo vetado a las finas hierbas, pollo orgánico glaseado, variedad de ensaladas gourmet de autor y vegetales gratinados.',
+    description: 'Lomo vetado a las finas hierbas, roast beef gourmet, variedad de ensaladas de autor y vegetales gratinados.',
     unitText: 'Buffet por persona',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    image: '/images/canape de roast beff.jpeg',
   },
   {
     id: 'cena-privada-4pasos',
@@ -87,27 +116,18 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Alta Gastronomía en Casa',
     description: 'Amuse-bouche del chef, entrada fría de mar, plato fuerte con guarnición mantecada y degustación de postres artesanales.',
     unitText: 'Menú por persona',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80',
+    image: '/images/brocheta capresse.jpeg',
   },
 
   // ESTACIONES EN VIVO
   {
     id: 'estacion-quesos-jamon',
-    title: 'Estación de Jamón Serrano & Quesos Madurados',
+    title: 'Tabla Premium de Charcutería & Quesos Madurados',
     category: 'estaciones',
-    subtitle: 'Montaje de Autor',
-    description: 'Corte en vivo de jamón serrano, variedad de quesos artesanales chilenos e importados, frutos secos, miel de ulmo y pan de masa madre.',
+    subtitle: 'Montaje de Autor Maceiras',
+    description: 'Selección de charcutería fina, jamón serrano, quesos artesanales chilenos e importados, frutos secos, aceitunas marinadas y pan de masa madre.',
     unitText: 'Estación para 20-30 pers.',
-    image: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb231fc?auto=format&fit=crop&w=800&q=80',
-    badge: 'Recomendado'
-  },
-  {
-    id: 'estacion-cocteleria-autor',
-    title: 'Barra Móvil de Cócteles de Autor & Mixología',
-    category: 'estaciones',
-    subtitle: 'Barra Abierta VIP',
-    description: 'Bartender profesional con carta de tragos de autor (Sour de Maracuyá, Gin Tonic botánico, Spritz de pomelo) e insumos premium.',
-    unitText: 'Servicio por 4 horas',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80',
+    image: '/images/tabla de charcuteria.jpeg',
+    badge: 'Recomendado VIP'
   }
 ];
