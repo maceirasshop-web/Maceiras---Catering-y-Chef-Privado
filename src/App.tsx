@@ -27,16 +27,22 @@ export default function App() {
   // Router listener for URL hashes (#/recetas, #/receta/x, #/admin) and paths (/recetas, /admin)
   useEffect(() => {
     const handleLocationChange = () => {
-      const hash = window.location.hash;
-      const path = window.location.pathname;
+      const hash = window.location.hash.toLowerCase();
+      const path = window.location.pathname.toLowerCase();
+      const href = window.location.href.toLowerCase();
 
-      if (hash === '#admin' || hash === '#/admin' || path.endsWith('/admin')) {
+      if (hash.includes('admin') || path.includes('/admin') || href.includes('/admin')) {
         setCurrentRoute('admin');
-      } else if (hash.startsWith('#/receta/') || hash.startsWith('#receta/')) {
-        const id = hash.replace('#/receta/', '').replace('#receta/', '');
+      } else if (hash.includes('receta/') || path.includes('/receta/')) {
+        let id = '';
+        if (hash.includes('receta/')) {
+          id = hash.split('receta/')[1];
+        } else if (path.includes('/receta/')) {
+          id = path.split('/receta/')[1];
+        }
         setCurrentRecipeId(id);
         setCurrentRoute('receta_detail');
-      } else if (hash === '#recetas' || hash === '#/recetas' || path.endsWith('/recetas')) {
+      } else if (hash.includes('recetas') || path.includes('/recetas')) {
         setCurrentRoute('recetas');
       } else {
         setCurrentRoute('home');

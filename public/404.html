@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirigiendo a Maceiras Catering...</title>
+  <script>
+    // SPA 404 Redirect Fallback
+    var path = window.location.pathname;
+    var search = window.location.search;
+    var hash = window.location.hash;
+    
+    if (path.indexOf('/admin') !== -1) {
+      window.location.href = '/#/admin';
+    } else if (path.indexOf('/recetas') !== -1) {
+      window.location.href = '/#/recetas';
+    } else if (path.indexOf('/receta/') !== -1) {
+      var id = path.split('/receta/')[1];
+      window.location.href = '/#/receta/' + id;
+    } else {
+      window.location.href = '/#/';
+    }
+  </script>
+</head>
+<body style="background-color: #FAF8F5; font-family: sans-serif; text-align: center; padding-top: 100px; color: #1F2937;">
+  <h2>Cargando Panel Maceiras...</h2>
+  <p>Redirigiendo a la ruta solicitada...</p>
+</body>
+</html>
