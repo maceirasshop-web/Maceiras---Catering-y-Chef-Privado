@@ -58,7 +58,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
         <section className="border-b border-[#0A0A0A]/8 py-14 sm:py-20 mb-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 space-y-5">
             <span className="kicker">Recetario</span>
-            <h1 className="text-4xl sm:text-5xl font-light text-[#0A0A0A] leading-tight tracking-[-0.04em] max-w-3xl">
+            <h1 className="text-4xl sm:text-5xl font-medium text-[#0A0A0A] leading-tight tracking-[-0.04em] max-w-3xl">
               Técnica de autor, documentada.
             </h1>
             <p className="text-sm sm:text-base font-light text-[#5C5C5C] max-w-2xl leading-relaxed">
@@ -107,7 +107,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 font-display text-[12px] uppercase tracking-[0.14em] font-medium transition-all duration-200 cursor-pointer ${
+                  className={`chip ${
                     selectedCategory === cat.id
                       ? 'bg-[#0A0A0A] text-[#F7F7F5]'
                       : 'bg-white text-[#0A0A0A] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]'
@@ -150,7 +150,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.06 }}
                   onClick={() => onNavigateToRecipeDetail(recipe.id)}
-                  className="group bg-white border border-[#0A0A0A]/10 overflow-hidden flex flex-col justify-between cursor-pointer hover:border-[#0A0A0A]/40 transition-colors"
+                  className="group bg-white border border-[#0A0A0A]/10 overflow-hidden flex flex-col justify-between cursor-pointer hover:border-[#0A0A0A]/40 transition-colors rounded-3xl"
                 >
                   <div>
                     <div className="relative h-56 w-full overflow-hidden bg-[#EDEDEC]">
@@ -162,7 +162,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
-                      <div className="absolute top-3 left-3 px-2.5 py-1 bg-white/95 text-[10px] uppercase tracking-widest text-[#0A0A0A] font-medium">
+                      <div className="absolute top-3 left-3 px-2.5 py-1 bg-white/95 text-[11px] text-[#0A0A0A] font-medium rounded-full">
                         {recipe.category}
                       </div>
 
@@ -190,7 +190,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
                   </div>
 
                   <div className="px-6 pb-6 pt-3 flex items-center justify-between border-t border-[#0A0A0A]/8 text-xs">
-                    <span className="inline-flex items-center gap-2 font-display uppercase tracking-[0.14em] text-[#0A0A0A] font-medium">
+                    <span className="inline-flex items-center gap-2 text-[14px] text-[#0A0A0A] font-medium">
                       Ver receta
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                     </span>

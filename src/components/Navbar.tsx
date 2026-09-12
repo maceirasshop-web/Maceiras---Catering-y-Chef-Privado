@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
   const navLinks = [
     { name: 'Servicios', href: '#servicios' },
     { name: 'Empresas', href: '#/empresas' },
-    { name: 'Arma tu Menú', href: '#arma-tu-menu' },
+    { name: 'Arma tu menú', href: '#arma-tu-menu' },
     { name: 'Recetas', href: '#/recetas' },
     { name: 'Opiniones', href: '#opiniones' },
     { name: 'Contacto', href: '#contacto' },
@@ -57,18 +57,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        <a href="#/" className="flex items-center gap-3 group" id="brand-logo">
-          <div className="w-8 h-8 bg-[#0A0A0A] text-[#F7F7F5] flex items-center justify-center font-display text-[15px] tracking-wider font-semibold">
-            M
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-[19px] tracking-[0.22em] uppercase text-[#0A0A0A] font-semibold">
-              Maceiras
-            </span>
-            <span className="text-[9px] tracking-[0.18em] uppercase text-[#6B6B6B] mt-0.5 font-medium">
-              Catering & Chef Privado
-            </span>
-          </div>
+        <a
+          href="#/"
+          className="text-[1.35rem] sm:text-[1.45rem] font-semibold tracking-[-0.03em] text-[#0A0A0A]"
+          id="brand-logo"
+        >
+          Maceiras
         </a>
 
         <nav className="hidden lg:flex items-center gap-7" id="desktop-nav-links">
@@ -76,7 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
             <a
               key={link.name}
               href={link.href}
-              className={`font-display text-[13px] uppercase tracking-[0.16em] transition-colors duration-200 ${
+              className={`text-[14px] font-medium transition-colors duration-200 ${
                 isActive(link.href)
                   ? 'text-[#0A0A0A]'
                   : 'text-[#0A0A0A]/55 hover:text-[#0A0A0A]'
@@ -92,11 +86,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
             href="https://wa.me/56931939017?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20catering%20y%20chef%20privado."
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden xl:flex items-center gap-1.5 text-[12px] text-[#5C5C5C] hover:text-[#0A0A0A] transition-colors px-2 py-2"
+            className="hidden xl:flex items-center gap-1.5 text-[13px] text-[#5C5C5C] hover:text-[#0A0A0A] transition-colors px-2 py-2"
             title="Contacto por WhatsApp"
           >
             <Phone className="w-3.5 h-3.5" />
-            <span className="font-medium tracking-wide">+56 9 3193 9017</span>
+            <span className="font-medium">+56 9 3193 9017</span>
           </a>
 
           <button
@@ -111,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-[#0A0A0A] focus:outline-none"
+          className="lg:hidden p-2 text-[#0A0A0A] focus:outline-none rounded-full"
           aria-label="Abrir menú"
           id="mobile-menu-toggle"
         >
@@ -127,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-display text-xl tracking-[0.12em] uppercase text-[#0A0A0A] py-3 border-b border-[#0A0A0A]/8"
+                className="text-lg font-medium text-[#0A0A0A] py-3 border-b border-[#0A0A0A]/8"
               >
                 {link.name}
               </a>
@@ -147,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
 
             <a
               href="tel:+56931939017"
-              className="flex items-center justify-center gap-2 py-2 text-xs text-[#5C5C5C]"
+              className="flex items-center justify-center gap-2 py-2 text-sm text-[#5C5C5C]"
             >
               <Phone className="w-3.5 h-3.5" />
               <span>+56 9 3193 9017</span>

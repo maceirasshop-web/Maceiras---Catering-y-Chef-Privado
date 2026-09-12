@@ -17,7 +17,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 15 }}
         transition={{ duration: 0.25 }}
-        className="bg-[#F7F7F5] rounded-xs max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-[#0A0A0A]/20 overflow-hidden relative"
+        className="bg-[#F7F7F5] rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-[#0A0A0A]/20 overflow-hidden relative"
       >
         {/* Header */}
         <div className="bg-[#0A0A0A] text-[#F7F7F5] px-6 py-4 flex items-center justify-between border-b border-[#F7F7F5]/10 shrink-0">

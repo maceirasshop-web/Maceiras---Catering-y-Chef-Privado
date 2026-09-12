@@ -87,7 +87,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       <div className="max-w-4xl mx-auto px-6 lg:px-12">
         <div className="mb-14 space-y-4 max-w-xl">
           <span className="kicker">Contacto</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#0A0A0A] font-light leading-tight tracking-[-0.03em]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#0A0A0A] font-medium leading-tight tracking-[-0.03em]">
             Solicite una propuesta.
           </h2>
           <p className="text-[#5C5C5C] font-light text-base leading-relaxed">
@@ -99,7 +99,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-6 bg-[#F7F7F5] border border-[#0A0A0A]/15 space-y-4"
+            className="mb-8 p-6 bg-[#F7F7F5] border border-[#0A0A0A]/15 space-y-4 rounded-3xl"
           >
             <div className="flex items-center justify-between border-b border-[#0A0A0A]/10 pb-3">
               <div className="flex items-center gap-2">
@@ -143,11 +143,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-[#F7F7F5] p-7 sm:p-12 border border-[#0A0A0A]/10"
+          className="bg-[#F7F7F5] p-7 sm:p-12 border border-[#0A0A0A]/10 rounded-3xl"
         >
           {submitted ? (
             <div className="py-10 text-center space-y-6">
-              <div className="w-14 h-14 bg-[#0A0A0A] text-[#F7F7F5] flex items-center justify-center mx-auto">
+              <div className="w-14 h-14 rounded-full bg-[#0A0A0A] text-[#F7F7F5] flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-7 h-7" />
               </div>
               <div className="space-y-2">
@@ -369,12 +369,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           )}
         </motion.div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-px bg-[#0A0A0A]/10 border border-[#0A0A0A]/10">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
           <a
             href="https://wa.me/56931939017?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20catering%20y%20chef%20privado."
             target="_blank"
             rel="noopener noreferrer"
-            className="p-7 bg-[#F7F7F5] hover:bg-white transition-colors space-y-2 block"
+            className="p-7 bg-[#F7F7F5] hover:bg-white transition-colors space-y-2 block rounded-3xl border border-[#0A0A0A]/8"
           >
             <Phone className="w-4 h-4 text-[#0A0A0A]" />
             <div className="kicker !text-[11px]">WhatsApp</div>
@@ -382,13 +382,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </a>
           <a
             href="mailto:maceiras.shop@gmail.com"
-            className="p-7 bg-[#F7F7F5] hover:bg-white transition-colors space-y-2 block"
+            className="p-7 bg-[#F7F7F5] hover:bg-white transition-colors space-y-2 block rounded-3xl border border-[#0A0A0A]/8"
           >
             <Mail className="w-4 h-4 text-[#0A0A0A]" />
             <div className="kicker !text-[11px]">Correo</div>
             <div className="text-sm font-medium text-[#0A0A0A]">maceiras.shop@gmail.com</div>
           </a>
-          <div className="p-7 bg-[#F7F7F5] space-y-2">
+          <div className="p-7 bg-[#F7F7F5] space-y-2 rounded-3xl border border-[#0A0A0A]/8">
             <MapPin className="w-4 h-4 text-[#0A0A0A]" />
             <div className="kicker !text-[11px]">Cobertura</div>
             <div className="text-sm font-medium text-[#0A0A0A]">Santiago, RM</div>

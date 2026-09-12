@@ -61,7 +61,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl space-y-3">
             <span className="kicker">Cotizador de productos</span>
-            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-light leading-tight tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-medium leading-tight tracking-[-0.03em]">
               Arma tu menú a la medida
             </h2>
             <p className="text-sm sm:text-base font-light text-[#5C5C5C] leading-relaxed">
@@ -79,10 +79,10 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 text-[11px] uppercase tracking-[0.14em] font-medium transition-all duration-200 cursor-pointer font-display ${
+                className={`chip ${
                   selectedCategory === cat.id
                     ? 'bg-[#0A0A0A] text-[#F7F7F5]'
-                    : 'bg-transparent text-[#0A0A0A] border border-[#0A0A0A]/15 hover:border-[#0A0A0A]'
+                    : 'bg-white text-[#0A0A0A] border border-[#0A0A0A]/12 hover:border-[#0A0A0A]'
                 }`}
               >
                 {cat.label}
@@ -102,7 +102,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`bg-[#F7F7F5] border transition-all duration-300 overflow-hidden flex flex-col justify-between ${
+                className={`bg-white border transition-all duration-300 overflow-hidden flex flex-col justify-between rounded-3xl ${
                   qty > 0
                     ? 'border-[#0A0A0A]'
                     : 'border-[#0A0A0A]/10 hover:border-[#0A0A0A]/35'
@@ -119,12 +119,12 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                     <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
 
                     {product.badge && (
-                      <div className="absolute top-3 left-3 px-2.5 py-1 bg-[#0A0A0A] text-[#F7F7F5] font-display text-[11px] uppercase tracking-[0.14em]">
+                      <div className="absolute top-3 left-3 px-2.5 py-1 bg-[#0A0A0A] text-[#F7F7F5] text-[12px] font-medium rounded-full">
                         {product.badge}
                       </div>
                     )}
 
-                    <div className="absolute bottom-3 left-3 px-2.5 py-0.5 bg-white/95 text-[10px] uppercase tracking-wider text-[#0A0A0A] font-medium">
+                    <div className="absolute bottom-3 left-3 px-2.5 py-0.5 bg-white/95 text-[11px] text-[#0A0A0A] font-medium rounded-full">
                       {product.subtitle}
                     </div>
                   </div>
@@ -147,7 +147,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                     {qty === 0 ? (
                       <button
                         onClick={() => handleIncrement(product.id)}
-                        className="w-full py-2.5 bg-[#0A0A0A] text-[#F7F7F5] font-display text-[13px] uppercase tracking-[0.14em] font-semibold hover:bg-[#2A2A2A] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full py-2.5 bg-[#0A0A0A] text-[#F7F7F5] text-[14px] font-semibold hover:bg-[#2A2A2A] transition-colors flex items-center justify-center gap-2 cursor-pointer rounded-full"
                       >
                         <Plus className="w-4 h-4" />
                         <span>Agregar</span>
@@ -160,7 +160,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleDecrement(product.id)}
-                            className="w-8 h-8 bg-white text-[#0A0A0A] border border-[#0A0A0A]/20 flex items-center justify-center hover:border-[#0A0A0A] transition-colors cursor-pointer"
+                            className="w-8 h-8 rounded-full bg-white text-[#0A0A0A] border border-[#0A0A0A]/20 flex items-center justify-center hover:border-[#0A0A0A] transition-colors cursor-pointer"
                             aria-label="Disminuir porción"
                           >
                             <Minus className="w-4 h-4" />
@@ -170,7 +170,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                           </span>
                           <button
                             onClick={() => handleIncrement(product.id)}
-                            className="w-8 h-8 bg-[#0A0A0A] text-[#F7F7F5] flex items-center justify-center hover:bg-[#2A2A2A] transition-colors cursor-pointer"
+                            className="w-8 h-8 rounded-full bg-[#0A0A0A] text-[#F7F7F5] flex items-center justify-center hover:bg-[#2A2A2A] transition-colors cursor-pointer"
                             aria-label="Aumentar porción"
                           >
                             <Plus className="w-4 h-4" />
@@ -194,10 +194,10 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
             exit={{ opacity: 0, y: 40 }}
             className="fixed bottom-6 left-4 right-4 sm:left-auto sm:right-6 z-40 max-w-md w-full"
           >
-            <div className="bg-[#0A0A0A] text-[#F7F7F5] p-4 sm:p-5 border border-white/10 space-y-3 shadow-2xl">
+            <div className="bg-[#0A0A0A] text-[#F7F7F5] p-4 sm:p-5 border border-white/10 space-y-3 shadow-2xl rounded-3xl">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 bg-[#F7F7F5] text-[#0A0A0A] flex items-center justify-center font-display font-semibold text-sm">
+                  <div className="w-9 h-9 rounded-full bg-[#F7F7F5] text-[#0A0A0A] flex items-center justify-center font-semibold text-sm">
                     {totalSelectedCount}
                   </div>
                   <div>
@@ -230,7 +230,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
 
               <button
                 onClick={() => onProceedToQuote(selectedItemsList)}
-                className="w-full py-3.5 bg-[#F7F7F5] text-[#0A0A0A] font-display text-[13px] uppercase tracking-[0.14em] font-semibold hover:bg-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 bg-[#F7F7F5] text-[#0A0A0A] text-[14.5px] font-semibold hover:bg-white transition-all flex items-center justify-center gap-2 cursor-pointer rounded-full"
               >
                 <span>Cotizar selección ({totalSelectedCount})</span>
                 <ArrowRight className="w-4 h-4" />

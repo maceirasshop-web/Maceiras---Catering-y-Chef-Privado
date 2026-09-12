@@ -25,7 +25,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
           >
             <span className="kicker">Santiago · Catering premium</span>
 
-            <h1 className="text-[2.35rem] sm:text-5xl lg:text-[3.6rem] tracking-[-0.045em] text-[#0A0A0A] leading-[1.05] font-light">
+            <h1 className="text-[2.35rem] sm:text-5xl lg:text-[3.55rem] tracking-[-0.04em] text-[#0A0A0A] leading-[1.08] font-medium">
               Gastronomía privada con estándar de precisión.
             </h1>
 
@@ -70,7 +70,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
               { value: 'SCL', label: 'Cobertura RM' },
             ].map((item) => (
               <div key={item.label} className="flex flex-col">
-                <span className="font-display text-2xl sm:text-3xl tracking-wide font-medium leading-none">
+                <span className="text-2xl sm:text-3xl tracking-tight font-semibold leading-none">
                   {item.value}
                 </span>
                 <span className="kicker mt-2 !text-[11px]">{item.label}</span>

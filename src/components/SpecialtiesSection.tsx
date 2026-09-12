@@ -18,7 +18,7 @@ export const SpecialtiesSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="kicker">Carta</span>
-            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-light leading-tight tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-medium leading-tight tracking-[-0.03em]">
               Especialidades de temporada
             </h2>
             <p className="text-[#5C5C5C] font-light text-base">
@@ -36,7 +36,7 @@ export const SpecialtiesSection: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 font-display text-[12px] uppercase tracking-[0.14em] font-medium transition-all duration-200 cursor-pointer ${
+                className={`chip ${
                   activeCategory === cat.id
                     ? 'bg-[#0A0A0A] text-[#F7F7F5]'
                     : 'text-[#0A0A0A] border border-[#0A0A0A]/15 hover:border-[#0A0A0A]'
@@ -57,7 +57,7 @@ export const SpecialtiesSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
               onClick={() => setSelectedDish(dish)}
-              className="group bg-white border border-[#0A0A0A]/10 overflow-hidden flex flex-col justify-between cursor-pointer hover:border-[#0A0A0A]/40 transition-colors"
+              className="group bg-white border border-[#0A0A0A]/10 overflow-hidden flex flex-col justify-between cursor-pointer hover:border-[#0A0A0A]/40 transition-colors rounded-3xl"
             >
               <div>
                 <div className="relative h-52 w-full overflow-hidden bg-[#EDEDEC]">
@@ -67,7 +67,7 @@ export const SpecialtiesSection: React.FC = () => {
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-white/95 text-[9px] uppercase tracking-widest text-[#0A0A0A] font-medium">
+                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-white/95 text-[11px] text-[#0A0A0A] font-medium rounded-full">
                     {dish.category}
                   </div>
                 </div>
@@ -83,7 +83,7 @@ export const SpecialtiesSection: React.FC = () => {
                     {dish.tags.slice(0, 2).map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[9px] uppercase tracking-wider text-[#5C5C5C] border border-[#0A0A0A]/10 px-2 py-0.5"
+                        className="text-[11px] text-[#5C5C5C] border border-[#0A0A0A]/10 px-2 py-0.5 rounded-full"
                       >
                         {tag}
                       </span>
@@ -92,7 +92,7 @@ export const SpecialtiesSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="px-5 pb-5 pt-1 font-display text-[12px] uppercase tracking-[0.14em] text-[#0A0A0A] flex items-center justify-between">
+              <div className="px-5 pb-5 pt-1 text-[14px] font-medium text-[#0A0A0A] flex items-center justify-between">
                 <span>Maridaje</span>
                 <span>→</span>
               </div>
@@ -109,11 +109,11 @@ export const SpecialtiesSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.22 }}
-              className="bg-[#F7F7F5] max-w-lg sm:max-w-xl w-full shadow-2xl border border-[#0A0A0A]/10 relative max-h-[88vh] flex flex-col overflow-hidden"
+              className="bg-[#F7F7F5] max-w-lg sm:max-w-xl w-full shadow-2xl border border-[#0A0A0A]/10 relative max-h-[88vh] flex flex-col overflow-hidden rounded-3xl"
             >
               <button
                 onClick={() => setSelectedDish(null)}
-                className="absolute top-3 right-3 z-30 w-9 h-9 bg-[#0A0A0A] text-[#F7F7F5] hover:bg-[#2A2A2A] flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-[#0A0A0A] text-[#F7F7F5] hover:bg-[#2A2A2A] flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Cerrar modal"
               >
                 <X className="w-5 h-5" />

@@ -22,7 +22,7 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="kicker">Recetas</span>
-            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-light leading-tight tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-medium leading-tight tracking-[-0.03em]">
               Técnica, explicada paso a paso
             </h2>
             <p className="text-[#5C5C5C] font-light text-base">
@@ -33,7 +33,7 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
           <div className="flex flex-col items-start md:items-end gap-3">
             <a
               href="#/recetas"
-              className="inline-flex items-center gap-1.5 font-display text-[13px] uppercase tracking-[0.14em] text-[#0A0A0A] hover:opacity-60 transition-opacity"
+              className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#0A0A0A] hover:opacity-60 transition-opacity"
             >
               Catálogo completo
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -48,7 +48,7 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 py-2 font-display text-[12px] uppercase tracking-[0.14em] font-medium transition-all duration-200 cursor-pointer ${
+                  className={`chip ${
                     activeCategory === cat.id
                       ? 'bg-[#0A0A0A] text-[#F7F7F5]'
                       : 'text-[#0A0A0A] border border-[#0A0A0A]/15 hover:border-[#0A0A0A]'
@@ -70,7 +70,7 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
               onClick={() => setSelectedRecipe(recipe)}
-              className="group bg-[#F7F7F5] border border-[#0A0A0A]/10 overflow-hidden flex flex-col justify-between cursor-pointer hover:border-[#0A0A0A]/40 transition-colors"
+              className="group bg-white border border-[#0A0A0A]/10 overflow-hidden flex flex-col justify-between cursor-pointer hover:border-[#0A0A0A]/40 transition-colors rounded-3xl"
             >
               <div>
                 <div className="relative h-64 w-full overflow-hidden bg-[#EDEDEC]">
@@ -82,16 +82,16 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-                  <div className="absolute top-4 left-4 px-2.5 py-1 bg-white/95 text-[10px] uppercase tracking-widest text-[#0A0A0A] font-medium">
+                  <div className="absolute top-4 left-4 px-2.5 py-1 bg-white/95 text-[11px] text-[#0A0A0A] font-medium rounded-full">
                     {recipe.category}
                   </div>
 
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs">
-                    <span className="flex items-center gap-1 bg-[#0A0A0A]/80 px-2.5 py-1 text-[10px]">
+                    <span className="flex items-center gap-1 bg-[#0A0A0A]/80 px-2.5 py-1 text-[10px] rounded-full">
                       <Clock className="w-3 h-3" />
                       {recipe.prepTime}
                     </span>
-                    <span className="flex items-center gap-1 bg-[#0A0A0A]/80 px-2.5 py-1 text-[10px]">
+                    <span className="flex items-center gap-1 bg-[#0A0A0A]/80 px-2.5 py-1 text-[10px] rounded-full">
                       <Flame className="w-3 h-3" />
                       {recipe.difficulty}
                     </span>
@@ -110,7 +110,7 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
               </div>
 
               <div className="px-7 pb-7 pt-2 flex items-center justify-between border-t border-[#0A0A0A]/8 mt-2 text-xs">
-                <span className="inline-flex items-center gap-2 font-display uppercase tracking-[0.14em] text-[#0A0A0A] font-medium">
+                <span className="inline-flex items-center gap-2 text-[14px] text-[#0A0A0A] font-medium">
                   Ver receta
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </span>

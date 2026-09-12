@@ -17,7 +17,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="max-w-2xl space-y-4">
             <span className="kicker">Servicios</span>
-            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-light leading-tight tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-medium leading-tight tracking-[-0.03em]">
               Tres líneas. Un mismo criterio de ejecución.
             </h2>
             <p className="text-[#5C5C5C] font-light text-base leading-relaxed">
@@ -33,7 +33,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#0A0A0A]/10 border border-[#0A0A0A]/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {SERVICES_DATA.map((service, index) => (
             <motion.div
               key={service.id}
@@ -42,7 +42,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => setSelectedService(service)}
-              className="group bg-[#F7F7F5] overflow-hidden flex flex-col justify-between cursor-pointer hover:bg-white transition-colors"
+              className="group bg-white overflow-hidden flex flex-col justify-between cursor-pointer rounded-3xl border border-[#0A0A0A]/8 hover:border-[#0A0A0A]/20 transition-colors"
             >
               <div>
                 <div className="relative h-64 w-full overflow-hidden bg-[#EDEDEC]">
@@ -53,7 +53,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent" />
-                  <div className="absolute top-4 left-4 font-display text-sm tracking-[0.18em] text-white/90">
+                  <div className="absolute top-4 left-4 text-sm font-medium text-white/90">
                     0{index + 1}
                   </div>
                 </div>
@@ -70,7 +70,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               </div>
 
               <div className="px-7 pb-7 pt-1">
-                <span className="inline-flex items-center gap-2 font-display text-[13px] tracking-[0.14em] uppercase text-[#0A0A0A]">
+                <span className="inline-flex items-center gap-2 text-[14px] font-medium text-[#0A0A0A]">
                   Detalles
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </span>
@@ -88,11 +88,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
               transition={{ duration: 0.22 }}
-              className="bg-[#F7F7F5] max-w-2xl w-full shadow-2xl border border-[#0A0A0A]/10 relative max-h-[88vh] flex flex-col overflow-hidden"
+              className="bg-[#F7F7F5] max-w-2xl w-full shadow-2xl border border-[#0A0A0A]/10 relative max-h-[88vh] flex flex-col overflow-hidden rounded-3xl"
             >
               <button
                 onClick={() => setSelectedService(null)}
-                className="absolute top-3 right-3 z-30 w-9 h-9 bg-[#0A0A0A] text-[#F7F7F5] hover:bg-[#2A2A2A] flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-[#0A0A0A] text-[#F7F7F5] hover:bg-[#2A2A2A] flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Cerrar modal"
               >
                 <X className="w-5 h-5" />

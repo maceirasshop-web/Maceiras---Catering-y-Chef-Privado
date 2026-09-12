@@ -33,7 +33,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 15 }}
         transition={{ duration: 0.25 }}
-        className="bg-[#F7F7F5] rounded-xs max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-[#0A0A0A]/20 overflow-hidden relative"
+        className="bg-[#F7F7F5] rounded-3xl max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-[#0A0A0A]/20 overflow-hidden relative"
       >
         {/* Top Sticky Header */}
         <div className="bg-[#0A0A0A] text-[#F7F7F5] px-6 py-4 flex items-center justify-between border-b border-[#F7F7F5]/10 shrink-0 z-20">
@@ -233,7 +233,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                     onClose();
                     onSelectForQuote(`Menú especial: ${recipe.title}`);
                   }}
-                  className="w-full py-3.5 bg-[#F7F7F5] text-[#0A0A0A] font-display text-[13px] uppercase tracking-[0.14em] font-semibold hover:bg-white transition-all cursor-pointer"
+                  className="w-full py-3.5 bg-[#F7F7F5] text-[#0A0A0A] text-[14.5px] font-semibold hover:bg-white transition-all cursor-pointer rounded-full"
                 >
                   Solicitar este menú a domicilio →
                 </button>

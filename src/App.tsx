@@ -197,17 +197,17 @@ export default function App() {
         <section className="bg-[#0A0A0A] text-[#F7F7F5]">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 sm:py-20 flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div className="max-w-xl space-y-3">
-              <span className="font-display text-[12px] tracking-[0.22em] uppercase text-white/40">Empresas</span>
-              <h2 className="text-3xl sm:text-4xl font-light tracking-[-0.03em] leading-tight">
+              <span className="text-[13px] font-medium text-white/45">Empresas</span>
+              <h2 className="text-3xl sm:text-4xl font-medium tracking-[-0.03em] leading-tight">
                 Catering corporativo con protocolo de sala.
               </h2>
-              <p className="text-white/50 font-light text-sm leading-relaxed">
+              <p className="text-white/50 font-normal text-sm leading-relaxed">
                 Coffee break, lunch ejecutivo, cocktail de marca y cenas de directorio. Un interlocutor. Facturación empresa.
               </p>
             </div>
             <a
               href="#/empresas"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-[#F7F7F5] text-[#0A0A0A] font-display text-[13px] font-semibold tracking-[0.16em] uppercase hover:bg-white transition-colors shrink-0"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F7F7F5] text-[#0A0A0A] text-[14.5px] font-semibold tracking-[-0.01em] hover:bg-white transition-colors shrink-0 rounded-full"
             >
               Ver servicio empresas
             </a>

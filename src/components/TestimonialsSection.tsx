@@ -9,7 +9,7 @@ export const TestimonialsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="max-w-xl mb-12 sm:mb-16 space-y-3">
           <span className="kicker">Opiniones</span>
-          <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-light tracking-[-0.03em]">
+          <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-medium tracking-[-0.03em]">
             Lo que dicen quienes nos contrataron
           </h2>
           <p className="text-xs text-[#5C5C5C] md:hidden flex items-center gap-1">
@@ -26,7 +26,7 @@ export const TestimonialsSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.1 }}
-              className="bg-white p-7 sm:p-8 border border-[#0A0A0A]/10 flex flex-col justify-between space-y-6 shrink-0 w-[85vw] max-w-[340px] md:w-auto md:max-w-none snap-center"
+              className="bg-white p-7 sm:p-8 border border-[#0A0A0A]/10 flex flex-col justify-between space-y-6 shrink-0 w-[85vw] max-w-[340px] md:w-auto md:max-w-none snap-center rounded-3xl"
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-1 text-[#0A0A0A]">
@@ -44,7 +44,7 @@ export const TestimonialsSection: React.FC = () => {
                   <div className="font-medium text-[#0A0A0A]">{testimonial.client}</div>
                   <div className="text-[#5C5C5C] text-[11px]">{testimonial.role}</div>
                 </div>
-                <div className="flex items-center gap-1 text-[#5C5C5C] border border-[#0A0A0A]/10 px-2.5 py-1 text-[9px] uppercase tracking-wider">
+                <div className="flex items-center gap-1 text-[#5C5C5C] border border-[#0A0A0A]/10 px-2.5 py-1 text-[11px] rounded-full">
                   <MapPin className="w-3 h-3" />
                   <span>{testimonial.location}</span>
                 </div>

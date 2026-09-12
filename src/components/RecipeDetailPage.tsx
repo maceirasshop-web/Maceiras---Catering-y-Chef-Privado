@@ -70,7 +70,7 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
           <h2 className="font-serif text-2xl">Receta no encontrada</h2>
           <button
             onClick={onNavigateBack}
-            className="px-6 py-2.5 rounded-xs bg-[#0A0A0A] text-[#F7F7F5] text-xs uppercase tracking-widest font-medium"
+            className="btn-primary"
           >
             Volver a Recetas
           </button>
@@ -321,7 +321,7 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
 
                 <button
                   onClick={() => onOpenQuote(`Menú especial: ${recipe.title}`)}
-                  className="w-full py-4 bg-[#F7F7F5] text-[#0A0A0A] font-display text-[13px] uppercase tracking-[0.14em] font-semibold hover:bg-white transition-all cursor-pointer"
+                  className="w-full py-3.5 bg-[#F7F7F5] text-[#0A0A0A] text-[14.5px] font-semibold hover:bg-white transition-all cursor-pointer rounded-full"
                 >
                   Solicitar este menú a domicilio →
                 </button>
