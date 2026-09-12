@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { BookOpen, Clock, Users, Flame, ArrowRight, ChefHat } from 'lucide-react';
+import { Clock, Flame, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { RECIPES_DATA, RecipeItem } from '../data/recipesData';
 import { RecipeDetailModal } from './RecipeDetailModal';
 
@@ -17,120 +17,112 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
     : RECIPES_DATA.filter(r => r.category === activeCategory);
 
   return (
-    <section id="recetas" className="py-24 bg-[#F5F2ED] relative border-t border-[#2A2A2A]/10">
+    <section id="recetas" className="py-24 bg-white relative border-t border-[#0A0A0A]/8">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-xl space-y-3">
-            <span className="text-xs uppercase tracking-widest text-[#D27D56] font-medium font-sans flex items-center gap-2">
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Saber Culinario & Recetas</span>
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#2A2A2A] font-light leading-tight">
-              Técnica y sabor <span className="italic font-normal">explicados paso a paso</span>
+            <span className="kicker">Recetas</span>
+            <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-light leading-tight tracking-[-0.03em]">
+              Técnica, explicada paso a paso
             </h2>
-            <p className="text-[#2A2A2A]/70 font-sans font-light text-base">
-              Explora las guías de alta cocina de Maceiras. Aprende la preparación detallada de nuestras especialidades o solicita al chef en tu hogar.
+            <p className="text-[#5C5C5C] font-light text-base">
+              Guías de cocina de Maceiras. Prepáralas en casa o solicita al chef en tu residencia.
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 pt-2">
-            {[
-              { id: 'todos', label: 'Todas' },
-              { id: 'principales', label: 'Principales' },
-              { id: 'entrantes', label: 'Entrantes' },
-              { id: 'postres', label: 'Postres' }
-            ].map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-xs text-[11px] uppercase tracking-widest font-medium transition-all duration-200 cursor-pointer ${
-                  activeCategory === cat.id
-                    ? 'bg-[#5A5A40] text-[#F5F2ED]'
-                    : 'bg-[#EADDCA]/40 text-[#2A2A2A]/80 border border-[#2A2A2A]/10 hover:bg-[#EADDCA]'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          <div className="flex flex-col items-start md:items-end gap-3">
+            <a
+              href="#/recetas"
+              className="inline-flex items-center gap-1.5 font-display text-[13px] uppercase tracking-[0.14em] text-[#0A0A0A] hover:opacity-60 transition-opacity"
+            >
+              Catálogo completo
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { id: 'todos', label: 'Todas' },
+                { id: 'principales', label: 'Principales' },
+                { id: 'entrantes', label: 'Entrantes' },
+                { id: 'postres', label: 'Postres' }
+              ].map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`px-4 py-2 font-display text-[12px] uppercase tracking-[0.14em] font-medium transition-all duration-200 cursor-pointer ${
+                    activeCategory === cat.id
+                      ? 'bg-[#0A0A0A] text-[#F7F7F5]'
+                      : 'text-[#0A0A0A] border border-[#0A0A0A]/15 hover:border-[#0A0A0A]'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Recipes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filteredRecipes.map((recipe, index) => (
             <motion.div
               key={recipe.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.12 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
               onClick={() => setSelectedRecipe(recipe)}
-              className="group bg-white rounded-xs border border-[#2A2A2A]/10 overflow-hidden card-shadow hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between cursor-pointer"
+              className="group bg-[#F7F7F5] border border-[#0A0A0A]/10 overflow-hidden flex flex-col justify-between cursor-pointer hover:border-[#0A0A0A]/40 transition-colors"
             >
               <div>
-                {/* Image */}
-                <div className="relative h-64 w-full overflow-hidden bg-[#EADDCA]">
+                <div className="relative h-64 w-full overflow-hidden bg-[#EDEDEC]">
                   <img
                     src={recipe.image}
                     alt={recipe.title}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                  
-                  <div className="absolute top-4 left-4 px-3 py-1 rounded-xs bg-[#F5F2ED]/90 backdrop-blur-xs text-[10px] uppercase tracking-widest text-[#5A5A40] font-medium font-sans border border-[#2A2A2A]/10">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+                  <div className="absolute top-4 left-4 px-2.5 py-1 bg-white/95 text-[10px] uppercase tracking-widest text-[#0A0A0A] font-medium">
                     {recipe.category}
                   </div>
 
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[#F5F2ED] text-xs font-sans">
-                    <span className="flex items-center gap-1 bg-[#5A5A40]/80 backdrop-blur-xs px-2.5 py-1 rounded-xs text-[10px]">
-                      <Clock className="w-3 h-3 text-[#D27D56]" />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs">
+                    <span className="flex items-center gap-1 bg-[#0A0A0A]/80 px-2.5 py-1 text-[10px]">
+                      <Clock className="w-3 h-3" />
                       {recipe.prepTime}
                     </span>
-                    <span className="flex items-center gap-1 bg-[#5A5A40]/80 backdrop-blur-xs px-2.5 py-1 rounded-xs text-[10px]">
-                      <Flame className="w-3 h-3 text-[#D27D56]" />
+                    <span className="flex items-center gap-1 bg-[#0A0A0A]/80 px-2.5 py-1 text-[10px]">
+                      <Flame className="w-3 h-3" />
                       {recipe.difficulty}
                     </span>
                   </div>
                 </div>
 
-                {/* Info */}
-                <div className="p-8 space-y-4">
-                  <span className="text-[10px] uppercase tracking-widest text-[#D27D56] font-sans font-medium">
-                    {recipe.subtitle}
-                  </span>
-
-                  <h3 className="font-serif text-2xl text-[#2A2A2A] group-hover:text-[#D27D56] transition-colors leading-tight font-light">
+                <div className="p-7 space-y-3">
+                  <span className="kicker !text-[11px]">{recipe.subtitle}</span>
+                  <h3 className="text-2xl text-[#0A0A0A] leading-tight font-light tracking-tight">
                     {recipe.title}
                   </h3>
-
-                  <p className="text-xs font-sans text-[#2A2A2A]/70 font-light leading-relaxed line-clamp-3">
+                  <p className="text-sm font-light text-[#5C5C5C] leading-relaxed line-clamp-3">
                     {recipe.description}
                   </p>
                 </div>
               </div>
 
-              {/* Action Link */}
-              <div className="px-8 pb-8 pt-2 flex items-center justify-between border-t border-[#2A2A2A]/10 mt-4 text-xs font-sans">
-                <span className="inline-flex items-center gap-2 uppercase tracking-widest text-[#5A5A40] group-hover:text-[#D27D56] font-medium transition-colors">
-                  <span>Ver Receta Paso a Paso</span>
+              <div className="px-7 pb-7 pt-2 flex items-center justify-between border-t border-[#0A0A0A]/8 mt-2 text-xs">
+                <span className="inline-flex items-center gap-2 font-display uppercase tracking-[0.14em] text-[#0A0A0A] font-medium">
+                  Ver receta
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </span>
-
-                <span className="text-[10px] text-[#2A2A2A]/50 font-mono">
+                <span className="text-[10px] text-[#0A0A0A]/40">
                   {recipe.steps.length} pasos
                 </span>
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
 
-      {/* Recipe Detail Modal */}
       <RecipeDetailModal
         recipe={selectedRecipe}
         onClose={() => setSelectedRecipe(null)}

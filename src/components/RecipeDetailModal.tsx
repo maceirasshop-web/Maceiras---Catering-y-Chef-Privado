@@ -27,25 +27,25 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#2A2A2A]/75 backdrop-blur-md font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#0A0A0A]/75 backdrop-blur-md font-sans">
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 15 }}
         transition={{ duration: 0.25 }}
-        className="bg-[#F5F2ED] rounded-xs max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-[#2A2A2A]/20 overflow-hidden relative"
+        className="bg-[#F7F7F5] rounded-xs max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-[#0A0A0A]/20 overflow-hidden relative"
       >
         {/* Top Sticky Header */}
-        <div className="bg-[#2A2A2A] text-[#F5F2ED] px-6 py-4 flex items-center justify-between border-b border-[#F5F2ED]/10 shrink-0 z-20">
+        <div className="bg-[#0A0A0A] text-[#F7F7F5] px-6 py-4 flex items-center justify-between border-b border-[#F7F7F5]/10 shrink-0 z-20">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#708238] text-[#F5F2ED] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-[#0A0A0A] text-[#F7F7F5] flex items-center justify-center">
               <ChefHat className="w-4 h-4 text-white" />
             </div>
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-[#EADDCA]/70 block font-sans">
+              <span className="text-[10px] uppercase tracking-widest text-[#EDEDEC]/70 block font-sans">
                 Receta de Alta Gastronomía Maceiras
               </span>
-              <h2 className="font-serif text-lg sm:text-xl font-light text-[#F5F2ED] leading-tight">
+              <h2 className="font-serif text-lg sm:text-xl font-light text-[#F7F7F5] leading-tight">
                 {recipe.title}
               </h2>
             </div>
@@ -53,7 +53,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-white/10 text-[#F5F2ED] transition-colors cursor-pointer"
+            className="p-1.5 rounded-full hover:bg-white/10 text-[#F7F7F5] transition-colors cursor-pointer"
             aria-label="Cerrar receta"
           >
             <X className="w-5 h-5" />
@@ -68,16 +68,16 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
             {/* COLUMNA IZQUIERDA: LÍNEA VERDE PISTACHO Y NAVEGACIÓN PASO A PASO */}
             <div className="lg:col-span-7 space-y-6">
               
-              <div className="border-b border-[#708238]/20 pb-3 space-y-2">
+              <div className="border-b border-[#0A0A0A]/20 pb-3 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-widest text-[#708238] font-bold">
+                  <span className="text-xs uppercase tracking-widest text-[#0A0A0A] font-bold">
                     Guía Técnica del Chef
                   </span>
-                  <span className="text-xs font-mono text-[#708238] font-bold">
+                  <span className="text-xs font-mono text-[#0A0A0A] font-bold">
                     {recipe.steps.length} etapas
                   </span>
                 </div>
-                <h3 className="font-serif text-2xl text-[#2A2A2A] font-light">
+                <h3 className="font-serif text-2xl text-[#0A0A0A] font-light">
                   Preparación Paso a Paso
                 </h3>
 
@@ -89,8 +89,8 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                       onClick={() => scrollToModalStep(idx)}
                       className={`px-2.5 py-0.5 rounded-full text-[11px] font-serif shrink-0 transition-all cursor-pointer ${
                         activeStepIndex === idx
-                          ? 'bg-[#708238] text-white shadow-sm font-bold'
-                          : 'bg-white text-[#2A2A2A]/80 border border-[#708238]/30 hover:bg-[#708238]/20'
+                          ? 'bg-[#0A0A0A] text-white shadow-sm font-bold'
+                          : 'bg-white text-[#0A0A0A]/80 border border-[#0A0A0A]/30 hover:bg-[#0A0A0A]/20'
                       }`}
                     >
                       {s.number}. {s.title.substring(0, 15)}..
@@ -103,7 +103,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
               <div className="relative space-y-6">
                 
                 {/* Línea vertical continua que atraviesa exactamente el centro geométrico de la columna de círculos */}
-                <div className="absolute left-[19px] sm:left-[21px] top-4 bottom-4 w-[3px] bg-[#708238] rounded-full z-0" />
+                <div className="absolute left-[19px] sm:left-[21px] top-4 bottom-4 w-[3px] bg-[#0A0A0A] rounded-full z-0" />
 
                 {recipe.steps.map((step, idx) => (
                   <div
@@ -116,9 +116,9 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                     <div className="relative z-10 flex items-center justify-center shrink-0 w-10 sm:w-11">
                       <button
                         onClick={() => scrollToModalStep(idx)}
-                        className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full font-serif text-sm sm:text-base font-bold flex items-center justify-center bg-[#FAF8F5] border-[3px] border-[#708238] text-[#708238] transition-all duration-300 cursor-pointer ${
+                        className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full font-serif text-sm sm:text-base font-bold flex items-center justify-center bg-[#F7F7F5] border-[3px] border-[#0A0A0A] text-[#0A0A0A] transition-all duration-300 cursor-pointer ${
                           activeStepIndex === idx
-                            ? 'scale-110 ring-4 ring-[#708238]/20 bg-white font-extrabold shadow-md'
+                            ? 'scale-110 ring-4 ring-[#0A0A0A]/20 bg-white font-extrabold shadow-md'
                             : 'hover:scale-105 shadow-xs'
                         }`}
                       >
@@ -129,20 +129,20 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                     {/* Columna 2: Ficha del paso */}
                     <div className={`p-5 rounded-2xl border transition-all duration-300 ${
                       activeStepIndex === idx
-                        ? 'bg-white border-[#708238] ring-2 ring-[#708238]/20 shadow-md'
-                        : 'bg-white/90 border-[#1F2937]/10 hover:border-[#708238]/40'
+                        ? 'bg-white border-[#0A0A0A] ring-2 ring-[#0A0A0A]/20 shadow-md'
+                        : 'bg-white/90 border-[#0A0A0A]/10 hover:border-[#0A0A0A]/40'
                     }`}>
-                      <h4 className="font-serif text-base sm:text-lg text-[#1F2937] font-normal mb-1">
+                      <h4 className="font-serif text-base sm:text-lg text-[#0A0A0A] font-normal mb-1">
                         Paso {step.number}: {step.title}
                       </h4>
 
-                      <p className="text-xs sm:text-sm text-[#1F2937]/85 font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#0A0A0A]/85 font-light leading-relaxed">
                         {step.instruction}
                       </p>
 
                       {step.tip && (
-                        <div className="mt-3 p-3 rounded-xl bg-[#708238]/10 border-l-4 border-[#708238] flex items-start gap-2 text-xs text-[#1F2937]/90">
-                          <Lightbulb className="w-4 h-4 text-[#708238] shrink-0 mt-0.5" />
+                        <div className="mt-3 p-3 rounded-xl bg-[#0A0A0A]/10 border-l-4 border-[#0A0A0A] flex items-start gap-2 text-xs text-[#0A0A0A]/90">
+                          <Lightbulb className="w-4 h-4 text-[#0A0A0A] shrink-0 mt-0.5" />
                           <span className="font-light"><strong>Consejo Maceiras:</strong> {step.tip}</span>
                         </div>
                       )}
@@ -156,46 +156,46 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
             <div className="lg:col-span-5 space-y-6">
               
               {/* Imagen Principal */}
-              <div className="relative h-56 sm:h-64 rounded-xs overflow-hidden border border-[#2A2A2A]/10 card-shadow">
+              <div className="relative h-56 sm:h-64 rounded-xs overflow-hidden border border-[#0A0A0A]/10 card-shadow">
                 <img
                   src={recipe.image}
                   alt={recipe.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-xs bg-[#F5F2ED]/90 backdrop-blur-xs text-[10px] uppercase tracking-widest text-[#708238] font-bold font-sans border border-[#708238]/20">
+                <div className="absolute top-3 left-3 px-3 py-1 rounded-xs bg-[#F7F7F5]/90 backdrop-blur-xs text-[10px] uppercase tracking-widest text-[#0A0A0A] font-bold font-sans border border-[#0A0A0A]/20">
                   {recipe.category}
                 </div>
               </div>
 
               {/* Ficha técnica rápida */}
-              <div className="grid grid-cols-3 gap-2 p-4 rounded-xs bg-white border border-[#2A2A2A]/10 text-center text-xs">
+              <div className="grid grid-cols-3 gap-2 p-4 rounded-xs bg-white border border-[#0A0A0A]/10 text-center text-xs">
                 <div className="space-y-0.5">
-                  <Clock className="w-4 h-4 mx-auto text-[#708238]" />
-                  <div className="text-[10px] uppercase tracking-wider text-[#5A5A40]">Prep / Coción</div>
-                  <div className="font-medium text-[#2A2A2A]">{recipe.prepTime} + {recipe.cookTime}</div>
+                  <Clock className="w-4 h-4 mx-auto text-[#0A0A0A]" />
+                  <div className="text-[10px] uppercase tracking-wider text-[#5C5C5C]">Prep / Coción</div>
+                  <div className="font-medium text-[#0A0A0A]">{recipe.prepTime} + {recipe.cookTime}</div>
                 </div>
-                <div className="space-y-0.5 border-x border-[#2A2A2A]/10">
-                  <Users className="w-4 h-4 mx-auto text-[#708238]" />
-                  <div className="text-[10px] uppercase tracking-wider text-[#5A5A40]">Porciones</div>
-                  <div className="font-medium text-[#2A2A2A]">{recipe.servings} comensales</div>
+                <div className="space-y-0.5 border-x border-[#0A0A0A]/10">
+                  <Users className="w-4 h-4 mx-auto text-[#0A0A0A]" />
+                  <div className="text-[10px] uppercase tracking-wider text-[#5C5C5C]">Porciones</div>
+                  <div className="font-medium text-[#0A0A0A]">{recipe.servings} comensales</div>
                 </div>
                 <div className="space-y-0.5">
-                  <Flame className="w-4 h-4 mx-auto text-[#708238]" />
-                  <div className="text-[10px] uppercase tracking-wider text-[#5A5A40]">Dificultad</div>
-                  <div className="font-medium text-[#2A2A2A]">{recipe.difficulty}</div>
+                  <Flame className="w-4 h-4 mx-auto text-[#0A0A0A]" />
+                  <div className="text-[10px] uppercase tracking-wider text-[#5C5C5C]">Dificultad</div>
+                  <div className="font-medium text-[#0A0A0A]">{recipe.difficulty}</div>
                 </div>
               </div>
 
               {/* Ingredientes */}
-              <div className="bg-white p-5 rounded-xs border border-[#2A2A2A]/10 card-shadow space-y-3">
-                <h4 className="font-serif text-lg text-[#2A2A2A] font-light border-b border-[#2A2A2A]/10 pb-2">
+              <div className="bg-white p-5 rounded-xs border border-[#0A0A0A]/10 card-shadow space-y-3">
+                <h4 className="font-serif text-lg text-[#0A0A0A] font-light border-b border-[#0A0A0A]/10 pb-2">
                   Ingredientes Requeridos
                 </h4>
-                <ul className="space-y-2 text-xs text-[#2A2A2A]/80 font-light">
+                <ul className="space-y-2 text-xs text-[#0A0A0A]/80 font-light">
                   {recipe.ingredients.map((ing, iIdx) => (
                     <li key={iIdx} className="flex items-start gap-2.5">
-                      <CheckCircle className="w-4 h-4 text-[#708238] shrink-0 mt-0.5" />
+                      <CheckCircle className="w-4 h-4 text-[#0A0A0A] shrink-0 mt-0.5" />
                       <span>{ing}</span>
                     </li>
                   ))}
@@ -204,26 +204,26 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
 
               {/* Secreto del Chef */}
               {recipe.chefNote && (
-                <div className="p-4 rounded-xl bg-[#708238]/10 border border-[#708238]/20 space-y-1 text-xs text-[#2A2A2A]/90 font-sans">
-                  <div className="font-bold text-[#708238]">Secreto del Chef:</div>
+                <div className="p-4 rounded-xl bg-[#0A0A0A]/10 border border-[#0A0A0A]/20 space-y-1 text-xs text-[#0A0A0A]/90 font-sans">
+                  <div className="font-bold text-[#0A0A0A]">Secreto del Chef:</div>
                   <p className="italic font-light">{recipe.chefNote}</p>
                 </div>
               )}
 
               {/* CTA Destacada Principal para Contratar este Menú a Domicilio */}
-              <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#708238] via-[#5A5A40] to-[#4A4A35] text-[#FAF8F5] space-y-4 text-center shadow-xl border border-[#708238]/40 relative overflow-hidden group">
-                <div className="w-10 h-10 rounded-full bg-white/15 text-[#E07A5F] flex items-center justify-center mx-auto shadow-inner border border-white/20">
-                  <ChefHat className="w-5 h-5 text-[#FAF8F5]" />
+              <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#0A0A0A] via-[#5C5C5C] to-[#111111] text-[#F7F7F5] space-y-4 text-center shadow-xl border border-[#0A0A0A]/40 relative overflow-hidden group">
+                <div className="w-10 h-10 rounded-full bg-white/15 text-[#0A0A0A] flex items-center justify-center mx-auto shadow-inner border border-white/20">
+                  <ChefHat className="w-5 h-5 text-[#F7F7F5]" />
                 </div>
 
                 <div className="space-y-1.5">
-                  <span className="text-[10px] uppercase tracking-widest text-[#EADDCA] font-bold font-sans block">
+                  <span className="text-[10px] uppercase tracking-widest text-[#EDEDEC] font-bold font-sans block">
                     Experiencia Exclusiva a Domicilio
                   </span>
                   <h4 className="font-serif text-xl sm:text-2xl font-light leading-snug">
                     ¿Prefieres que el chef lo prepare por ti?
                   </h4>
-                  <p className="text-xs text-[#FAF8F5]/85 font-light leading-relaxed">
+                  <p className="text-xs text-[#F7F7F5]/85 font-light leading-relaxed">
                     Disfruta de este menú preparado en tu residencia con selección de ingredientes y servicio completo.
                   </p>
                 </div>
@@ -233,7 +233,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                     onClose();
                     onSelectForQuote(`Menú especial: ${recipe.title}`);
                   }}
-                  className="w-full py-3.5 rounded-xl bg-[#E07A5F] text-white text-xs uppercase tracking-widest font-semibold hover:bg-[#d4664a] transition-all cursor-pointer shadow-md active:scale-98"
+                  className="w-full py-3.5 bg-[#F7F7F5] text-[#0A0A0A] font-display text-[13px] uppercase tracking-[0.14em] font-semibold hover:bg-white transition-all cursor-pointer"
                 >
                   Solicitar este menú a domicilio →
                 </button>
@@ -245,10 +245,10 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
         </div>
 
         {/* Sticky Footer */}
-        <div className="p-4 bg-[#F5F2ED] border-t border-[#2A2A2A]/10 flex justify-end shrink-0 z-20">
+        <div className="p-4 bg-[#F7F7F5] border-t border-[#0A0A0A]/10 flex justify-end shrink-0 z-20">
           <button
             onClick={onClose}
-            className="px-6 py-2.5 rounded-xs bg-[#708238] text-[#F5F2ED] text-xs uppercase tracking-widest font-medium hover:bg-[#5A5A40] transition-colors cursor-pointer"
+            className="btn-primary !py-2.5 !px-6"
           >
             Cerrar Receta
           </button>

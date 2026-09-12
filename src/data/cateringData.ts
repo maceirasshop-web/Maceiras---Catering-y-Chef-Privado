@@ -152,3 +152,61 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     location: 'Santiago (Vitacura)'
   }
 ];
+
+export interface CorporateFormat {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  capacity: string;
+}
+
+export const CORPORATE_FORMATS: CorporateFormat[] = [
+  {
+    id: 'coffee',
+    number: '01',
+    title: 'Coffee break y desayunos ejecutivos',
+    description: 'Montaje puntual para juntas, workshops y onboarding. Finger food fino, café de especialidad y una operación que no interrumpe la agenda.',
+    capacity: '10 — 120 personas'
+  },
+  {
+    id: 'lunch',
+    number: '02',
+    title: 'Lunch ejecutivo',
+    description: 'Almuerzos servidos o en formato buffet controlado. Menús ágiles, presentación precisa y tiempos de servicio alineados a la reunión.',
+    capacity: '8 — 80 personas'
+  },
+  {
+    id: 'cocktail',
+    number: '03',
+    title: 'Cocktail corporativo',
+    description: 'Canapés, estaciones en vivo y servicio de sala discreto para lanzamientos, networking y cierres de trimestre.',
+    capacity: '20 — 150 personas'
+  },
+  {
+    id: 'board',
+    number: '04',
+    title: 'Directorio y cenas VIP',
+    description: 'Cenas privadas para comités, inversionistas y clientes clave. Protocolo, maridaje y un servicio que permanece en segundo plano.',
+    capacity: '6 — 40 personas'
+  }
+];
+
+export const CORPORATE_CAPABILITIES = [
+  {
+    title: 'Puntualidad operativa',
+    text: 'Llegamos con margen, montamos en silencio y respetamos el horario del evento. El servicio se adapta al ritmo de la empresa, no al revés.'
+  },
+  {
+    title: 'Protocolo y discreción',
+    text: 'Personal uniformado, comunicación mínima con invitados y un estándar de sala pensado para directorios, marcas y visitas institucionales.'
+  },
+  {
+    title: 'Restricciones alimentarias',
+    text: 'Vegetarianos, veganos, sin gluten y alergias se resuelven en la propuesta, no en el momento del servicio.'
+  },
+  {
+    title: 'Facturación empresa',
+    text: 'Cotización itemizada, orden de compra y facturación. Un interlocutor único desde el brief hasta el cierre.'
+  }
+];

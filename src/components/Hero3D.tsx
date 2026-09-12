@@ -13,7 +13,7 @@ export const Hero3D: React.FC = () => {
 
     // 1. Scene setup
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0xF5F2ED, 0.032);
+    scene.fog = new THREE.FogExp2(0xF7F7F5, 0.032);
 
     // 2. Camera setup - Pulled back with conservative FOV to guarantee zero clipping
     const camera = new THREE.PerspectiveCamera(26, width / height, 0.1, 100);
@@ -31,11 +31,10 @@ export const Hero3D: React.FC = () => {
     container.appendChild(renderer.domElement);
 
     // 4. Gourmet Studio Lighting
-    const ambientLight = new THREE.AmbientLight(0xFFFAF4, 1.6);
+    const ambientLight = new THREE.AmbientLight(0xF4F4F2, 1.7);
     scene.add(ambientLight);
 
-    // Main warm key light
-    const keyLight = new THREE.DirectionalLight(0xFFF6E8, 2.8);
+    const keyLight = new THREE.DirectionalLight(0xFFFFFF, 2.6);
     keyLight.position.set(3.5, 6.5, 4.5);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 2048;
@@ -45,13 +44,11 @@ export const Hero3D: React.FC = () => {
     keyLight.shadow.bias = -0.0002;
     scene.add(keyLight);
 
-    // Warm terracotta rim light from rear-left
-    const rimLight = new THREE.DirectionalLight(0xD27D56, 1.4);
+    const rimLight = new THREE.DirectionalLight(0xC8C8C8, 1.2);
     rimLight.position.set(-4.5, 2.5, -3.5);
     scene.add(rimLight);
 
-    // Soft olive/sage fill light
-    const fillLight = new THREE.PointLight(0x5A5A40, 0.9, 12);
+    const fillLight = new THREE.PointLight(0xB8B8B4, 0.75, 12);
     fillLight.position.set(-3, 2.5, 3);
     scene.add(fillLight);
 
@@ -360,7 +357,7 @@ export const Hero3D: React.FC = () => {
     >
       {/* Soft warm background ambient halo */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <div className="w-96 h-96 rounded-full bg-gradient-to-tr from-[#EADDCA]/30 via-transparent to-[#D27D56]/15 blur-3xl opacity-70" />
+        <div className="w-96 h-96 rounded-full bg-gradient-to-tr from-[#EDEDEC]/40 via-transparent to-[#0A0A0A]/5 blur-3xl opacity-70" />
       </div>
     </div>
   );
