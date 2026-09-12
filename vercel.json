@@ -3,22 +3,22 @@
     {
       "source": "/cart",
       "destination": "/?cotizar=1",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/cart/",
       "destination": "/?cotizar=1",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/checkout",
       "destination": "/?cotizar=1",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/checkout/",
       "destination": "/?cotizar=1",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "rewrites": [
@@ -58,6 +58,10 @@
         {
           "key": "X-Frame-Options",
           "value": "DENY"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://www.maceiras.shop"
         }
       ]
     },
