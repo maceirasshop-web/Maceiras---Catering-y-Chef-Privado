@@ -2,49 +2,64 @@ import { ServiceItem, DishItem, ProcessStep, Testimonial } from '../types';
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
-    id: 'chef-privado',
-    title: 'Chef Privado a Domicilio',
-    subtitle: 'Alta cocina en la intimidad de tu hogar',
-    description: 'Menús diseñados a la medida para cenas exclusivas, celebraciones íntimas y eventos privados en tu residencia.',
-    detailedDescription: 'En Maceiras nos desplazamos a tu residencia, casa de playa o centro de eventos. Nos encargamos absolutamente de todo: selección de ingredientes frescos de mercado, preparación en el lugar, servicio de mesa impecable y limpieza total de la cocina.',
-    image: '/images/brocheta capresse.jpeg',
-    features: [
-      'Menú 100% personalizado para cada cliente',
-      'Ingredientes frescos y locales de primera calidad',
-      'Atención y servicio de mesa exclusivo',
-      'Limpieza impecable de la cocina al finalizar'
-    ],
-    idealFor: 'Cenas privadas, cumpleaños, aniversarios, reuniones familiares y vacaciones.'
-  },
-  {
     id: 'catering-eventos',
-    title: 'Catering Premium para Eventos',
-    subtitle: 'Elegancia y sabor adaptado a tu ocasión',
-    description: 'Servicio integral de catering para matrimonios boutique, eventos sociales y celebraciones familiares.',
-    detailedDescription: 'Transformamos tu evento en una experiencia gastronómica memorable. Diseñamos banquetes a la medida, cocktails elegantes y estaciones gastronómicas en vivo con presentaciones cuidadas al detalle.',
+    title: 'Eventos personales',
+    subtitle: 'Cumpleaños, graduaciones y celebraciones',
+    description: 'Catering para cumpleaños, graduaciones, baby showers, aniversarios y reuniones en casa o en recinto. El evento se siente, la cocina no se nota.',
+    detailedDescription: 'Cubrimos la vida real: cumpleaños, graduaciones, onces de título, baby showers, aniversarios y reuniones familiares. Diseñamos el menú según la ocasión — cocktail, estaciones o cena servida — y nos encargamos de montaje, servicio y retiro.',
     image: '/images/tabla de charcuteria.jpeg',
     features: [
-      'Formatos a elección: cena servida, cocktail o buffet exclusivo',
-      'Propuestas gastronómicas adaptadas a tus preferencias',
-      'Personal de servicio profesional y discreto',
-      'Montaje y coordinación integral del menú'
+      'Cumpleaños, graduaciones, aniversarios y baby showers',
+      'Formatos: cocktail, buffet o cena servida',
+      'Personal de servicio discreto y puntual',
+      'Montaje, servicio y cocina limpia al terminar'
     ],
-    idealFor: 'Matrimonios, celebraciones de aniversario y eventos sociales de 15 a 150 invitados.'
+    idealFor: 'Cumpleaños, graduaciones, matrimonios y celebraciones de 10 a 150 invitados.'
+  },
+  {
+    id: 'menus-periodicos',
+    title: 'Menús semanales y mensuales',
+    subtitle: 'Vamos a tu casa con la comida de la semana o del mes',
+    description: 'Planificamos el menú, llevamos los alimentos a tu domicilio y dejamos las comidas de la semana o del mes listas. Cocina de casa, sin que te toque cocinar.',
+    detailedDescription: 'Además de los eventos, cocinamos el día a día. Armamos un plan semanal o mensual a tu medida, vamos a tu residencia con los ingredientes y preparamos (o dejamos organizadas) las comidas para los días que siguen. Porciones, gustos y restricciones se resuelven en el brief, no a las 21:00 un martes.',
+    image: '/images/cevice mixto.jpeg',
+    features: [
+      'Plan semanal o mensual, con recambio según tu ritmo',
+      'Vamos a tu casa con los alimentos y la preparación',
+      'Porciones para la familia, office o dieta específica',
+      'Ajustes por alergias, preferencias y temporada'
+    ],
+    idealFor: 'Familias, profesionales con poco tiempo y quien quiere comer bien en casa toda la semana o el mes.'
+  },
+  {
+    id: 'chef-privado',
+    title: 'Chef privado a domicilio',
+    subtitle: 'Una cena, en tu cocina, sin que muevas un plato',
+    description: 'El chef llega a tu casa, cocina, sirve y deja todo impecable. Para una noche, no para improvisar el menú.',
+    detailedDescription: 'Nos desplazamos a tu residencia o casa de playa. Selección de ingredientes, preparación en el lugar, servicio de mesa y limpieza total de la cocina. Una velada de alta cocina sin que nadie de la casa entre a la cocina.',
+    image: '/images/brocheta capresse.jpeg',
+    features: [
+      'Menú 100% personalizado para esa noche',
+      'Ingredientes frescos de primera calidad',
+      'Servicio de mesa exclusivo',
+      'Cocina limpia al finalizar'
+    ],
+    idealFor: 'Cenas íntimas, aniversarios de pareja, reuniones chicas y vacaciones en casa.'
   },
   {
     id: 'experiencias-corporativas',
-    title: 'Eventos Corporativos & Ejecutivos',
-    subtitle: 'Distinción gastronómica para empresas',
-    description: 'Cocktails ejecutivos, reuniones de directorio, lanzamientos de marca y cenas corporativas VIP.',
-    detailedDescription: 'Acompañamos tus hitos empresariales con una propuesta sobria, puntual y elegante. Nos adaptamos a los tiempos de tu evento con finger food refinado, lunches ejecutivos o cenas privadas para directorios.',
+    title: 'Empresas',
+    subtitle: 'Protocolo para directorio, no para un cocktail genérico',
+    description: 'Coffee breaks, lunches ejecutivos, cocktails de marca y cenas de directorio. Un interlocutor. Facturación empresa.',
+    detailedDescription: 'Acompañamos hitos empresariales con una propuesta sobria y puntual. Finger food, lunch ejecutivo o cena privada para directorios, con tiempos alineados a la agenda de la empresa.',
     image: '/images/canape de roast beff.jpeg',
     features: [
       'Menús ágiles para ritmo corporativo',
-      'Opciones especiales para restricción alimentaria',
-      'Servicio profesional orientados a empresas',
-      'Atención personalizada para cada requerimiento'
+      'Restricciones alimentarias resueltas en la propuesta',
+      'Servicio con protocolo de sala',
+      'Cotización itemizada y facturación empresa'
     ],
-    idealFor: 'Reuniones de directorio, alianzas de negocios y cenas de empresa.'
+    idealFor: 'Reuniones de directorio, lanzamientos, coffee breaks y cenas de empresa.'
   }
 ];
 

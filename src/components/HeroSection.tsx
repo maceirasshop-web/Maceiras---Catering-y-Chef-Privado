@@ -23,14 +23,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6"
           >
-            <span className="kicker">Santiago · Catering premium</span>
+            <span className="kicker">Santiago · Catering y cocina en casa</span>
 
-            <h1 className="text-[2.35rem] sm:text-5xl lg:text-[3.55rem] tracking-[-0.04em] text-[#0A0A0A] leading-[1.08] font-medium">
-              Gastronomía privada con estándar de precisión.
+            <h1 className="text-[2.35rem] sm:text-5xl lg:text-[3.4rem] tracking-[-0.04em] text-[#0A0A0A] leading-[1.08] font-medium">
+              Eventos en casa. Y menús para toda la semana.
             </h1>
 
             <p className="text-[15px] sm:text-base font-light text-[#5C5C5C] max-w-md leading-relaxed">
-              Chef a domicilio, catering para eventos y servicio corporativo. Menús a medida, operación puntual y un servicio que no se nota — hasta que se prueba.
+              Cumpleaños, graduaciones y cenas privadas. También vamos a tu domicilio con los alimentos de la semana o del mes. Y catering para empresas.
             </p>
           </motion.div>
 
@@ -41,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
           >
             <button
-              onClick={() => onOpenQuote('Catering Premium para Eventos')}
+              onClick={() => onOpenQuote('Eventos personales')}
               className="btn-primary"
               id="hero-quote-event-btn"
             >
@@ -50,11 +50,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
             </button>
 
             <button
-              onClick={() => onOpenQuote('Chef Privado a Domicilio')}
+              onClick={() => onOpenQuote('Menú semanal a domicilio')}
               className="btn-outline"
-              id="hero-chef-private-btn"
+              id="hero-weekly-menu-btn"
             >
-              <span>Chef privado</span>
+              <span>Menú semanal o mensual</span>
             </button>
           </motion.div>
 
@@ -65,9 +65,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
             className="pt-6 border-t border-[#0A0A0A]/8 grid grid-cols-3 gap-4 text-[#0A0A0A]"
           >
             {[
-              { value: '100%', label: 'Personalizado' },
-              { value: '24 h', label: 'Respuesta' },
-              { value: 'SCL', label: 'Cobertura RM' },
+              { value: 'Eventos', label: 'Cumpleaños y graduaciones' },
+              { value: 'Semana', label: 'Menú a domicilio' },
+              { value: 'Mes', label: 'Plan mensual' },
             ].map((item) => (
               <div key={item.label} className="flex flex-col">
                 <span className="text-2xl sm:text-3xl tracking-tight font-semibold leading-none">

@@ -258,11 +258,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     onChange={handleChange}
                     className="input-pro cursor-pointer"
                   >
-                    <option value="Chef Privado a Domicilio">Chef Privado a Domicilio</option>
-                    <option value="Catering Premium para Eventos">Catering Premium (Matrimonios/Social)</option>
-                    <option value="Eventos Corporativos & Ejecutivos">Eventos Corporativos</option>
-                    <option value="Coffee Break & Lunch Ejecutivo">Coffee Break / Lunch Ejecutivo</option>
-                    <option value="Experiencia de Catas & Maridaje">Catas Privadas & Sommelier</option>
+                    <option value="Eventos personales">Cumpleaños, graduación u otro evento</option>
+                    <option value="Menú semanal a domicilio">Menú semanal a domicilio</option>
+                    <option value="Menú mensual a domicilio">Menú mensual a domicilio</option>
+                    <option value="Chef Privado a Domicilio">Chef privado a domicilio</option>
+                    <option value="Catering Premium para Eventos">Catering (matrimonio / social)</option>
+                    <option value="Eventos Corporativos & Ejecutivos">Eventos corporativos</option>
+                    <option value="Coffee Break & Lunch Ejecutivo">Coffee break / lunch ejecutivo</option>
                   </select>
                 </div>
 

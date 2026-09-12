@@ -18,10 +18,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           <div className="max-w-2xl space-y-4">
             <span className="kicker">Servicios</span>
             <h2 className="text-3xl sm:text-4xl text-[#0A0A0A] font-medium leading-tight tracking-[-0.03em]">
-              Tres líneas. Un mismo criterio de ejecución.
+              Para el cumpleaños. Y para el martes.
             </h2>
             <p className="text-[#5C5C5C] font-light text-base leading-relaxed">
-              Chef privado, catering de eventos y operación corporativa. Cada propuesta se diseña sobre el recinto, el número de invitados y el tono de la ocasión.
+              Eventos personales, menús semanales o mensuales que llevamos a tu casa, chef privado para una noche, y catering para empresas.
             </p>
           </div>
           <a
@@ -33,7 +33,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {SERVICES_DATA.map((service, index) => (
             <motion.div
               key={service.id}
