@@ -12,7 +12,7 @@ import { RecipeItem, RecipeStep } from '../data/recipesData';
  * **Tiempo Cocción:** 35 min
  * **Porciones:** 4
  * **Dificultad:** Chef Master
- * **Imagen:** https://images.unsplash.com/photo-1544025162-d76694265947
+ * **Imagen:** /images/canape-de-roast-beef
  * **Maridaje:** Cabernet Sauvignon Reserva del Valle del Maipo.
  * **Nota del Chef:** El secreto está en secar completamente el duxelles.
  * 
@@ -43,7 +43,7 @@ export function parseRecipeMarkdown(markdownText: string): Partial<RecipeItem> {
   let cookTime = '30 min';
   let servings = 4;
   let difficulty: RecipeItem['difficulty'] = 'Intermedio';
-  let image = 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80';
+  let image = '/images/canape-de-roast-beef';
   let pairing = '';
   let chefNote = '';
   let description = '';

@@ -22,7 +22,7 @@ export const Hero3D: React.FC = () => {
     // 3. Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -37,8 +37,8 @@ export const Hero3D: React.FC = () => {
     const keyLight = new THREE.DirectionalLight(0xFFFFFF, 2.6);
     keyLight.position.set(3.5, 6.5, 4.5);
     keyLight.castShadow = true;
-    keyLight.shadow.mapSize.width = 2048;
-    keyLight.shadow.mapSize.height = 2048;
+    keyLight.shadow.mapSize.width = 512;
+    keyLight.shadow.mapSize.height = 512;
     keyLight.shadow.camera.near = 0.5;
     keyLight.shadow.camera.far = 16;
     keyLight.shadow.bias = -0.0002;
@@ -353,7 +353,7 @@ export const Hero3D: React.FC = () => {
     <div 
       ref={containerRef} 
       className="w-full h-[460px] md:h-[580px] relative flex items-center justify-center cursor-grab active:cursor-grabbing overflow-visible"
-      aria-label="Escena 3D interactiva de vajilla fina y presentación gastronómica Maceiras"
+      aria-hidden="true"
     >
       {/* Soft warm background ambient halo */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">

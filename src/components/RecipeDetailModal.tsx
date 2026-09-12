@@ -158,9 +158,8 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
               {/* Imagen Principal */}
               <div className="relative h-56 sm:h-64 rounded-xs overflow-hidden border border-[#0A0A0A]/10 card-shadow">
                 <img
-                  src={recipe.image}
+                  src={recipe.image.startsWith('http') ? recipe.image : `${recipe.image}-800.webp`}
                   alt={recipe.title}
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-3 left-3 px-3 py-1 rounded-xs bg-[#F7F7F5]/90 backdrop-blur-xs text-[10px] uppercase tracking-widest text-[#0A0A0A] font-bold font-sans border border-[#0A0A0A]/20">

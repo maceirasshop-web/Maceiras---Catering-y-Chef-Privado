@@ -4,23 +4,20 @@ import { ArrowRight, ArrowUpRight, Check, Building2, Clock, FileText, Shield } f
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { CORPORATE_FORMATS, CORPORATE_CAPABILITIES } from '../data/cateringData';
+import { OptimizedImage } from './OptimizedImage';
 
 interface EmpresasPageProps {
   onOpenQuote: (serviceName?: string) => void;
-  onOpenPrivacy: () => void;
-  onOpenLegal: () => void;
 }
 
 export const EmpresasPage: React.FC<EmpresasPageProps> = ({
   onOpenQuote,
-  onOpenPrivacy,
-  onOpenLegal,
 }) => {
   return (
     <div className="min-h-screen bg-[#F7F7F5] text-[#0A0A0A] font-sans antialiased flex flex-col">
-      <Navbar onOpenQuote={() => onOpenQuote('Eventos Corporativos & Ejecutivos')} currentRoute="empresas" />
+      <Navbar onOpenQuote={() => onOpenQuote('Eventos Corporativos & Ejecutivos')} />
 
-      <main className="flex-1">
+      <main id="contenido" className="flex-1">
         <section className="pt-28 sm:pt-32 pb-16 sm:pb-24 border-b border-[#0A0A0A]/8">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-end">
@@ -70,15 +67,18 @@ export const EmpresasPage: React.FC<EmpresasPageProps> = ({
           <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-6 relative">
               <div className="aspect-[4/5] sm:aspect-[5/4] overflow-hidden bg-[#EDEDEC] rounded-3xl">
-                <img
-                  src="/images/canape de roast beff.jpeg"
+                <OptimizedImage
+                  src="/images/canape-de-roast-beef"
                   alt="Servicio de canapés para evento corporativo"
+                  width={800}
+                  height={1000}
                   className="w-full h-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
               <div className="absolute bottom-4 left-4 right-4 bg-[#0A0A0A]/90 backdrop-blur-sm text-[#F7F7F5] px-5 py-3 flex items-center justify-between rounded-2xl">
                 <span className="text-[13px] font-medium">Finger food ejecutivo</span>
-                <span className="text-[12px] text-white/50">Maceiras · Santiago</span>
+                <span className="text-[12px] text-[#C4C4C4]">Maceiras · Santiago</span>
               </div>
             </div>
 
@@ -193,11 +193,11 @@ export const EmpresasPage: React.FC<EmpresasPageProps> = ({
         <section className="bg-[#0A0A0A] text-[#F7F7F5] py-20 sm:py-24">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div className="max-w-xl space-y-4">
-              <span className="text-[13px] font-medium text-white/45">Siguiente paso</span>
+              <span className="text-[13px] font-medium text-[#C4C4C4]">Siguiente paso</span>
               <h2 className="text-3xl sm:text-4xl font-medium tracking-[-0.03em] leading-tight">
                 Envíe el brief. Reciba una propuesta en menos de 24 horas.
               </h2>
-              <p className="text-white/55 font-normal text-sm leading-relaxed">
+              <p className="text-[#C4C4C4] font-normal text-sm leading-relaxed">
                 Fecha, número de invitados, recinto y tipo de formato. Con eso armamos menú, equipo y cotización itemizada.
               </p>
             </div>
@@ -212,7 +212,7 @@ export const EmpresasPage: React.FC<EmpresasPageProps> = ({
         </section>
       </main>
 
-      <Footer onOpenPrivacy={onOpenPrivacy} onOpenLegal={onOpenLegal} />
+      <Footer />
     </div>
   );
 };

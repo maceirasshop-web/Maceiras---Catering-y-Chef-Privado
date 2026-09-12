@@ -1,28 +1,58 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
-  <meta charset="UTF-8">
-  <title>Redirigiendo a Maceiras Catering...</title>
-  <script>
-    // SPA 404 Redirect Fallback
-    var path = window.location.pathname;
-    var search = window.location.search;
-    var hash = window.location.hash;
-    
-    if (path.indexOf('/admin') !== -1) {
-      window.location.href = '/#/admin';
-    } else if (path.indexOf('/recetas') !== -1) {
-      window.location.href = '/#/recetas';
-    } else if (path.indexOf('/receta/') !== -1) {
-      var id = path.split('/receta/')[1];
-      window.location.href = '/#/receta/' + id;
-    } else {
-      window.location.href = '/#/';
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página no encontrada | Maceiras</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="La página solicitada no existe. Maceiras es catering y chef privado a domicilio en Santiago. Cotice por WhatsApp." />
+  <link rel="canonical" href="https://www.maceiras.shop/" />
+  <style>
+    :root { color-scheme: light; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #F7F7F5;
+      color: #0A0A0A;
+      padding: 2rem;
     }
-  </script>
+    main { max-width: 36rem; }
+    h1 { font-size: 2rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; margin: 0 0 1rem; }
+    p { color: #4A4A4A; line-height: 1.6; margin: 0 0 1rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .primary { background: #0A0A0A; color: #F7F7F5; }
+    .ghost { border: 1px solid rgba(10,10,10,0.16); color: #0A0A0A; }
+  </style>
 </head>
-<body style="background-color: #FAF8F5; font-family: sans-serif; text-align: center; padding-top: 100px; color: #1F2937;">
-  <h2>Cargando Panel Maceiras...</h2>
-  <p>Redirigiendo a la ruta solicitada...</p>
+<body>
+  <main>
+    <p style="font-size:13px;font-weight:500;margin-bottom:0.75rem;">Error 404</p>
+    <h1>Página no encontrada</h1>
+    <p>
+      Maceiras no es una tienda en línea: no hay carrito ni checkout de pago.
+      Trabajamos por cotización de catering, menús a domicilio y chef privado en Santiago.
+    </p>
+    <p>
+      Si buscaba un servicio, solicite una propuesta por WhatsApp o desde el formulario de cotización.
+    </p>
+    <div class="actions">
+      <a class="primary" href="https://wa.me/56931939017?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20catering%20y%20chef%20privado.">Escribir por WhatsApp</a>
+      <a class="ghost" href="/?cotizar=1">Solicitar cotización</a>
+      <a class="ghost" href="/">Ir al inicio</a>
+    </div>
+  </main>
 </body>
 </html>

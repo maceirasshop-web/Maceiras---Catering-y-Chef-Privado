@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Clock, Flame, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { RECIPES_DATA, RecipeItem } from '../data/recipesData';
+import { Link } from 'react-router-dom';
 import { RecipeDetailModal } from './RecipeDetailModal';
+import { OptimizedImage } from './OptimizedImage';
 
 interface RecipesSectionProps {
   onSelectForQuote: (recipeTitle: string) => void;
@@ -31,13 +33,13 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
           </div>
 
           <div className="flex flex-col items-start md:items-end gap-3">
-            <a
-              href="#/recetas"
+            <Link
+              to="/recetas"
               className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#0A0A0A] hover:opacity-60 transition-opacity"
             >
               Catálogo completo
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
+            </Link>
             <div className="flex flex-wrap gap-2">
               {[
                 { id: 'todos', label: 'Todas' },
@@ -74,11 +76,13 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ onSelectForQuote
             >
               <div>
                 <div className="relative h-64 w-full overflow-hidden bg-[#EDEDEC]">
-                  <img
+                  <OptimizedImage
                     src={recipe.image}
                     alt={recipe.title}
-                    referrerPolicy="no-referrer"
+                    width={800}
+                    height={640}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 

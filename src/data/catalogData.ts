@@ -19,7 +19,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Fresco & Elegante',
     description: 'Bocconcini de queso mozzarella fresco, tomates cherry confitados y hojas de albahaca perfumadas con pesto artesanal.',
     unitText: 'Porción (12 unidades)',
-    image: '/images/brocheta capresse.jpeg',
+    image: '/images/brocheta-capresse',
     badge: 'Más Popular'
   },
   {
@@ -29,7 +29,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Corte de Selección',
     description: 'Finas láminas de roast beef marinadas al punto con toques de mostaza Dijón en grano y ciboulette fresco sobre tostada artesanal.',
     unitText: 'Porción (10 unidades)',
-    image: '/images/canape de roast beff.jpeg',
+    image: '/images/canape-de-roast-beef',
     badge: 'Selección del Chef'
   },
   {
@@ -39,7 +39,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Bocado del Mar',
     description: 'Pesca del día y mariscos frescos en leche de tigre de maracuyá, canchita crujiente, cebolla morada fina y cilantro hidropónico.',
     unitText: 'Porción (12 unidades)',
-    image: '/images/cevice mixto.jpeg',
+    image: '/images/ceviche-mixto',
     badge: 'Especialidad Mar'
   },
   {
@@ -49,7 +49,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Sabor Dulce & Salado',
     description: 'Mermelada de cebolla tintada al vino tinto artesanal con suave capa de queso crema y nueces picadas.',
     unitText: 'Porción (12 unidades)',
-    image: '/images/canape de mermelada de cebolla.jpeg',
+    image: '/images/canape-de-mermelada-de-cebolla',
   },
   {
     id: 'canape-huevo-codorniz',
@@ -58,7 +58,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Clásico Culinario',
     description: 'Pasta cremosa de huevo artesanal condimentada con toques de mayo casera, pimentón dulce y finas hierbas de la huerta.',
     unitText: 'Porción (12 unidades)',
-    image: '/images/canape de huevo.jpeg',
+    image: '/images/canape-de-huevo',
   },
   {
     id: 'canape-ave-pimenton',
@@ -67,7 +67,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Receta Tradicional',
     description: 'Pechuga de pollo desmenuzada con crema de pimentones asados al horno y suave toque de pimienta blanca.',
     unitText: 'Porción (12 unidades)',
-    image: '/images/canape de avepimenton.jpeg',
+    image: '/images/canape-de-ave-pimenton',
   },
   {
     id: 'canape-palmito-gourmet',
@@ -76,7 +76,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Fresco & Ligero',
     description: 'Medallones de palmito de primera calidad con suave mousse de ciboulette sobre crujiente panecillo horneado.',
     unitText: 'Porción (12 unidades)',
-    image: '/images/camnape de palmito.jpeg',
+    image: '/images/canape-de-palmito',
   },
   {
     id: 'mini-empanadas-coctel',
@@ -85,7 +85,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Horneado Artesanal',
     description: 'Masa fina dorada al horno rellena de queso fundido, camarones salteados o pino gourmet tradicional.',
     unitText: 'Porción (15 unidades)',
-    image: '/images/empanada de coctel.jpeg',
+    image: '/images/empanada-de-coctel',
     badge: 'Recién Horneado'
   },
 
@@ -97,7 +97,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Menú Completo Servido',
     description: 'Entrante de Carpaccio o Ceviche Mixto, Plato Principal a elección (Filete Wellington o Corvina a la Brasa) y Postre de autor.',
     unitText: 'Menú por persona',
-    image: '/images/cevice mixto.jpeg',
+    image: '/images/ceviche-mixto',
     badge: 'Opción Estrella'
   },
   {
@@ -107,7 +107,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Formato Buffet Exclusivo',
     description: 'Lomo vetado a las finas hierbas, roast beef gourmet, variedad de ensaladas de autor y vegetales gratinados.',
     unitText: 'Buffet por persona',
-    image: '/images/canape de roast beff.jpeg',
+    image: '/images/canape-de-roast-beef',
   },
   {
     id: 'cena-privada-4pasos',
@@ -116,7 +116,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Alta Gastronomía en Casa',
     description: 'Amuse-bouche del chef, entrada fría de mar, plato fuerte con guarnición mantecada y degustación de postres artesanales.',
     unitText: 'Menú por persona',
-    image: '/images/brocheta capresse.jpeg',
+    image: '/images/brocheta-capresse',
   },
 
   // ESTACIONES EN VIVO
@@ -127,7 +127,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     subtitle: 'Montaje de Autor Maceiras',
     description: 'Selección de charcutería fina, jamón serrano, quesos artesanales chilenos e importados, frutos secos, aceitunas marinadas y pan de masa madre.',
     unitText: 'Estación para 20-30 pers.',
-    image: '/images/tabla de charcuteria.jpeg',
+    image: '/images/tabla-de-charcuteria',
     badge: 'Recomendado VIP'
   }
 ];

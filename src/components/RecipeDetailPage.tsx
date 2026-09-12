@@ -1,40 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Clock, Users, Flame, CheckCircle, GlassWater, ChefHat, Lightbulb, Share2, Check, ChevronRight } from 'lucide-react';
-import { RecipeItem } from '../data/recipesData';
+import { RECIPES_DATA, RecipeItem } from '../data/recipesData';
 import { fetchDbRecipes } from '../lib/supabase';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { OptimizedImage } from './OptimizedImage';
+import { waLink } from '../seo/site';
 
 interface RecipeDetailPageProps {
   recipeId: string;
   onNavigateBack: () => void;
   onOpenQuote: (serviceName?: string) => void;
-  onOpenPrivacy: () => void;
-  onOpenLegal: () => void;
 }
 
 export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
   recipeId,
   onNavigateBack,
   onOpenQuote,
-  onOpenPrivacy,
-  onOpenLegal,
 }) => {
-  const [recipe, setRecipe] = useState<RecipeItem | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [recipe, setRecipe] = useState<RecipeItem | null>(
+    () => RECIPES_DATA.find((r) => r.id === recipeId) || null
+  );
   const [copiedLink, setCopiedLink] = useState(false);
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
 
   useEffect(() => {
-    async function loadRecipe() {
-      setLoading(true);
-      const res = await fetchDbRecipes();
-      const found = res.recipes.find((r) => r.id === recipeId) || res.recipes[0];
-      setRecipe(found || null);
-      setLoading(false);
-    }
-    loadRecipe();
+    const local = RECIPES_DATA.find((r) => r.id === recipeId) || null;
+    setRecipe(local);
+    let cancelled = false;
+    fetchDbRecipes().then((res) => {
+      if (cancelled) return;
+      const found = res.recipes.find((r) => r.id === recipeId);
+      if (found) setRecipe(found);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [recipeId]);
 
   const handleShare = () => {
@@ -51,40 +53,34 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
     }
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-[#F7F7F5] text-[#0A0A0A] font-sans flex items-center justify-center">
-        <div className="text-center space-y-3">
-          <div className="w-8 h-8 rounded-full border-2 border-[#0A0A0A] border-t-transparent animate-spin mx-auto" />
-          <p className="text-xs uppercase tracking-widest text-[#0A0A0A]">Cargando receta gourmet...</p>
-        </div>
-      </div>
-    );
-  }
-
   if (!recipe) {
     return (
       <div className="min-h-screen bg-[#F7F7F5] text-[#0A0A0A] font-sans flex flex-col justify-between">
-        <Navbar onOpenQuote={() => onOpenQuote()} currentRoute="receta_detail" />
+        <Navbar onOpenQuote={() => onOpenQuote()} />
         <div className="py-24 text-center space-y-4 max-w-md mx-auto px-6">
-          <h2 className="font-serif text-2xl">Receta no encontrada</h2>
-          <button
-            onClick={onNavigateBack}
-            className="btn-primary"
-          >
-            Volver a Recetas
-          </button>
+          <h1 className="text-2xl font-medium">Receta no encontrada</h1>
+          <p className="text-sm text-[#5C5C5C] font-light">
+            Puede que el enlace haya cambiado. Vea el recetario o solicite el plato al chef.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button onClick={onNavigateBack} className="btn-primary">
+              Volver a Recetas
+            </button>
+            <a href={waLink('Hola, quisiera cotizar un menú o chef privado.')} className="btn-outline" target="_blank" rel="noopener noreferrer">
+              Cotizar por WhatsApp
+            </a>
+          </div>
         </div>
-        <Footer onOpenPrivacy={onOpenPrivacy} onOpenLegal={onOpenLegal} />
+        <Footer />
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-[#F7F7F5] text-[#0A0A0A] font-sans antialiased flex flex-col justify-between">
-      <Navbar onOpenQuote={() => onOpenQuote()} currentRoute="receta_detail" />
+      <Navbar onOpenQuote={() => onOpenQuote()} />
 
-      <main className="pt-24 pb-20 flex-1">
+      <main id="contenido" className="pt-24 pb-20 flex-1">
         
         {/* Top Back Navigation Bar */}
         <div className="bg-[#EDEDEC]/30 border-b border-[#0A0A0A]/10 py-4 mb-8">
@@ -242,11 +238,13 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
               
               {/* Imagen Principal */}
               <div className="relative h-64 sm:h-72 rounded-xs overflow-hidden border border-[#0A0A0A]/10 card-shadow">
-                <img
+                <OptimizedImage
                   src={recipe.image}
                   alt={recipe.title}
-                  referrerPolicy="no-referrer"
+                  width={800}
+                  height={640}
                   className="w-full h-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                 />
                 <div className="absolute top-4 left-4 px-3 py-1 rounded-xs bg-[#F7F7F5]/95 backdrop-blur-xs text-[10px] uppercase tracking-widest text-[#0A0A0A] font-bold font-sans border border-[#0A0A0A]/20">
                   {recipe.category}
@@ -335,7 +333,7 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
       </main>
 
       {/* Footer */}
-      <Footer onOpenPrivacy={onOpenPrivacy} onOpenLegal={onOpenLegal} />
+      <Footer />
     </div>
   );
 };

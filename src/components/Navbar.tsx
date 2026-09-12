@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, Phone } from 'lucide-react';
+import { waLink } from '../seo/site';
 
 interface NavbarProps {
   onOpenQuote: () => void;
-  currentRoute?: 'home' | 'recetas' | 'receta_detail' | 'admin' | 'empresas';
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'home' }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
+  const location = useLocation();
+  const currentRoute = location.pathname;
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -31,17 +34,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
   }, [lastScrollY, mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Servicios', href: '#servicios' },
-    { name: 'Empresas', href: '#/empresas' },
-    { name: 'Arma tu menú', href: '#arma-tu-menu' },
-    { name: 'Recetas', href: '#/recetas' },
-    { name: 'Opiniones', href: '#opiniones' },
-    { name: 'Contacto', href: '#contacto' },
+    { name: 'Servicios', to: '/#servicios' },
+    { name: 'Empresas', to: '/empresas' },
+    { name: 'Arma tu menú', to: '/#arma-tu-menu' },
+    { name: 'Recetas', to: '/recetas' },
+    { name: 'Proceso', to: '/#proceso' },
+    { name: 'Contacto', to: '/#contacto' },
   ];
 
-  const isActive = (href: string) => {
-    if (href === '#/empresas') return currentRoute === 'empresas';
-    if (href === '#/recetas') return currentRoute === 'recetas' || currentRoute === 'receta_detail';
+  const isActive = (to: string) => {
+    if (to === '/empresas') return currentRoute === '/empresas';
+    if (to === '/recetas') return currentRoute.startsWith('/recetas');
     return false;
   };
 
@@ -57,33 +60,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        <a
-          href="#/"
+        <Link
+          to="/"
           className="text-[1.35rem] sm:text-[1.45rem] font-semibold tracking-[-0.03em] text-[#0A0A0A]"
           id="brand-logo"
         >
           Maceiras
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-7" id="desktop-nav-links">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.to}
               className={`text-[14px] font-medium transition-colors duration-200 ${
-                isActive(link.href)
+                isActive(link.to)
                   ? 'text-[#0A0A0A]'
                   : 'text-[#0A0A0A]/55 hover:text-[#0A0A0A]'
               }`}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://wa.me/56931939017?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20catering%20y%20chef%20privado."
+            href={waLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden xl:flex items-center gap-1.5 text-[13px] text-[#5C5C5C] hover:text-[#0A0A0A] transition-colors px-2 py-2"
@@ -105,8 +108,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-[#0A0A0A] focus:outline-none rounded-full"
-          aria-label="Abrir menú"
+          className="lg:hidden p-2 text-[#0A0A0A] rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]"
+          aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-nav"
           id="mobile-menu-toggle"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -115,16 +120,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, currentRoute = 'hom
 
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#F7F7F5] border-t border-[#0A0A0A]/8 px-6 py-8 flex flex-col gap-6">
-          <nav className="flex flex-col">
+          <nav className="flex flex-col" id="mobile-nav">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.to}
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-lg font-medium text-[#0A0A0A] py-3 border-b border-[#0A0A0A]/8"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 

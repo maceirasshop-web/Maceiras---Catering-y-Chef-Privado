@@ -1,246 +1,143 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { ServicesSection } from './components/ServicesSection';
-import { MenuBuilderSection, SelectedItemState } from './components/MenuBuilderSection';
-import { SpecialtiesSection } from './components/SpecialtiesSection';
-import { RecipesSection } from './components/RecipesSection';
-import { RecipesPage } from './components/RecipesPage';
-import { RecipeDetailPage } from './components/RecipeDetailPage';
-import { AdminDashboardPage } from './components/AdminDashboardPage';
-import { EmpresasPage } from './components/EmpresasPage';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
+import React, { lazy, Suspense, useCallback, useState } from 'react';
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
+import { SeoHead } from './components/SeoHead';
+import { HashMigrator } from './components/HashMigrator';
 import { WhatsAppWidget } from './components/WhatsAppWidget';
-import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
-import { LegalNoticeModal } from './components/LegalNoticeModal';
+import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { SelectedItemState } from './components/MenuBuilderSection';
 
-type AppRoute = 'home' | 'recetas' | 'receta_detail' | 'admin' | 'empresas';
+const EmpresasPage = lazy(() =>
+  import('./components/EmpresasPage').then((m) => ({ default: m.EmpresasPage }))
+);
+const RecipesPage = lazy(() =>
+  import('./components/RecipesPage').then((m) => ({ default: m.RecipesPage }))
+);
+const RecipeDetailPage = lazy(() =>
+  import('./components/RecipeDetailPage').then((m) => ({ default: m.RecipeDetailPage }))
+);
+const AdminDashboardPage = lazy(() =>
+  import('./components/AdminDashboardPage').then((m) => ({ default: m.AdminDashboardPage }))
+);
+const PrivacyPage = lazy(() =>
+  import('./pages/PrivacyPage').then((m) => ({ default: m.PrivacyPage }))
+);
+const TermsPage = lazy(() =>
+  import('./pages/TermsPage').then((m) => ({ default: m.TermsPage }))
+);
 
-export default function App() {
-  const [currentRoute, setCurrentRoute] = useState<AppRoute>('home');
-  const [currentRecipeId, setCurrentRecipeId] = useState<string>('');
-  const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('');
+function PageFallback() {
+  return (
+    <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center">
+      <p className="kicker">Cargando…</p>
+    </div>
+  );
+}
+
+function RecipeDetailRoute({ onOpenQuote }: { onOpenQuote: (s?: string) => void }) {
+  const { recipeId = '' } = useParams();
+  const navigate = useNavigate();
+  return (
+    <RecipeDetailPage
+      recipeId={recipeId}
+      onNavigateBack={() => navigate('/recetas')}
+      onOpenQuote={onOpenQuote}
+    />
+  );
+}
+
+function LegacyRecipeRedirect() {
+  const { recipeId = '' } = useParams();
+  return <Navigate to={`/recetas/${recipeId}`} replace />;
+}
+
+function AdminAwareWhatsApp() {
+  const { pathname } = useLocation();
+  if (pathname.startsWith('/admin')) return null;
+  return <WhatsAppWidget />;
+}
+
+function AppRoutes() {
+  const navigate = useNavigate();
+  const [selectedServiceForQuote, setSelectedServiceForQuote] = useState('');
   const [selectedCatalogItems, setSelectedCatalogItems] = useState<SelectedItemState[]>([]);
-  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
-  const [isLegalModalOpen, setIsLegalModalOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleLocationChange = () => {
-      const hash = window.location.hash.toLowerCase();
-      const path = window.location.pathname.toLowerCase();
-      const href = window.location.href.toLowerCase();
+  const openQuote = useCallback(
+    (serviceName?: string) => {
+      if (serviceName) setSelectedServiceForQuote(serviceName);
+      navigate('/?cotizar=1');
+    },
+    [navigate]
+  );
 
-      if (hash.includes('admin') || path.includes('/admin') || href.includes('/admin')) {
-        setCurrentRoute('admin');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash.includes('receta/') || path.includes('/receta/')) {
-        let id = '';
-        if (hash.includes('receta/')) {
-          id = hash.split('receta/')[1];
-        } else if (path.includes('/receta/')) {
-          id = path.split('/receta/')[1];
-        }
-        setCurrentRecipeId(id);
-        setCurrentRoute('receta_detail');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash.includes('#/recetas') || hash === '#/recetas' || path.includes('/recetas')) {
-        setCurrentRoute('recetas');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash.includes('empresas') || path.includes('/empresas')) {
-        setCurrentRoute('empresas');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        setCurrentRoute('home');
-        const raw = window.location.hash.replace('#', '').replace('/', '');
-        const sectionId = raw.split('?')[0];
-        if (sectionId && document.getElementById(sectionId)) {
-          setTimeout(() => {
-            document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-          }, 60);
-        } else if (!hash || hash === '#' || hash === '#/') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
-    };
-
-    handleLocationChange();
-    window.addEventListener('hashchange', handleLocationChange);
-    window.addEventListener('popstate', handleLocationChange);
-    return () => {
-      window.removeEventListener('hashchange', handleLocationChange);
-      window.removeEventListener('popstate', handleLocationChange);
-    };
-  }, []);
-
-  const navigateTo = (route: 'home' | 'recetas' | 'admin' | 'empresas', hashString?: string) => {
-    if (hashString) {
-      window.location.hash = hashString;
-    } else if (route === 'recetas') {
-      window.location.hash = '#/recetas';
-    } else if (route === 'admin') {
-      window.location.hash = '#/admin';
-    } else if (route === 'empresas') {
-      window.location.hash = '#/empresas';
-    } else {
-      window.location.hash = '#/';
-    }
-  };
-
-  const handleOpenQuote = (serviceName?: string) => {
-    if (serviceName) {
-      setSelectedServiceForQuote(serviceName);
-    }
-    if (currentRoute !== 'home') {
-      window.location.hash = '#contacto';
-      setCurrentRoute('home');
-      setTimeout(() => {
-        const contactElement = document.getElementById('contacto');
-        if (contactElement) {
-          contactElement.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const contactElement = document.getElementById('contacto');
-      if (contactElement) {
-        contactElement.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
-  const handleProceedFromMenuBuilder = (items: SelectedItemState[]) => {
-    setSelectedCatalogItems(items);
-    handleOpenQuote('Menú Personalizado de Canapés / Banquete');
-  };
-
-  if (currentRoute === 'admin') {
-    return (
-      <AdminDashboardPage onNavigateHome={() => navigateTo('home', '#/')} />
-    );
-  }
-
-  if (currentRoute === 'empresas') {
-    return (
-      <>
-        <EmpresasPage
-          onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
-          onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
-          onOpenLegal={() => setIsLegalModalOpen(true)}
-        />
-        <WhatsAppWidget />
-        <PrivacyPolicyModal
-          isOpen={isPrivacyModalOpen}
-          onClose={() => setIsPrivacyModalOpen(false)}
-        />
-        <LegalNoticeModal
-          isOpen={isLegalModalOpen}
-          onClose={() => setIsLegalModalOpen(false)}
-        />
-      </>
-    );
-  }
-
-  if (currentRoute === 'recetas') {
-    return (
-      <>
-        <RecipesPage
-          onNavigateHome={() => navigateTo('home', '#/')}
-          onNavigateToRecipeDetail={(id) => navigateTo('home', `#/receta/${id}`)}
-          onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
-          onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
-          onOpenLegal={() => setIsLegalModalOpen(true)}
-        />
-        <PrivacyPolicyModal
-          isOpen={isPrivacyModalOpen}
-          onClose={() => setIsPrivacyModalOpen(false)}
-        />
-        <LegalNoticeModal
-          isOpen={isLegalModalOpen}
-          onClose={() => setIsLegalModalOpen(false)}
-        />
-      </>
-    );
-  }
-
-  if (currentRoute === 'receta_detail') {
-    return (
-      <>
-        <RecipeDetailPage
-          recipeId={currentRecipeId}
-          onNavigateBack={() => navigateTo('recetas', '#/recetas')}
-          onOpenQuote={(serviceTitle) => handleOpenQuote(serviceTitle)}
-          onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
-          onOpenLegal={() => setIsLegalModalOpen(true)}
-        />
-        <WhatsAppWidget />
-        <PrivacyPolicyModal
-          isOpen={isPrivacyModalOpen}
-          onClose={() => setIsPrivacyModalOpen(false)}
-        />
-        <LegalNoticeModal
-          isOpen={isLegalModalOpen}
-          onClose={() => setIsLegalModalOpen(false)}
-        />
-      </>
-    );
-  }
+  const handleProceedFromMenuBuilder = useCallback(
+    (items: SelectedItemState[]) => {
+      setSelectedCatalogItems(items);
+      setSelectedServiceForQuote('Menú Personalizado de Canapés / Banquete');
+      navigate('/?cotizar=1');
+    },
+    [navigate]
+  );
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#0A0A0A] font-sans antialiased overflow-x-hidden w-full relative">
-      <Navbar onOpenQuote={() => handleOpenQuote()} currentRoute="home" />
+    <>
+      <SeoHead />
+      <HashMigrator />
+      <Suspense fallback={<PageFallback />}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                selectedServiceForQuote={selectedServiceForQuote}
+                selectedCatalogItems={selectedCatalogItems}
+                onOpenQuote={openQuote}
+                onProceedFromMenuBuilder={handleProceedFromMenuBuilder}
+                onClearSelectedCatalogItems={() => setSelectedCatalogItems([])}
+              />
+            }
+          />
+          <Route path="/empresas" element={<EmpresasPage onOpenQuote={openQuote} />} />
+          <Route
+            path="/recetas"
+            element={
+              <RecipesPage
+                onNavigateHome={() => navigate('/')}
+                onNavigateToRecipeDetail={(id) => navigate(`/recetas/${id}`)}
+                onOpenQuote={openQuote}
+              />
+            }
+          />
+          <Route path="/recetas/:recipeId" element={<RecipeDetailRoute onOpenQuote={openQuote} />} />
+          <Route path="/receta/:recipeId" element={<LegacyRecipeRedirect />} />
+          <Route path="/privacidad" element={<PrivacyPage onOpenQuote={() => openQuote()} />} />
+          <Route path="/terminos" element={<TermsPage onOpenQuote={() => openQuote()} />} />
+          <Route
+            path="/admin"
+            element={<AdminDashboardPage onNavigateHome={() => navigate('/')} />}
+          />
+          <Route path="/cart" element={<Navigate to="/?cotizar=1" replace />} />
+          <Route path="/checkout" element={<Navigate to="/?cotizar=1" replace />} />
+          <Route path="*" element={<NotFoundPage onOpenQuote={() => openQuote()} />} />
+        </Routes>
+      </Suspense>
+      <AdminAwareWhatsApp />
+    </>
+  );
+}
 
-      <main>
-        <HeroSection onOpenQuote={(serviceType) => handleOpenQuote(serviceType)} />
-        <ServicesSection onSelectServiceForQuote={(serviceTitle) => handleOpenQuote(serviceTitle)} />
-
-        <section className="bg-[#0A0A0A] text-[#F7F7F5]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 sm:py-20 flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div className="max-w-xl space-y-3">
-              <span className="text-[13px] font-medium text-white/45">Empresas</span>
-              <h2 className="text-3xl sm:text-4xl font-medium tracking-[-0.03em] leading-tight">
-                Catering corporativo con protocolo de sala.
-              </h2>
-              <p className="text-white/50 font-normal text-sm leading-relaxed">
-                Coffee break, lunch ejecutivo, cocktail de marca y cenas de directorio. Un interlocutor. Facturación empresa.
-              </p>
-            </div>
-            <a
-              href="#/empresas"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F7F7F5] text-[#0A0A0A] text-[14.5px] font-semibold tracking-[-0.01em] hover:bg-white transition-colors shrink-0 rounded-full"
-            >
-              Ver servicio empresas
-            </a>
-          </div>
-        </section>
-
-        <MenuBuilderSection onProceedToQuote={handleProceedFromMenuBuilder} />
-        <SpecialtiesSection />
-        <RecipesSection onSelectForQuote={(recipeTitle) => handleOpenQuote(`Menú especial: ${recipeTitle}`)} />
-        <TestimonialsSection />
-        <ContactSection
-          initialServiceSelected={selectedServiceForQuote}
-          selectedCatalogItems={selectedCatalogItems}
-          onClearSelectedCatalogItems={() => setSelectedCatalogItems([])}
-        />
-      </main>
-
-      <Footer
-        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
-        onOpenLegal={() => setIsLegalModalOpen(true)}
-      />
-
-      <WhatsAppWidget />
-
-      <PrivacyPolicyModal
-        isOpen={isPrivacyModalOpen}
-        onClose={() => setIsPrivacyModalOpen(false)}
-      />
-
-      <LegalNoticeModal
-        isOpen={isLegalModalOpen}
-        onClose={() => setIsLegalModalOpen(false)}
-      />
-    </div>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }

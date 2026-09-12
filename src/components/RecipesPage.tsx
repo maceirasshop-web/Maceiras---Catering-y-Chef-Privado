@@ -1,39 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Search, BookOpen, Clock, Flame, ArrowRight, X, Filter } from 'lucide-react';
-import { RecipeItem } from '../data/recipesData';
+import { RECIPES_DATA, RecipeItem } from '../data/recipesData';
 import { fetchDbRecipes } from '../lib/supabase';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
-import { WhatsAppWidget } from './WhatsAppWidget';
+import { OptimizedImage } from './OptimizedImage';
+import { waLink } from '../seo/site';
 
 interface RecipesPageProps {
   onNavigateHome: () => void;
   onNavigateToRecipeDetail: (id: string) => void;
   onOpenQuote: (serviceName?: string) => void;
-  onOpenPrivacy: () => void;
-  onOpenLegal: () => void;
 }
 
 export const RecipesPage: React.FC<RecipesPageProps> = ({
   onNavigateToRecipeDetail,
   onOpenQuote,
-  onOpenPrivacy,
-  onOpenLegal,
 }) => {
-  const [recipes, setRecipes] = useState<RecipeItem[]>([]);
+  const [recipes, setRecipes] = useState<RecipeItem[]>(RECIPES_DATA);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('todos');
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadRecipes() {
-      setLoading(true);
-      const res = await fetchDbRecipes();
-      setRecipes(res.recipes);
-      setLoading(false);
-    }
-    loadRecipes();
+    let cancelled = false;
+    fetchDbRecipes().then((res) => {
+      if (!cancelled && res.recipes.length > 0) {
+        setRecipes(res.recipes);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const filteredRecipes = recipes.filter((recipe) => {
@@ -52,9 +50,9 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
 
   return (
     <div className="min-h-screen bg-[#F7F7F5] text-[#0A0A0A] font-sans antialiased flex flex-col justify-between">
-      <Navbar onOpenQuote={() => onOpenQuote()} currentRoute="recetas" />
+      <Navbar onOpenQuote={() => onOpenQuote()} />
 
-      <main className="pt-24 pb-20 flex-1">
+      <main id="contenido" className="pt-24 pb-20 flex-1">
         <section className="border-b border-[#0A0A0A]/8 py-14 sm:py-20 mb-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 space-y-5">
             <span className="kicker">Recetario</span>
@@ -119,27 +117,29 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
             </div>
           </div>
 
-          {loading ? (
-            <div className="py-20 text-center space-y-3">
-              <div className="w-8 h-8 border-2 border-[#0A0A0A] border-t-transparent animate-spin mx-auto rounded-full" />
-              <p className="kicker">Cargando recetas…</p>
-            </div>
-          ) : filteredRecipes.length === 0 ? (
+          {filteredRecipes.length === 0 ? (
             <div className="py-16 text-center bg-white p-8 border border-[#0A0A0A]/10 space-y-4 max-w-md mx-auto">
               <BookOpen className="w-8 h-8 text-[#0A0A0A]/25 mx-auto" />
               <h3 className="text-xl text-[#0A0A0A] font-light">Sin resultados</h3>
               <p className="text-xs text-[#5C5C5C] font-light">
-                No hay recetas que coincidan con “{searchTerm}”.
+                {searchTerm
+                  ? `No hay recetas que coincidan con “${searchTerm}”.`
+                  : 'Aún no hay recetas publicadas en esta categoría.'}
               </p>
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('todos');
-                }}
-                className="btn-primary"
-              >
-                Ver todas
-              </button>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedCategory('todos');
+                  }}
+                  className="btn-primary"
+                >
+                  Ver todas
+                </button>
+                <a href={waLink('Hola, quisiera cotizar un menú o chef privado.')} className="btn-outline" target="_blank" rel="noopener noreferrer">
+                  Cotizar por WhatsApp
+                </a>
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -154,11 +154,13 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
                 >
                   <div>
                     <div className="relative h-56 w-full overflow-hidden bg-[#EDEDEC]">
-                      <img
+                      <OptimizedImage
                         src={recipe.image}
                         alt={recipe.title}
-                        referrerPolicy="no-referrer"
+                        width={800}
+                        height={560}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
@@ -205,8 +207,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
         </div>
       </main>
 
-      <Footer onOpenPrivacy={onOpenPrivacy} onOpenLegal={onOpenLegal} />
-      <WhatsAppWidget />
+      <Footer />
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
 import { RecipeItem } from '../data/recipesData';
 import { CATALOG_PRODUCTS, CatalogProduct } from '../data/catalogData';
 import { parseRecipeMarkdown } from '../utils/markdownParser';
+import { displaySrc } from './OptimizedImage';
 
 interface AdminDashboardPageProps {
   onNavigateHome: () => void;
@@ -58,21 +59,22 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
   // Local preset uploaded images
   const localUploadedImages = [
-    '/images/brocheta capresse.jpeg',
-    '/images/canape de roast beff.jpeg',
-    '/images/cevice mixto.jpeg',
-    '/images/tabla de charcuteria.jpeg',
-    '/images/empanada de coctel.jpeg',
-    '/images/canape de mermelada de cebolla.jpeg',
-    '/images/canape de huevo.jpeg',
-    '/images/canape de avepimenton.jpeg',
-    '/images/camnape de palmito.jpeg',
+    '/images/brocheta-capresse',
+    '/images/canape-de-roast-beef',
+    '/images/ceviche-mixto',
+    '/images/tabla-de-charcuteria',
+    '/images/empanada-de-coctel',
+    '/images/canape-de-mermelada-de-cebolla',
+    '/images/canape-de-huevo',
+    '/images/canape-de-ave-pimenton',
+    '/images/canape-de-palmito',
   ];
 
-  // Check auth session on mount
   useEffect(() => {
-    const sessionAuth = sessionStorage.getItem('maceiras_admin_auth');
-    if (sessionAuth === 'true') {
+    const envPin = (import.meta.env.VITE_ADMIN_PIN || '').trim();
+    const customPin = (localStorage.getItem('maceiras_admin_pin') || '').trim();
+    const sessionAuth = sessionStorage.getItem('maceiras_admin_auth') === 'true';
+    if ((!envPin && !customPin) || sessionAuth) {
       setIsAuthenticated(true);
       loadQuotes();
       loadRecipes();
@@ -85,14 +87,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
     const customPin = (localStorage.getItem('maceiras_admin_pin') || '').trim();
     const envPin = (import.meta.env.VITE_ADMIN_PIN || '').trim();
     
-    const validPins = [
-      customPin,
-      envPin,
-      'maceiras2026',
-      'maceiras',
-      'admin',
-      '1234'
-    ].filter(Boolean);
+    const validPins = [customPin, envPin].filter(Boolean);
 
     if (validPins.includes(entered)) {
       setIsAuthenticated(true);
@@ -101,7 +96,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       loadQuotes();
       loadRecipes();
     } else {
-      setPinError('PIN incorrecto. Usa la clave por defecto: maceiras2026');
+      setPinError('PIN incorrecto.');
     }
   };
 
@@ -159,7 +154,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       cookTime: editingRecipe.cookTime || '30 min',
       servings: editingRecipe.servings || 4,
       difficulty: editingRecipe.difficulty || 'Intermedio',
-      image: editingRecipe.image || '/images/brocheta capresse.jpeg',
+      image: editingRecipe.image || '/images/brocheta-capresse',
       ingredients: editingRecipe.ingredients && editingRecipe.ingredients.length ? editingRecipe.ingredients : ['Ingredientes seleccionados'],
       pairing: editingRecipe.pairing || 'Vino reserva chileno',
       chefNote: editingRecipe.chefNote || '',
@@ -192,7 +187,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       category: editingCatalogItem.category || 'canapes',
       description: editingCatalogItem.description || '',
       unitText: editingCatalogItem.unitText || 'Porción (12 unidades)',
-      image: editingCatalogItem.image || '/images/brocheta capresse.jpeg',
+      image: editingCatalogItem.image || '/images/brocheta-capresse',
       badge: editingCatalogItem.badge
     };
 
@@ -219,7 +214,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
     const enteredCurrent = currentPinSetting.trim();
     const customPin = (localStorage.getItem('maceiras_admin_pin') || '').trim();
     const envPin = (import.meta.env.VITE_ADMIN_PIN || '').trim();
-    const validPins = [customPin, envPin, 'maceiras2026', 'maceiras', 'admin', '1234'].filter(Boolean);
+    const validPins = [customPin, envPin].filter(Boolean);
 
     if (!validPins.includes(enteredCurrent)) {
       setPinChangeMsg('El PIN actual es incorrecto.');
@@ -737,7 +732,7 @@ ${quote.message || 'Sin observaciones'}`;
                       cookTime: '30 min',
                       servings: 4,
                       difficulty: 'Intermedio',
-                      image: '/images/brocheta capresse.jpeg',
+                      image: '/images/brocheta-capresse',
                       ingredients: ['Filete de res 800g', 'Champiñones 400g'],
                       pairing: 'Vino reserva chileno',
                       chefNote: 'Servir recién preparado.',
@@ -762,7 +757,7 @@ ${quote.message || 'Sin observaciones'}`;
 **Tiempo Cocción:** 35 min
 **Porciones:** 4
 **Dificultad:** Chef Master
-**Imagen:** /images/brocheta capresse.jpeg
+**Imagen:** /images/brocheta-capresse
 **Maridaje:** Cabernet Sauvignon Reserva del Valle del Maipo.
 **Nota del Chef:** Secar completamente la duxelles de hongos.
 
@@ -800,7 +795,7 @@ Triturar muy fino los champiñones y saltearlos sin aceite hasta evaporar el lí
                   <div key={r.id} className="bg-white rounded-2xl border border-[#1F2937]/10 overflow-hidden card-shadow flex flex-col justify-between">
                     <div>
                       <div className="relative h-44 w-full bg-[#F3E9DC]">
-                        <img src={r.image} alt={r.title} className="w-full h-full object-cover" />
+                        <img src={displaySrc(r.image)} alt={r.title} className="w-full h-full object-cover" />
                         <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#FAF8F5] text-[9px] uppercase tracking-widest text-[#708238] font-bold">
                           {r.category}
                         </span>
@@ -946,7 +941,7 @@ Triturar muy fino los champiñones y saltearlos sin aceite hasta evaporar el lí
                           editingRecipe.image === imgUrl ? 'border-[#E07A5F] ring-2 ring-[#E07A5F]/30 scale-105' : 'border-[#1F2937]/20 opacity-70 hover:opacity-100'
                         }`}
                       >
-                        <img src={imgUrl} alt="Preset local" className="w-full h-full object-cover" />
+                        <img src={displaySrc(imgUrl)} alt="Preset local" className="w-full h-full object-cover" />
                       </button>
                     ))}
                   </div>
@@ -1007,7 +1002,7 @@ Triturar muy fino los champiñones y saltearlos sin aceite hasta evaporar el lí
                     category: 'canapes',
                     description: '',
                     unitText: 'Porción (12 unidades)',
-                    image: '/images/brocheta capresse.jpeg',
+                    image: '/images/brocheta-capresse',
                     badge: 'Nuevo'
                   });
                   setShowCatalogForm(true);
@@ -1066,7 +1061,7 @@ Triturar muy fino los champiñones y saltearlos sin aceite hasta evaporar el lí
                           editingCatalogItem.image === img ? 'border-[#E07A5F] scale-105' : 'opacity-60'
                         }`}
                       >
-                        <img src={img} alt="Local" className="w-full h-full object-cover" />
+                        <img src={displaySrc(img)} alt="Local" className="w-full h-full object-cover" />
                       </button>
                     ))}
                   </div>
@@ -1085,7 +1080,7 @@ Triturar muy fino los champiñones y saltearlos sin aceite hasta evaporar el lí
                 <div key={prod.id} className="bg-white rounded-2xl border border-[#1F2937]/10 overflow-hidden card-shadow flex flex-col justify-between">
                   <div>
                     <div className="relative h-40 w-full bg-[#F3E9DC]">
-                      <img src={prod.image} alt={prod.title} className="w-full h-full object-cover" />
+                      <img src={displaySrc(prod.image)} alt={prod.title} className="w-full h-full object-cover" />
                       <span className="absolute top-3 left-3 px-3 py-0.5 rounded-full bg-white text-[9px] uppercase tracking-widest text-[#708238] font-bold">
                         {prod.category}
                       </span>

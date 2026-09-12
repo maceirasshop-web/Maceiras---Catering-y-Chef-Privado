@@ -33,7 +33,7 @@ export const RECIPES_DATA: RecipeItem[] = [
     cookTime: '35 min',
     servings: 4,
     difficulty: 'Chef Master',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/canape-de-roast-beef',
     ingredients: [
       '800g de Lomo Vetado o Filete de Res centro',
       '400g de Champiñones París y Champiñones Portobello',
@@ -90,7 +90,7 @@ export const RECIPES_DATA: RecipeItem[] = [
     cookTime: '0 min',
     servings: 4,
     difficulty: 'Intermedio',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/brocheta-capresse',
     ingredients: [
       '350g de Filete de Res sin grasa ni nervios',
       '2 cucharadas de Alcaparras baby escurridas',

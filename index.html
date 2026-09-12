@@ -1,78 +1,92 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maceiras | Catering Premium & Chef Privado a Domicilio en Santiago</title>
-    
-    <!-- SEO Meta Tags -->
+
     <meta name="description" content="Maceiras: catering para cumpleaños y graduaciones, menús semanales o mensuales a domicilio, chef privado y servicio para empresas en Santiago (Vitacura, Las Condes, Lo Barnechea)." />
-    <meta name="keywords" content="Maceiras, menú semanal a domicilio Santiago, menú mensual chef, Catering cumpleaños Santiago, Catering graduaciones, Chef Privado a Domicilio, Catering Matrimonios Santiago, Banquetería Vitacura, Las Condes, Lo Barnechea" />
     <meta name="robots" content="index, follow" />
-    
-    <!-- Precision Geo-targeting Metadata -->
+    <link rel="canonical" href="https://www.maceiras.shop/" />
+
     <meta name="geo.region" content="CL-RM" />
     <meta name="geo.placename" content="Santiago, Vitacura, Las Condes, Lo Barnechea, Región Metropolitana, Chile" />
-    <meta name="geo.position" content="-33.4000;-70.5500" />
-    <meta name="ICBM" content="-33.4000, -70.5500" />
 
-    <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="Maceiras Catering & Chef Privado" />
     <meta property="og:title" content="Maceiras | Catering Premium & Chef Privado a Domicilio en Santiago" />
     <meta property="og:description" content="Catering para cumpleaños y graduaciones, menús semanales o mensuales a domicilio y chef privado en Santiago." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80" />
+    <meta property="og:url" content="https://www.maceiras.shop/" />
+    <meta property="og:image" content="https://www.maceiras.shop/images/og-catering.webp" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Maceiras | Catering Premium & Chef Privado en Santiago" />
     <meta name="twitter:description" content="Cumpleaños, graduaciones, menús semanales o mensuales a domicilio y chef privado en Santiago." />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80" />
+    <meta name="twitter:image" content="https://www.maceiras.shop/images/og-catering.webp" />
 
-    <!-- Favicon SVG -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D27D56' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 13.87A8 8 0 0 1 12 4a8 8 0 0 1 6 9.87 stroke-dasharray='1 1'/><path d='M4 17h16'/><path d='M5 21h14'/></svg>" />
+    <link rel="preload" as="image" href="/images/tabla-de-charcuteria-800.webp" type="image/webp" media="(min-width: 1024px)" fetchpriority="high" />
 
-    <!-- JSON-LD Structured Data Schema.org with GeoCoordinates -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0A0A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 13.87A8 8 0 0 1 12 4a8 8 0 0 1 6 9.87'/><path d='M4 17h16'/><path d='M5 21h14'/></svg>" />
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FoodEstablishment",
-      "name": "Maceiras Catering & Chef Privado",
-      "description": "Servicios de catering premium para eventos y chef privado a domicilio en Santiago de Chile.",
-      "telephone": "+56931939017",
-      "email": "maceiras.shop@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Santiago",
-        "addressRegion": "Región Metropolitana",
-        "addressCountry": "CL"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -33.4000,
-        "longitude": -70.5500
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Santiago" },
-        { "@type": "AdministrativeArea", "name": "Vitacura" },
-        { "@type": "AdministrativeArea", "name": "Las Condes" },
-        { "@type": "AdministrativeArea", "name": "Lo Barnechea" },
-        { "@type": "AdministrativeArea", "name": "La Dehesa" },
-        { "@type": "AdministrativeArea", "name": "Providencia" },
-        { "@type": "AdministrativeArea", "name": "Chicureo" },
-        { "@type": "AdministrativeArea", "name": "La Reina" }
-      ],
-      "servesCuisine": [
-        "Alta Cocina Internacional",
-        "Gastronomía de Autor",
-        "Catering Premium"
-      ],
-      "priceRange": "$$$$"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.maceiras.shop/#sitio",
+          "url": "https://www.maceiras.shop/",
+          "name": "Maceiras Catering & Chef Privado",
+          "inLanguage": "es-CL",
+          "publisher": { "@id": "https://www.maceiras.shop/#negocio" }
+        },
+        {
+          "@type": ["FoodEstablishment", "CateringBusiness"],
+          "@id": "https://www.maceiras.shop/#negocio",
+          "name": "Maceiras Catering & Chef Privado",
+          "url": "https://www.maceiras.shop/",
+          "image": "https://www.maceiras.shop/images/og-catering.webp",
+          "description": "Servicios de catering premium para eventos y chef privado a domicilio en Santiago de Chile.",
+          "telephone": "+56931939017",
+          "email": "maceiras.shop@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Santiago",
+            "addressRegion": "Región Metropolitana",
+            "addressCountry": "CL"
+          },
+          "areaServed": [
+            { "@type": "City", "name": "Santiago" },
+            { "@type": "AdministrativeArea", "name": "Vitacura" },
+            { "@type": "AdministrativeArea", "name": "Las Condes" },
+            { "@type": "AdministrativeArea", "name": "Lo Barnechea" },
+            { "@type": "AdministrativeArea", "name": "La Dehesa" },
+            { "@type": "AdministrativeArea", "name": "Providencia" },
+            { "@type": "AdministrativeArea", "name": "Chicureo" },
+            { "@type": "AdministrativeArea", "name": "La Reina" }
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "telephone": "+56931939017",
+            "url": "https://wa.me/56931939017",
+            "availableLanguage": ["es"]
+          }
+        }
+      ]
     }
     </script>
   </head>
   <body class="bg-[#F7F7F5] text-[#0A0A0A]">
-    <div id="root"></div>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div id="root"><!--PRERENDER-->
+<main id="contenido">
+  <h1>Eventos en casa. Y menús para toda la semana.</h1>
+  <p>Maceiras: catering para cumpleaños y graduaciones, menús semanales o mensuales a domicilio, chef privado y servicio para empresas en Santiago.</p>
+  <p><a href="https://wa.me/56931939017?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20catering%20y%20chef%20privado.">Cotizar por WhatsApp</a></p>
+</main>
+<!--/PRERENDER--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Utensils, GlassWater } from 'lucide-react';
 import { DISHES_DATA } from '../data/cateringData';
+import { OptimizedImage } from './OptimizedImage';
 import { DishItem } from '../types';
 
 export const SpecialtiesSection: React.FC = () => {
@@ -61,11 +62,13 @@ export const SpecialtiesSection: React.FC = () => {
             >
               <div>
                 <div className="relative h-52 w-full overflow-hidden bg-[#EDEDEC]">
-                  <img
+                  <OptimizedImage
                     src={dish.image}
                     alt={dish.name}
-                    referrerPolicy="no-referrer"
+                    width={800}
+                    height={520}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute top-3 left-3 px-2.5 py-1 bg-white/95 text-[11px] text-[#0A0A0A] font-medium rounded-full">
                     {dish.category}
@@ -121,11 +124,13 @@ export const SpecialtiesSection: React.FC = () => {
 
               <div className="flex-1 overflow-y-auto">
                 <div className="relative h-48 sm:h-60 w-full bg-[#EDEDEC] shrink-0">
-                  <img
+                  <OptimizedImage
                     src={selectedDish.image}
                     alt={selectedDish.name}
-                    referrerPolicy="no-referrer"
+                    width={800}
+                    height={480}
                     className="w-full h-full object-cover"
+                    sizes="100vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-4 px-2.5 py-0.5 bg-[#0A0A0A] text-[#F7F7F5] font-display text-[11px] uppercase tracking-[0.16em]">

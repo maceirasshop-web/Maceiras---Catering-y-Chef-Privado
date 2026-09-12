@@ -214,21 +214,27 @@ export const getLocalRecipes = (): RecipeItem[] => {
 
 // Fetch all recipes (Supabase + LocalStorage fallback)
 export async function fetchDbRecipes(): Promise<{ recipes: RecipeItem[]; source: 'supabase' | 'local' }> {
-  if (supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('recipes')
-        .select('*')
-        .order('id', { ascending: true });
-
-      if (!error && data && data.length > 0) {
-        return { recipes: data as RecipeItem[], source: 'supabase' };
-      }
-    } catch (err) {
-      console.warn('Supabase fetch recipes failed, fallback to local:', err);
-    }
+  const local = getLocalRecipes();
+  if (!supabase) {
+    return { recipes: local, source: 'local' };
   }
-  return { recipes: getLocalRecipes(), source: 'local' };
+  try {
+    const query = supabase.from('recipes').select('*').order('id', { ascending: true });
+    const timeout = new Promise<never>((_, reject) => {
+      setTimeout(() => reject(new Error('timeout')), 2500);
+    });
+    const { data, error } = (await Promise.race([query, timeout])) as {
+      data: RecipeItem[] | null;
+      error: { message?: string } | null;
+    };
+
+    if (!error && data && data.length > 0) {
+      return { recipes: data, source: 'supabase' };
+    }
+  } catch (err) {
+    console.warn('Supabase fetch recipes failed, fallback to local:', err);
+  }
+  return { recipes: local, source: 'local' };
 }
 
 // Save Recipe (Insert or Update)

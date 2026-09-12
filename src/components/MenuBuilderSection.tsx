@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import { CATALOG_PRODUCTS, CatalogProduct } from '../data/catalogData';
+import { OptimizedImage } from './OptimizedImage';
+import { waLink } from '../seo/site';
 
 export interface SelectedItemState {
   product: CatalogProduct;
@@ -65,7 +67,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
               Arma tu menú a la medida
             </h2>
             <p className="text-sm sm:text-base font-light text-[#5C5C5C] leading-relaxed">
-              Selecciona canapés, almuerzos o estaciones. Define cantidades y envía una cotización itemizada en un paso.
+              Selecciona canapés, almuerzos o estaciones. Precio a cotizar: definimos el valor según pax, recinto y fecha. Envíe la selección o escríbanos por WhatsApp.
             </p>
           </div>
 
@@ -110,11 +112,13 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
               >
                 <div>
                   <div className="relative h-52 w-full overflow-hidden bg-[#EDEDEC]">
-                    <img
+                    <OptimizedImage
                       src={product.image}
                       alt={product.title}
-                      referrerPolicy="no-referrer"
+                      width={800}
+                      height={520}
                       className="w-full h-full object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
 
@@ -136,9 +140,18 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                     <p className="text-xs font-light text-[#5C5C5C] leading-relaxed line-clamp-3">
                       {product.description}
                     </p>
-                    <div className="pt-1 text-[11px] text-[#0A0A0A]/55 font-medium">
-                      {product.unitText}
+                    <div className="pt-1 flex items-center justify-between gap-2 text-[11px] font-medium">
+                      <span className="text-[#0A0A0A]/55">{product.unitText}</span>
+                      <span className="text-[#0A0A0A]">Precio a cotizar</span>
                     </div>
+                    <a
+                      href={waLink(`Hola, quisiera cotizar ${product.title} (${product.unitText}).`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[12px] font-medium text-[#0A0A0A] underline underline-offset-2 hover:opacity-70"
+                    >
+                      Cotizar por WhatsApp
+                    </a>
                   </div>
                 </div>
 
@@ -204,15 +217,15 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                     <div className="text-sm font-medium text-white leading-tight">
                       Selección de menú
                     </div>
-                    <div className="text-[10px] text-white/45">
-                      {selectedItemsList.length} {selectedItemsList.length === 1 ? 'producto' : 'productos'}
+                    <div className="text-[10px] text-[#C4C4C4]">
+                      {selectedItemsList.length} {selectedItemsList.length === 1 ? 'producto' : 'productos'} · Precio a cotizar
                     </div>
                   </div>
                 </div>
 
                 <button
                   onClick={handleResetSelection}
-                  className="text-[10px] uppercase tracking-wider text-white/45 hover:text-white"
+                  className="text-[10px] uppercase tracking-wider text-[#C4C4C4] hover:text-white"
                   title="Vaciar selección"
                 >
                   Vaciar
@@ -223,7 +236,7 @@ export const MenuBuilderSection: React.FC<MenuBuilderSectionProps> = ({ onProcee
                 {selectedItemsList.map(({ product, quantity }) => (
                   <div key={product.id} className="flex justify-between items-center text-[11px]">
                     <span className="truncate pr-2">{quantity}× {product.title}</span>
-                    <span className="text-white/40 shrink-0">{product.category}</span>
+                    <span className="text-[#C4C4C4] shrink-0">{product.category}</span>
                   </div>
                 ))}
               </div>

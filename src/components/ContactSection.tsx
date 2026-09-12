@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Send, CheckCircle2, Phone, Mail, MapPin, ShoppingBag, Trash2 } from 'lucide-react';
 import { QuoteFormData } from '../types';
-import { saveQuote } from '../lib/supabase';
+
 import { SelectedItemState } from './MenuBuilderSection';
 
 interface ContactSectionProps {
@@ -67,6 +67,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       finalMessage = `[PRODUCTOS SELECCIONADOS EN EL MENÚ]:\n${breakdownText}\n\n[MENSAJE / REQUERIMIENTOS]:\n${formData.message || 'Sin observaciones adicionales.'}`;
     }
 
+    const { saveQuote } = await import('../lib/supabase');
     await saveQuote({
       name: formData.name,
       email: formData.email,

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, Check, X, Users, ArrowRight } from 'lucide-react';
 import { SERVICES_DATA } from '../data/cateringData';
+import { OptimizedImage } from './OptimizedImage';
 import { ServiceItem } from '../types';
 
 interface ServicesSectionProps {
@@ -25,7 +26,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             </p>
           </div>
           <a
-            href="#/empresas"
+            href="/empresas"
             className="inline-flex items-center gap-2 kicker !text-[#0A0A0A] hover:opacity-70 transition-opacity"
           >
             Página empresas
@@ -46,11 +47,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             >
               <div>
                 <div className="relative h-64 w-full overflow-hidden bg-[#EDEDEC]">
-                  <img
+                  <OptimizedImage
                     src={service.image}
                     alt={service.title}
-                    referrerPolicy="no-referrer"
+                    width={800}
+                    height={640}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent" />
                   <div className="absolute top-4 left-4 text-sm font-medium text-white/90">
@@ -100,11 +103,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
 
               <div className="flex-1 overflow-y-auto">
                 <div className="relative h-48 sm:h-64 w-full bg-[#EDEDEC] shrink-0">
-                  <img
+                  <OptimizedImage
                     src={selectedService.image}
                     alt={selectedService.title}
-                    referrerPolicy="no-referrer"
+                    width={800}
+                    height={480}
                     className="w-full h-full object-cover"
+                    sizes="100vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-4 sm:left-6 px-3 py-1 bg-[#0A0A0A] text-[#F7F7F5] font-display text-[12px] tracking-[0.16em] uppercase">

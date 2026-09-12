@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, ChevronRight } from 'lucide-react';
-import { Hero3D } from './Hero3D';
+import { OptimizedImage } from './OptimizedImage';
+
+const Hero3D = lazy(() => import('./Hero3D').then((m) => ({ default: m.Hero3D })));
 
 interface HeroSectionProps {
   onOpenQuote: (serviceType?: string) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
+  const [show3d, setShow3d] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    if (!mq.matches) return;
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    let idleId = 0;
+    let timeoutId = 0;
+    if (win.requestIdleCallback) {
+      idleId = win.requestIdleCallback(() => setShow3d(true), { timeout: 1800 });
+    } else {
+      timeoutId = window.setTimeout(() => setShow3d(true), 900);
+    }
+    return () => {
+      if (idleId && win.cancelIdleCallback) win.cancelIdleCallback(idleId);
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <section
       id="hero"
@@ -78,13 +103,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
             ))}
           </motion.div>
 
-          <a
-            href="#/empresas"
+          <Link
+            to="/empresas"
             className="inline-flex items-center gap-1.5 text-[12px] text-[#5C5C5C] hover:text-[#0A0A0A] transition-colors font-medium w-fit"
           >
             <span>Servicio para empresas</span>
             <ChevronRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
 
         <div className="hidden lg:col-span-6 lg:flex relative items-center justify-center">
@@ -92,12 +117,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full relative"
+            className="w-full relative rounded-3xl overflow-hidden"
           >
-            <Hero3D />
-            <div className="absolute bottom-3 right-4 kicker pointer-events-none">
-              Interactúa · 3D
-            </div>
+            <OptimizedImage
+              src="/images/tabla-de-charcuteria"
+              alt="Tabla de charcutería y quesos de Maceiras para catering en Santiago"
+              width={1200}
+              height={900}
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="w-full h-[460px] md:h-[580px] object-cover"
+            />
+            {show3d ? (
+              <div className="absolute inset-0 bg-[#F7F7F5]/70">
+                <Suspense fallback={null}>
+                  <Hero3D />
+                </Suspense>
+              </div>
+            ) : null}
           </motion.div>
         </div>
       </div>
